@@ -499,7 +499,7 @@ h6,
 
     margin-bottom: .5rem;
 
-    color: #32325d;
+    color: #525288;
 }
 
 h1,
@@ -593,7 +593,7 @@ mark,
 {
     padding: .2em;
 
-    background-color: #fcf8e3;
+    background-color: #e7c931;
 }
 
 .list-unstyled
@@ -1977,24 +1977,24 @@ pre code
 
 .table-hover tbody tr:hover
 {
-    background-color: #f6f9fc;
+    background-color: #2369af;
 }
 
 .table-primary,
 .table-primary > th,
 .table-primary > td
 {
-    background-color: #d2d8f7;
+    background-color: #8fa1f8;
 }
 
 .table-hover .table-primary:hover
 {
-    background-color: #bcc5f3;
+    background-color: #a6b3f5;
 }
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th
 {
-    background-color: #bcc5f3;
+    background-color: #a2ade2;
 }
 
 .table-secondary,
@@ -2018,7 +2018,7 @@ pre code
 .table-success > th,
 .table-success > td
 {
-    background-color: #c4f1de;
+    background-color: #89f3c7;
 }
 
 .table-hover .table-success:hover
@@ -2028,7 +2028,7 @@ pre code
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th
 {
-    background-color: #afecd2;
+    background-color: #9eebc9;
 }
 
 .table-info,
@@ -15043,14 +15043,66 @@ button.bg-lighter:focus
 {
     background-color: #cbd3da !important;
 }
-
+/*Este es el de la imagen de */
 .bg-gradient-primary
 {
-    background-image: url('/imagen/{{ auth()->user()->imagen_usuario }}'); 
+    /*background-image: url('../../..resources/views/img2/UESVV.jpg'); */
     background-size: cover; 
     background-position: center top; 
-    background-color: #80ba26;
+    background-color: #80ba26; 
 }
+.fondoimagen
+{
+    margin: 0;
+    min-height: 100vh;
+    background: url('../img/brand/UESVV.jpg') #80ba26;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.fondoimagen::before
+{
+    content: "";
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, #52c4df, #80ba26);
+    opacity: 0.5;
+    z-index: -1;
+}
+.fondoBusqueda
+{
+    background-color: whitesmoke;
+}
+.element {
+    box-shadow: inset 0px 0px 62px 6px rgba(86, 166, 113, 0.87);
+    transition: transform 300ms ease-out;
+  }
+  
+  .element:hover {
+    transform: rotate(2deg) translate(0px, 0px) scale(3, 3);
+  }
+  
+  
+  .element3 {
+    border: 1px inherit rgba(100, 100, 100, 1);
+    border-radius: 8px;
+    background: linear-gradient(
+      45deg,
+      rgba(213, 221, 240, 1) 12%,
+      rgba(202, 211, 237, 1) 24%
+    );
+    box-shadow: inset 2px 3px 67px 27px rgba(111, 217, 30, 0.35);
+  }
+  
+  
+  
+  
+  
+  
 
 .bg-gradient-secondary
 {
@@ -15405,7 +15457,7 @@ button.section-darker:focus
 
 .bg-gradient-primary
 {
-    background: linear-gradient(87deg, #80ba26 0, #80ba26 100%) !important;
+    background-image: url('../../..resources/views/img2/UESVV.jpg'); 
 }
 
 .bg-gradient-secondary

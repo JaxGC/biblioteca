@@ -21,7 +21,7 @@
                             </a>
                         </div>
                     </div-->
-                    <div class="card-body px-lg-5 py-lg-5"  style="background-color: rgba(9, 24, 241, 0.336);">
+                    <div class="card-body px-lg-5 py-lg-5 fondoBusqueda" >
                         <div class="text-center text-muted mb-4">
                             <small>{{ __('Registrate para iniciar sesión') }}</small>
                         </div>

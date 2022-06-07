@@ -10,8 +10,6 @@ use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\LicenciaturaController;
 use App\Http\Controllers\MaestroController;
 use App\Http\Controllers\PrestamoController;
-use App\Models\Autor;
-use App\Models\Libro;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use Psy\Command\EditCommand;
@@ -27,13 +25,7 @@ use Psy\Command\EditCommand;
 |
 */
 
-Route::get('/', function () {
-	$Lib = Libro::join('autores','libros.id_autor', '=','autores.id')
-	->join('editoriales','libros.id_editorial', '=','editoriales.id')
-	->select('libros.*', 'autores.Nombre_autor', 'editoriales.Nombre_editorial')
-	->get();
-    return view('welcome', compact('Lib'));
-});
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('/');
 
 Auth::routes();
 
