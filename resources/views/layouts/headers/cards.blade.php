@@ -1,4 +1,4 @@
-<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8" style="background-color: #80ba26">
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
             <!-- Card stats -->
@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Maestros</h5>
-                                    <span class="h2 font-weight-bold mb-0">Cantidad de inicio de sesion</span>
+                                    <span class="h3 font-weight-bold mb-0">Consultas de hoy</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -18,11 +18,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                
-                                <span class="text-nowrap">Mes</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>03</span><br>
                                 <span class="text-nowrap">Dia</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>09</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up">{{$contadorMae}}</i></span>
                             </p>
                         </div>
                     </div>
@@ -33,7 +30,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Alumnos</h5>
-                                    <span class="h2 font-weight-bold mb-0">Cantidad de alumnos 500</span>
+                                    <span class="h3 font-weight-bold mb-0">Consultas de hoy</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -42,10 +39,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-nowrap">Mes</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>03</span><br>
                                 <span class="text-nowrap">Dia</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>09</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorAlum}}</span>
                             </p>
                         </div>
                     </div>
@@ -56,7 +51,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Libros</h5>
-                                    <span class="h2 font-weight-bold mb-0">Cantidad de libros</span>
+                                    <span class="h3 font-weight-bold mb-0">Registrados</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -65,10 +60,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-nowrap">Mes</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>03</span><br>
                                 <span class="text-nowrap">Dia</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>09</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorlibros}}</span>
                             </p>
                         </div>
                     </div>
@@ -79,7 +72,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Invitados</h5>
-                                    <span class="h2 font-weight-bold mb-0">Cantidad de invitados</span>
+                                    <span class="h3 font-weight-bold mb-0">Consultas de hoy</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -88,10 +81,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-nowrap">Mes</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>03</span><br>
                                 <span class="text-nowrap">Dia</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>09</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorInvi}}</span>
                             </p>
                         </div>
                     </div>
