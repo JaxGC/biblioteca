@@ -116,13 +116,18 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Categorias/{varcat}','update')->name('Categorias.update');
 			Route::delete('Categorias/{varcat}','destroy')->name('Categorias.destroy');
 		});
-		
+
+		Route::controller(PrestamoController::class)->group(function(){
+			Route::get('table-list', 'index')->name('table');
+			Route::get('agregarPrestamo', 'create')->name('agregarPrestamo');
+			Route::get('BuscarUser', 'buscar')->name('BuscarUser');
+			Route::post('agregarPres','store')->name('agregarPres');
+			Route::get('Prestamos/{varpres}/editarPrestamo','edit')->name('Prestamos.editarPrestamo');
+			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
+			Route::delete('Prestamos/{varpres}','destroy')->name('Prestamos.destroy');
+		});	
 });
 
-
-Route::controller(PrestamoController::class)->group(function(){
-	Route::get('table-list', 'index')->name('table');
-});
 Route::controller(BitacoraController::class)->group(function(){
 	Route::get('bitacora', 'index')->name('bitacora');
 });

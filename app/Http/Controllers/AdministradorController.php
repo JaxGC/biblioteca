@@ -78,9 +78,11 @@ class AdministradorController extends Controller
         $varAdmin->password = Hash::make( $request->password);
         $varAdmin->id_status_usuario = $request->id_status_usuario;
         $imagenOld = $varAdmin->imagen_usuario;
+        //dd($imagenOld);
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
-            Storage::delete('imagen/'.$imagenOld);
+            //Storage::delete('imagen/'.$imagenOld);
+            unlink('imagen/'.$imagenOld);
             //FacadesFile::delete($varAdmin->imagen_usuario);
 
             $rutaGuardarImg = 'imagen/';
@@ -94,11 +96,14 @@ class AdministradorController extends Controller
         $varAdmin=User::all()->where('rol','=','Admin');//paginar la tabla
         return view('pages.Administradores.icons3', compact('varAdmin'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
-    public function destroy( $id ){
+    public function destroy( $id, User $varAdmin){
         //$varAdmin=Administrador::find($id);
         //dd($varAdmin,$id);
         //$varAdmin->delete();
+        $imagenOld = $varAdmin->imagen_usuario;
+        unlink('imagen/'.$imagenOld);
         $varUser=User::find($id);
+       // unlink('imagen/'.$imagen_usuario);
         $varUser->delete();
         $varAdmin=User::all()->where('rol','=','Admin');//paginar la tabla
         return view('pages.Administradores.icons3', compact('varAdmin'))->with('success','Registro Eliminado ');
