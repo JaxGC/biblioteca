@@ -5149,10 +5149,14 @@ input[type='button'].btn-block
 
     padding: .25rem .75rem;
 }
+
 .nav-link:hover,
-.nav-link:focus
+.nav-link:focus,
+.nav-link:active,
+.nav-link:visited 
 {
-    text-decoration: none;
+    text-decoration: orangered;
+    background: #80ba26c7;/*color de boton cuando seleecxcionas rgba(84, 218, 161, .5)*/
 }
 .nav-link.disabled
 {
@@ -15120,10 +15124,13 @@ button.bg-lighter:focus
     box-shadow: inset 2px 3px 67px 27px rgba(111, 217, 30, 0.35);
   }
   
-  
-  
-  
-  
+  .element12 {
+    background: radial-gradient(
+    100% 100% at 50% 50%,
+    rgba(255, 255, 255, 1) 12%,
+    rgba(240, 245, 235, 0.79) 40%
+  );
+  }
   
 
 .bg-gradient-secondary
@@ -19010,7 +19017,7 @@ textarea[resize='horizontal']
 .nav-pills .show > .nav-link
 {
     color: #fff;
-    background-color: #5e72e4;
+    background-color:rgba(34, 156, 104, .6);
 }
 
 @media (max-width: 575.98px)

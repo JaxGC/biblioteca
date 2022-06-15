@@ -66,7 +66,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
-                                <input type="text" name="start_date" value="{{date('y-m-d')}}">
+                                <input class="form-control" type="text" name="start_date" value="{{date('y-m-d')}}">
                             </div>
                         </div>
                     </div>
@@ -84,33 +84,27 @@
         </div>
         <div class="row">
        <div class="col-sm">
-           <label for="exampleFormControlSelect1">Documento</label>
-
-       </div>
-       
+           <label for="exampleFormControlSelect1">Documento:</label>
+            <div class="custom-control custom-radio mb-3">
+                   <input name="documento" class="custom-control-input" id="customRadio5" type="radio">
+                   <label class="custom-control-label" for="customRadio5">Credencial UMB</label>
+            </div>
+            <div class="custom-control custom-radio mb-3">
+                   <input name="documento" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                   <label class="custom-control-label" for="customRadio6">INE</label>
+            </div>
+        </div>
        <div class="col-sm">
-        <form action="{{route('BuscarUser')}}" method="GET">
-        <div class="form-row">
-            <label for="">Usuario</label>
-            <input type="text" class="form-control" name="texto" value="{{$texto}}">
-           
-           <br>
-           <br>
-          <input type="submit" class="btn-success" value="buscaru">
-          </div>
-        </form>
-    </div>
-    <div class="col-sm">
-        <form action="">
-        <div class="form-row">
-            <label for="">Libro</label>
-            <input type="text" class="form-control" name="texto">
-           
-           <br>
-           <br>
-          <input type="submit" class="btn-success" value="buscarl">
-          </div>
-        </form>
+        <label for="exampleFormControlSelect1">Alumno:</label>
+        <div class="custom-control custom-radio mb-3">
+        <select id="ejemplo" name="ejemplo" class="form-control" >
+            <option value="0">Seleccionar dato</option>
+                @foreach ($alumnos as $alu)
+                    <option value="{{$alu->id}}">{{$alu->clave}}: {{$alu->name}}</option>    
+                @endforeach
+          </select>
+        </div>
+          
     </div>
       
         <div class="col-sm">
@@ -146,6 +140,7 @@
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 <!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+
 <script>   
     $(document).ready(function (e) {   
         $('#imagen').change(function(){            
@@ -156,5 +151,10 @@
             reader.readAsDataURL(this.files[0]); 
         });
     });
+
+    $(function(){
+        $("#ejemplo").select2();
+    })
 </script>
+
 @endpush

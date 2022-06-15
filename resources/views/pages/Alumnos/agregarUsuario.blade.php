@@ -80,7 +80,7 @@
             <div class="col-xl-4">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Estatus de usuario</label>
-                    <select id="id_status_usuario" name="id_status_usuario" class="form-control" id="exampleFormControlSelect1">
+                        <select id="id_status_usuario" name="id_status_usuario" class="form-control" id="exampleFormControlSelect1">
                         @foreach ($status as $statu)
                             <option value="{{$statu->id}}">{{$statu->Nombre_status_usu}}</option>
                         @endforeach
@@ -90,11 +90,20 @@
             <div class="col-sm">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Licenciatura</label>
+                    @if ($licen->count())
                     <select id="id_licenciatura" name="id_licenciatura" class="form-control" id="exampleFormControlSelect1">
                       @foreach ($licen as $lic)
                           <option value="{{$lic->Nombre_licenciatura}}">{{$lic->Nombre_licenciatura}}</option>
                       @endforeach
                     </select>
+                    @else
+                        <script>
+                            Swal.fire('Datos de licenciaturas estan vacios')
+                        </script>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-sm badge-pill badge-danger" data-toggle="modal" data-target="#modal-default" data-toggle="tooltip" data-placement="top" title="seleccione para agregar una licenciatura">No hay ningun registro disponible.</button>
+                        </div>
+                    @endif
                   </div>
             
             </div>
@@ -105,18 +114,18 @@
         </div>
 
         <div class="grid grid-cols-1 mt-0 mx-0">
-        <p class='text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Seleccione la imagen</p>
-                    </div>
-                <input name="imagen" id="imagen" type='file' class="hidden" />
-                </label>
+            <p class='text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Seleccione la imagen</p>
+        </div>
+        <div>
+            <input name="imagen" id="imagen" type='file' class="hidden" />
         </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">Guardar</button></div>
+                <button type="submit" class="btn btn-success btn-block">Guardar</button>
+            </div>
                 <div class="form-group">
                     <a href="{{ route("icons") }}" class="btn btn-info btn-block" >Atrás</a>
                 </div>
             </form>
-            </div>
         </div>
     </div>@include('layouts.footers.auth')  
     </div>
@@ -126,7 +135,7 @@
     
 
 @endsection
-
+@include('pages.alumnos.modallc')
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>

@@ -21,7 +21,10 @@
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
 <!-- Datatables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+<!--SELECT2 para buscar como si fuera input-->
+<link type="text/css"  href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -49,6 +52,7 @@
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
         <!-- DATATABLES -->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
-	
+        <!--Select2-->
+        <script type="text/javascript" charset="utf8"  src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     </body>
 </html>

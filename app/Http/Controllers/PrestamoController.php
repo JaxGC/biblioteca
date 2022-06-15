@@ -17,33 +17,26 @@ class PrestamoController extends Controller
     //
     public function index(Request $request){
 
-        $texto=trim($request->get('texto'));
-        $usuerios=DB::table('users')->
-        select('name')
-        ->where('name','LIKE','%'.$texto.'%');
-        
+        $alumnos = User::all()->where('rol','=','Alum');
         $varPres = Prestamo::paginate(5);
-        return view('pages.Prestamos.tables', compact('varPres','texto','usuerios'));
+        return view('pages.Prestamos.tables', compact('varPres','alumnos'));
 
     }
-    public function buscar(Request $request){
-        $texto=trim($request->get('texto'));
-        $usuerios=DB::table('users')->
-        select('name')
-        ->where('name','LIKE','%'.$texto.'%');
-        dd($texto);
-        return view('pages.Prestamos.tables', compact('usuerios','texto'));
-    }
+   
     public function create(){
-        $us=user::all();
+        $alumnos = User::all()->where('rol','=','Alum');
         $libr=libro::all();
         $admin=administrador::all();
-        return view('pages.Prestamos.agregarPrestamo', compact('us','libr','admin'));
+        return view('pages.Prestamos.agregarPrestamo', compact('alumnos','libr','admin'));
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
       //dd($request);
-        $data= request()->validate( ['start_date'=>'required','finish_date'=>'required|date|after:start_date']);
+        $data= request()->validate( ['start_date'=>'required','finish_date'=>'required|date|after:start_date'
+    ], [
+
+        'finish_date.after'=>'El campo fecha entrega debe ser una fecha despues de la del prestamo mas de un dia.'
+    ]);
         Prestamo::create([
 
             'fecha_inicio'=>$data['start_date'],

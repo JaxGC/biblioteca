@@ -17,7 +17,7 @@
                         <h1 class="mb-0">Usuarios</h1>
                     </div>
                     <div class="col-4 text-right">
-                        <a class="nav-link" href="{{ route('agregarUsuario') }}">
+                        <a class="" href="{{ route('agregarUsuario') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Añadir usuario</i>
                         </a>
                     </div>

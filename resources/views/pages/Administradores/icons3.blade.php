@@ -17,10 +17,10 @@
                         <h1 class="mb-0">Administradores</h1>
                     </div>
                     <div class="col-4 text-right">
-                        <a class="nav-link" href="{{ route('agregarAdministrador1') }}">
+                        <a class="" href="{{ route('agregarAdministrador1') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Añadir Administrador</i>
                         </a>
-                        <a class="nav-link" href="{{ route('PDFAdministrador') }}">
+                        <a class="" href="{{ route('PDFAdministrador') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Generar pdf</i>
                         </a>
                     </div> 

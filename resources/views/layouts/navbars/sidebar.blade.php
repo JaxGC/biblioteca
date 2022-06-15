@@ -43,9 +43,9 @@
                     @endcan
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="ni ni-badge" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Datos Personales') }}</span>
+                    <a class="nav-link " href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-badge" ></i>
+                        <span class="nav-link-text" >{{ __('Datos Personales') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-examples">
@@ -61,9 +61,9 @@
 
                 <li class="nav-item">
                     @can('icons3')
-                    <a class="nav-link active" href="#navbarusu" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
-                        <i class="ni ni-single-02" style="color: #5ce632;"></i>
-                        <span class="nav-link-text" style="color: #5ce632;">{{ __('Usuarios') }}</span>
+                    <a class="nav-link " href="#navbarusu" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                        <i class="ni ni-single-02" ></i>
+                        <span class="nav-link-text" >{{ __('Usuarios') }}</span>
                     </a>
     
                     <div class="collapse show" id="navbarusu">
@@ -90,7 +90,7 @@
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('map') }}">
-                        <i class="ni ni-books text-orange"></i> {{ __('Libros') }}
+                        <i class="ni ni-books"></i> {{ __('Libros') }}
                     </a> 
                 </li>
                 @can('icons3')

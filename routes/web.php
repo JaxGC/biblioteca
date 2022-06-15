@@ -120,7 +120,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::controller(PrestamoController::class)->group(function(){
 			Route::get('table-list', 'index')->name('table');
 			Route::get('agregarPrestamo', 'create')->name('agregarPrestamo');
-			Route::get('BuscarUser', 'buscar')->name('BuscarUser');
 			Route::post('agregarPres','store')->name('agregarPres');
 			Route::get('Prestamos/{varpres}/editarPrestamo','edit')->name('Prestamos.editarPrestamo');
 			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
