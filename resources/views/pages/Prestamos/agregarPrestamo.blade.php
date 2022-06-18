@@ -20,6 +20,7 @@
       if(letras.indexOf(tecla)==-1 && !tecla_especial){
           return false;
       }
+    
   }
     </script>
 
@@ -30,6 +31,7 @@
 </div>
 <div class="card-body">
     <div> 
+
         @if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<strong>Error!</strong> Revise los campos obligatorios.
@@ -54,7 +56,11 @@
 			@endif
         <div class="card ">
             <div class="card-body">
+            
             <h1>Agregar prestamo</h1>
+            @if ($libr->ejemplares>=1)
+                
+            
             <form method="POST" action="{{ url('agregarPres') }}"  role="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
             <div class="row">
@@ -106,7 +112,12 @@
         </div>
           
     </div>
-      
+    <div class="col-sm">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Libro: </label>
+            <label for="text" id="varlib"><h2 class="btn-success">{{$libr->Nombre_libro}}</h2></label>
+          </div>
+    </div>
         <div class="col-sm">
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Administrador: </label>
@@ -118,12 +129,18 @@
         <br>
         <div class="form-group">
             <button type="submit" class="btn btn-success btn-block">Guardar</button></div>
+            
             <div class="form-group">
                 <a href="{{ route("table") }}" class="btn btn-info btn-block" >Atrás</a>
             </div>
            
     </div>
             </form>
+            @else
+            <div class="alert alert-danger" role="alert">
+             <strong>Danger!</strong> NO ESTA DISPONIBLE!
+         </div>  
+            @endif
             </div>
         </div>
     </div>@include('layouts.footers.auth')  

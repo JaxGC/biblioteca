@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('clave')->nullable();
             $table->string('id_licenciatura')->nullable();
             $table->string('imagen_usuario')->nullable();
+            $table->integer('selectestado')->nullable();
+            $table->integer('selectmunicipio')->nullable();  
+            $table->integer('selectlocalidad')->nullable();
+            $table->text('referencia')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

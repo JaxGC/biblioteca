@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estado;
 use App\Models\Maestro;
 use App\Models\Status_usuario;
 use App\Models\User;
@@ -18,13 +19,15 @@ class MaestroController extends Controller
     }
     public function create(){
         $status=Status_usuario::all();
-        return view('pages.Maestros.agregarMaestro', compact('status'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+        return view('pages.Maestros.agregarMaestro', compact('status','estados'));
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
         $data= request()->validate([ 'Nombre_maestro'=>'required','clave_empleado'=>'required','Password'=>'required',
         'id_status_usuario'=>'required','email'=>'required','carrera_empleado'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024'
+        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
+        'selectlocalidad'=>'required','referencia'=>'required'
             ], [
 
                 'clave_empleado.required'=>'El campo clave es obligatorio',
@@ -48,13 +51,18 @@ class MaestroController extends Controller
             'id_status_usuario'=>$data['id_status_usuario'],
             'id_licenciatura'=>$data['carrera_empleado'],
             'imagen_usuario' =>$data['imagen_usuario'],
-            'rol' => 'Maes'
+            'rol' => 'Maes',
+            'selectestado' =>$data['selectestado'],
+            'selectmunicipio' =>$data['selectmunicipio'],
+            'selectlocalidad' =>$data['selectlocalidad'],
+            'referencia' =>$data['referencia']
         ])->assignRole('Maes');
         return back()->with('success','Registro creado satisfactoriamente');
     }
     public function edit(User $varMa){
         $status=Status_usuario::all();
-         return view('pages.Maestros.edit', compact('varMa', 'status'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+         return view('pages.Maestros.edit', compact('varMa', 'status','estados'));
     }
     public function update(Request $request, User $varMa){
         $varMa->clave = $request->clave_empleado;
@@ -62,12 +70,16 @@ class MaestroController extends Controller
         $varMa->password = Hash::make($request->Password);
         $varMa->id_licenciatura = $request->carrera_empleado;
         $varMa->id_status_usuario = $request->id_status_usuario;
+        $varMa->selectestado = $request->selectestado;
+        $varMa->selectmunicipio = $request->selectmunicipio;
+        $varMa->selectlocalidad = $request->selectlocalidad;
+        $varMa->referencia = $request->referencia;
         $imagenOld = $varMa->imagen_usuario;
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
-            Storage::delete('imagen/'.$imagenOld);
-            //FacadesFile::delete($varAdmin->imagen_usuario);
-
+            if ($imagenOld!="") {
+                unlink('imagen/'.$imagenOld);
+            }
             $rutaGuardarImg = 'imagen/';
             $imagenProducto = date('YmdHis') . "." . $imagen->getClientOriginalExtension(); 
             $imagen->move($rutaGuardarImg, $imagenProducto);
@@ -80,6 +92,11 @@ class MaestroController extends Controller
         return view('pages.Maestros.icons2', compact('varMa'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(User $varMa){
+        $imagenOld = $varMa->imagen_usuario;
+        if ($imagenOld!="") {
+            unlink('imagen/'.$imagenOld);
+        }
+
         $varMa->delete();
         $varMa = User::all()->where('rol','=','Maes');//paginar la tabla
         return view('pages.Maestros.icons2', compact('varMa'))->with('success','Registro Eliminado ');

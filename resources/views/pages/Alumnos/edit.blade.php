@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@extends('layouts.bootstrapstilos')
 <script>//para admitir solo letras en el input
     function soloLetras(e){
      key = e.keyCode || e.which;
@@ -59,27 +59,27 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="row">
-            <div class="col-sm">
-                <label> Matricula</label>
+            <div class="col-sm"><strong>
+                <label> Matricula</label></strong>
                 <input value="{{$varAlu->clave}}" id="matricula" name="matricula" type="text" class="form-control form-control-muted" placeholder="ingrese matricula" required>
             </div>
-            <div class="col-sm">
-                <label> Nombre Completo</label>
+            <div class="col-sm"><strong>
+                <label> Nombre Completo</label></strong>
                 <input value="{{$varAlu->name}}" id="Nombre_completo" name="Nombre_completo" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" onkeypress="return soloLetras(event);" required>
             </div>
-            <div class="col-sm">
-                <label> Email</label>
+            <div class="col-sm"><strong>
+                <label> Email</label></strong>
                 <input value="{{$varAlu->email}}" id="Direccion" name="Direccion" type="email" class="form-control form-control-muted" placeholder="ingrese correo" required>
             </div>
                 </div>
                 <div class="row">
-            <div class="col-sm">
-                <label> Contraseña </label>
+            <div class="col-sm"><strong>
+                <label> Contraseña </label></strong>
                 <input value="{{$varAlu->password}}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
             </div>
             <div class="col-sm">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Estatus de usuario</label>
+                <div class="form-group"><strong>
+                    <label for="exampleFormControlSelect1">Estatus de usuario</label></strong>
                     <select id="id_status_usuario" name="id_status_usuario" class="form-control">
                         @foreach ($status as $statu)
                             <option value="{{$statu->id}}">{{$statu->Nombre_status_usu}}</option>
@@ -88,8 +88,8 @@
                   </div>
             </div>
             <div class="col-sm">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Licenciatura</label>
+                <div class="form-group"><strong>
+                    <label for="exampleFormControlSelect1">Licenciatura</label></strong>
                     <select id="id_licenciatura" name="id_licenciatura" class="form-control">
                         @foreach ($licen as $lic)
                             <option value="{{$lic->id}}">{{$lic->Nombre_licenciatura}}</option>
@@ -98,6 +98,51 @@
                   </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+        <strong>
+            Estado
+            </strong>
+            <br>
+            <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
+                <option value="">
+                    Selecionar Estado
+                </option>
+                @foreach ($estados as $estado)
+                    <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                @endforeach
+            </select>
+        </div></div>
+        <div class="col-md-3">
+        <strong>
+            Municipio
+            </strong>
+        <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
+            <option value="">
+                Selecionar Municipio
+            </option>
+    </select>
+        </div>
+        <div class="col-md-6">
+           
+    <strong>
+       Localidad
+        </strong>
+    <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
+        <option value="">
+            Selecionar Localidad
+        </option>
+    </select>
+    </div>
+    <div class="col-md-12">
+        <strong>
+            Referencia
+        </strong>
+        <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia') }}</textarea>
+    </div>
+    </div>
+    <script src="{{ asset('assets/js/crear.js') }}"></script>
         <div class="row">
         <div class="grid grid-cols-1 mt-5 mx-7">
             <img src="/imagen/{{ $varAlu->imagen_usuario }}" width="80px" id="imagenSeleccionada">

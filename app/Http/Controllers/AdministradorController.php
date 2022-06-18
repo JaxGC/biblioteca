@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrador;
+use App\Models\Estado;
 use App\Models\Status_usuario;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Hash;
@@ -25,20 +27,22 @@ class AdministradorController extends Controller
         //$pdf = PDF::loadView('pages.Administradores.pdfAdmin',['varAdmin'=>$varAdmin]);
         //return $pdf->stream();//Para ver el pdf en el navegador
         //return $pdf->download('___Lista de administradores.pdf');//Para descargar el pdf
-        $pdf = PDF::loadView('pages.Administradores.pdfAdmin', compact('varAdmin'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = FacadePdf::loadView('pages.Administradores.pdfAdmin', compact('varAdmin'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream();
             //return view('pages.Administradores.pdfAdmin', compact('varAdmin'));
     }
     public function create(){
         $status=Status_usuario::all();
-        return view('pages.Administradores.agregarAdministrador', compact('status'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+        return view('pages.Administradores.agregarAdministrador', compact('status','estados'));
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
        
         $data= request()->validate([ 'Usuario'=>'required','password'=>'required',
         'Nombre_administrador'=>'required','id_status_usuario'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024'
+        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
+        'selectlocalidad'=>'required','referencia'=>'required'
             ], [
 
                 'Usuario.required'=>'El campo usuario es obligatorio',
@@ -62,14 +66,19 @@ class AdministradorController extends Controller
             'rol' => 'Admin',
             'clave' => '',
             'id_licenciatura' => '0',
-            'imagen_usuario' =>$data['imagen_usuario']
+            'imagen_usuario' =>$data['imagen_usuario'],
+            'selectestado' =>$data['selectestado'],
+            'selectmunicipio' =>$data['selectmunicipio'],
+            'selectlocalidad' =>$data['selectlocalidad'],
+            'referencia' =>$data['referencia']
         ])->assignRole('Admin');
         return back()->with('success','Registro creado satisfactoriamente');
     }
     public function edit(User $varAdmin){
         //dd($id);
         $status=Status_usuario::all();
-         return view('pages.Administradores.edit', compact('varAdmin','status'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+         return view('pages.Administradores.edit', compact('varAdmin','status','estados'));
     }
     public function update(Request $request, User $varAdmin){
         //return $request->all();
@@ -77,13 +86,17 @@ class AdministradorController extends Controller
         $varAdmin->email = $request->email;
         $varAdmin->password = Hash::make( $request->password);
         $varAdmin->id_status_usuario = $request->id_status_usuario;
+        $varAdmin->selectestado = $request->selectestado;
+        $varAdmin->selectmunicipio = $request->selectmunicipio;
+        $varAdmin->selectlocalidad = $request->selectlocalidad;
+        $varAdmin->referencia = $request->referencia;
         $imagenOld = $varAdmin->imagen_usuario;
         //dd($imagenOld);
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
-            //Storage::delete('imagen/'.$imagenOld);
-            unlink('imagen/'.$imagenOld);
-            //FacadesFile::delete($varAdmin->imagen_usuario);
+            if ($imagenOld!="") {
+                unlink('imagen/'.$imagenOld);
+            }
 
             $rutaGuardarImg = 'imagen/';
             $imagenProducto = date('YmdHis') . "." . $imagen->getClientOriginalExtension(); 
@@ -96,15 +109,13 @@ class AdministradorController extends Controller
         $varAdmin=User::all()->where('rol','=','Admin');//paginar la tabla
         return view('pages.Administradores.icons3', compact('varAdmin'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
-    public function destroy( $id, User $varAdmin){
-        //$varAdmin=Administrador::find($id);
-        //dd($varAdmin,$id);
-        //$varAdmin->delete();
+    public function destroy( User $varAdmin){
+        
         $imagenOld = $varAdmin->imagen_usuario;
-        unlink('imagen/'.$imagenOld);
-        $varUser=User::find($id);
-       // unlink('imagen/'.$imagen_usuario);
-        $varUser->delete();
+        if ($imagenOld!="") {
+            unlink('imagen/'.$imagenOld);
+        }
+        $varAdmin->delete();
         $varAdmin=User::all()->where('rol','=','Admin');//paginar la tabla
         return view('pages.Administradores.icons3', compact('varAdmin'))->with('success','Registro Eliminado ');
     }

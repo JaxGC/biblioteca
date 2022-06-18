@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Models\Estado;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -15,7 +16,8 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile.edit');
+        $estados=Estado::orderBy('nombre','asc')->get();
+        return view('profile.edit', compact('estados'));
     }
 
     /**
@@ -38,6 +40,11 @@ class ProfileController extends Controller
          }else{
             unset(auth()->user()->imagen_usuario);
          }
+
+         auth()->user()->selectestado = $request->selectestado;
+         auth()->user()->selectmunicipio = $request->selectmunicipio;
+         auth()->user()->selectlocalidad = $request->selectlocalidad;
+         auth()->user()->referencia = $request->referencia;
 
         auth()->user()->update($request->all());
 

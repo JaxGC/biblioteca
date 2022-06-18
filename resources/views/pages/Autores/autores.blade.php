@@ -10,23 +10,29 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
-            <h1>Listado de autores</h1>
-            <div class="col-xl-4">
-                <a class="nav-link" href="{{ route('agregarAutor') }}">
-                    <i class="btn btn-outline-success btn-lg btn-block">Añadir autor</i>
-                </a>
+
+            <div class="card-body">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h1 class="mb-0">Autores</h1>
+                    </div>
+                
+            <div class="col-4 text-right">
+                <a class="" href="{{ route('agregarAutor') }}">
+                    <i class="btn btn-outline-success btn-sm btn-block">Añadir autor</i>
+                </a></div>
+            </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
-                        <th>ID</th>
                         <th>AUTOR</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </thead>
                     @foreach ($varaut as $aut)
                     <tbody>
-                        <td>{{$aut->id}}</td>
                         <td>{{$aut->Nombre_autor}}</td>
                         <td><a href="{{route('Autores.editaut', $aut->id)}}"><i  class="btn btn-outline-warning ni ni-ruler-pencil"> Editar</i></a></td>
                         <td>

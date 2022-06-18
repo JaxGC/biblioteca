@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="/assets-old/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <div class="card-body shadow" style="background-color: #80ba26">
     <br>
     <br>
@@ -10,46 +9,48 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
-<div class="card-header border-0">
-                    <div class="row align-items-center">
-             <div class="col-8">
-                        <h1 class="mb-0">Listado de las libros</h1>
+
+            <div class="card-body">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h1 class="mb-0">Listado de libros</h1>
                     </div>
 <div class="col-4 text-right">
 
-<a class="nav-link" href="{{route('agregarLibro')}}">
-  <i class="btn btn-outline-success btn-sm btn-block">Añadir libro</i></a>
-</a>
- </div>
+    <a class="" href="{{route('agregarLibro')}}">
+        <i class="btn btn-outline-success btn-sm btn-block">Añadir libro</i></a>
+    </a>
+</div>
                 </div>
             </div>
 
-  
- <table id="example" class="table table-bordered table-striped display" style="width:100%">
-                
-   <thead class="thead-dark">
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped display" style="width:100%">
+                    <thead class="thead-dark">
 <tr>
-<th>ID</th>
 <th>NOMBRE</th>
-<th>ID_AUTOR</th>
-<th>ID_EDITORIAL</th>
-<th>ID_CATEGORIA</th>
- <th class="text-center">Acciones</th>
-<th></th>
+<th>CATEGORIA</th>
+<th>EJEMPLARES</th>
+ <th class="text-center">ACCIONES</th>
+ @can('icons3')<th></th>
+<th></th>@endcan
 </tr>
    </thead>
 <tbody>
    @foreach ($varlib as $lib)
        
-  
- 
 <tr>
-     <td> {{$lib->id}}</td>
+
      <td>{{$lib->Nombre_libro}}</td>
-     <td>{{$lib->id_autor}}</td>
-     <td>{{$lib->id_editorial}}</td>
      <td>{{$lib->id_categoria}}</td>
-    
+     <td>{{$lib->ejemplares}}</td>
+@can('PrestamoLibro')
+  <td><a href="{{route('agregarPres2',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Prestamo</i></a></td>
+
+
+  @endcan
+  @can('icons3')
 <td><a href="{{route('Libro.editarLibro',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Editar</i></a></td>
 <td>
 <form action="{{route('Libro.destroy',$lib)}}" method="POST">
@@ -57,25 +58,25 @@
 @method('delete') 
 <button type="submit" class="btn btn-outline-danger ni ni-basket"->Eliminar</button>
 </form></td>   
-
+@endcan
 </tr>
    @endforeach
 </tbody>
  <tfoot>
 <tr>
-<th>Id</th>
-<th>Nombre_libro</th>
-<th>id_autor</th>
-<th>id_editorial</th>
-<th>id_categoria</th>
+
+<th>Nombre libro</th>
+
+<th>Categoria</th>
+<th>Ejemplares</th>
 <th class="text-center">Acciones</th>
+@can('icons3')<th></th>
+<th></th>@endcan
   </tr>
 </tfoot>
 </table>
 </div>
-</div>
-</div>
- 
+</div></div>
 
 
 
@@ -86,9 +87,9 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-//agregar para las datatables
+
 <script>
-    
+    //datatables
 $(document).ready(function() {
 $('#example').DataTable({
     responsive: true,

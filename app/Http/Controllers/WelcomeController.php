@@ -18,7 +18,8 @@ class WelcomeController extends Controller
         //
         $Lib = Libro::join('autores','libros.id_autor', '=','autores.id')
 	        ->join('editoriales','libros.id_editorial', '=','editoriales.id')
-	        ->select('libros.*', 'autores.Nombre_autor', 'editoriales.Nombre_editorial')
+            ->join('categorias','libros.id_categoria','=','categorias.id')
+	        ->select('libros.*', 'autores.Nombre_autor', 'editoriales.Nombre_editorial','categorias.Nombre_categoria')
 	        ->get();
             return view('welcome', compact('Lib'));
     }

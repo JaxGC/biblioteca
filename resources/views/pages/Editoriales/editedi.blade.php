@@ -29,7 +29,7 @@
     <br>
 </div>
 <div class="card-body">
-    <div> 
+    <div class="card-shadow"> 
         @if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<strong>Error!</strong> Revise los campos obligatorios.
@@ -57,11 +57,11 @@
             <form method="POST" action="{{ route('Editoriales.update',$varedi)}}"  role="form">
                 {{ csrf_field() }}
                 @method('put')
-            <div class="col-xl-4">
-                <label> Nombre </label>
+            <div class="col-xl-4"><strong>
+                <label> Nombre </label></strong>
                 <input value="{{$varedi->Nombre_editorial}}" name="Nombre_editorial" id="Nombre_editorial" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
             </div>
-            
+            <br>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block">Actualizar</button></div>
                 <div class="form-group">
@@ -69,10 +69,10 @@
             </div>
             </form>
         </div>
-    </div>
+    </div> @include('layouts.footers.auth')  
 </div>
 
- @include('layouts.footers.auth')  
+
     
 
 @endsection

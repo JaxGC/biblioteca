@@ -18,7 +18,15 @@ return new class extends Migration
             $table->string('Nombre_libro');
             $table->foreignId('id_autor')->constrained('autores');
             $table->foreignId('id_editorial')->constrained('editoriales');
+            $table->year('year_edicion');
+            $table->timestamp('fecha_publicacion');
             $table->foreignId('id_categoria')->constrained('categorias');
+            $table->bigInteger('ejemplares');
+            $table->bigInteger('libros_prestados');
+            $table->string('estado');
+            $table->text('observaciones');
+            $table->string('imagen');
+            $table->integer('numero_stand')->nullable();
             $table->timestamps();
         });
     }

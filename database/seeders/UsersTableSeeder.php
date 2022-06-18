@@ -48,9 +48,13 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('secret'),
             'id_status_usuario' => '1',
             'rol' => 'Admin',
-            'clave' => '21140280',
+            'clave' => '21140280', 
             'id_licenciatura' => '1',
-            'imagen_usuario' => 'Admin',
+            'imagen_usuario' => 'Default.png',
+            'selectestado' =>'0',
+            'selectmunicipio' =>'0',
+            'selectlocalidad' =>'0',
+            'referencia'=>'',
             'created_at' => now(),
             'updated_at' => now()
         ])/*->assignRole('Admin')*/;

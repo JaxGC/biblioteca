@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alumno;
+use App\Models\Estado;
 use App\Models\Licenciatura;
 use App\Models\Status_usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,13 +21,15 @@ class AlumnoController extends Controller
     public function create(){
         $status=Status_usuario::all();
         $licen=Licenciatura::all();
-        return view('pages.Alumnos.agregarUsuario', compact('status','licen'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+        return view('pages.Alumnos.agregarUsuario', compact('status','licen','estados'));
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
         $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'required','Direccion'=>'required','Password'=>'required',
         'id_licenciatura'=>'required','id_status_usuario'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024'
+        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
+        'selectlocalidad'=>'required','referencia'=>'required'
             ], [
 
                 'matricula.required'=>'El campo matricula es obligatorio',
@@ -55,13 +56,18 @@ class AlumnoController extends Controller
                 'clave' => $data['matricula'], 
                 'id_licenciatura' => $data['id_licenciatura'],
                 'imagen_usuario' =>$data['imagen_usuario'],
+                'selectestado' =>$data['selectestado'],
+                'selectmunicipio' =>$data['selectmunicipio'],
+                'selectlocalidad' =>$data['selectlocalidad'],
+                'referencia' =>$data['referencia']
         ])->assignRole('Alum');
         return back()->with('success','Registro creado satisfactoriamente');
     }
     public function edit(User $varAlu){
         $status=Status_usuario::all();
         $licen=Licenciatura::all();
-         return view('pages.Alumnos.edit', compact('varAlu', 'status', 'licen'));
+        $estados=Estado::orderBy('nombre','asc')->get();
+         return view('pages.Alumnos.edit', compact('varAlu', 'status', 'licen','estados'));
     }
     public function update(Request $request, User $varAlu){
         $varAlu->clave = $request->matricula;
@@ -70,13 +76,17 @@ class AlumnoController extends Controller
         $varAlu->password = Hash::make( $request->Password);
         $varAlu->id_status_usuario = $request->id_status_usuario;
         $varAlu->id_licenciatura = $request->id_licenciatura;
+        $varAlu->selectestado = $request->selectestado;
+        $varAlu->selectmunicipio = $request->selectmunicipio;
+        $varAlu->selectlocalidad = $request->selectlocalidad;
+        $varAlu->referencia = $request->referencia;
 
         $imagenOld = $varAlu->imagen_usuario;
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
-            Storage::delete('imagen/'.$imagenOld);
-            //FacadesFile::delete($varAdmin->imagen_usuario);
-
+            if ($imagenOld!="") {
+                unlink('imagen/'.$imagenOld);
+            }
             $rutaGuardarImg = 'imagen/';
             $imagenProducto = date('YmdHis') . "." . $imagen->getClientOriginalExtension(); 
             $imagen->move($rutaGuardarImg, $imagenProducto);
@@ -90,6 +100,10 @@ class AlumnoController extends Controller
         return view('pages.Alumnos.icons', compact('varAlu'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(User $varAlu){
+        $imagenOld = $varAlu->imagen_usuario;
+        if ($imagenOld!="") {
+            unlink('imagen/'.$imagenOld);
+        }
         $varAlu->delete();
         $varAlu=User::all()->where('rol','=','Alum');//paginar la tabla
         return view('pages.Alumnos.icons', compact('varAlu'))->with('success','Registro Eliminado ');

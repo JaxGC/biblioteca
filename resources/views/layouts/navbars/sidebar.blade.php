@@ -112,13 +112,13 @@
                         <span class="nav-link-text">Categorias</span>
                       </a>
                   </li>
-                @endcan
+                 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('table') }}">
                       <i class="ni ni-folder-17 text-default"></i>
                       <span class="nav-link-text">Prestamos</span>
                     </a>
-                </li>
+                </li>@endcan
                 <li class="nav-item">
                     @can('icons3')
                     <a class="nav-link" href="{{ route('licenciaturas') }}">

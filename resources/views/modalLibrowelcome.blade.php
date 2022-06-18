@@ -3,7 +3,7 @@
         <div class="modal-content element3" style="width: 600cm">
             
             <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-default"><h3>{{$li->Nombre_libro}}</h3></h6>
+                <h6 class="modal-title" id="modal-title-default"><h3>Detalles del libro</h3></h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -12,7 +12,7 @@
             <div class="modal-body">
               <div class="row">
                   <div class="col-sm-4">
-                      <img src="" alt="" class="imagen img-responsive">
+                      <img src="/imagen_libro/{{$li->imagen}}" width="100%" class="imagen img-responsive">
                   </div>
                   <div class="col-sm-8">
                       <dl>
@@ -24,6 +24,12 @@
                           <dd class="autor_libro">{{$li->Nombre_autor}}</dd>
                           <dt>EDITORIAL:</dt>
                           <dd class="editorial_libro">{{$li->Nombre_editorial}}</dd>
+                          <dt>AÑO DE EDICION:</dt>
+                          <dd class="codigo_libro">{{$li->year_edicion}}</dd>
+                          <dt>NUMERO DE STAND:</dt>
+                          <dd class="codigo_libro">{{$li->numero_stand}}</dd>
+                          <dt>CATEGORIA:</dt>
+                          <dd class="codigo_libro">{{$li->Nombre_categoria}}</dd>
                       </dl>
                   </div>
               </div>

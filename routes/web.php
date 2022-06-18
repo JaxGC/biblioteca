@@ -7,6 +7,7 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\LicenciaturaController;
 use App\Http\Controllers\MaestroController;
 use App\Http\Controllers\PrestamoController;
@@ -64,6 +65,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('Alumno/{varAlu}/edit','edit')->name('Alumno.edit');
 			Route::put('Alumno/{varAlu}','update')->name('Alumno.update');
 			Route::delete('Alumno/{varAlu}','destroy')->name('Alumno.destroy');
+			Route::get('obtenerMun/{estado_id}',[EstadosController::class,'byMunicipio']);
+			Route::get('obtenerLoc/{municipio_id}',[EstadosController::class,'byLocalidad']);
 		});
 		Route::controller(MaestroController::class)->middleware('can:icons3')->group(function (){
 			Route::get('icons2', 'index')->name('icons2'); 
@@ -72,6 +75,9 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('Maestro/{varMa}/edit','edit')->name('Maestro.edit');
 			Route::put('Maestro/{varMa}','update')->name('Maestro.update');
 			Route::delete('Maestro/{varMa}','destroy')->name('Maestro.destroy');
+			Route::get('obtenerMun/{estado_id}',[EstadosController::class,'byMunicipio']);
+			Route::get('obtenerLoc/{municipio_id}',[EstadosController::class,'byLocalidad']);
+
 		});
 		Route::controller(AdministradorController::class)->middleware('can:icons3')->group(function (){
 			Route::get('icons3', 'index')->name('icons3');
@@ -81,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Admin/{varAdmin}','update')->name('Admin.update');
 			Route::delete('Admin/{varAdmin}','destroy')->name('Admin.destroy');
 			Route::get('pdfAdministrador','pdf')->name('PDFAdministrador');
+			Route::get('obtenerMun/{estado_id}',[EstadosController::class,'byMunicipio']);
+			Route::get('obtenerLoc/{municipio_id}',[EstadosController::class,'byLocalidad']);
 		});
 
 		Route::controller(LibroController::class)->group(function(){
@@ -121,6 +129,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('table-list', 'index')->name('table');
 			Route::get('agregarPrestamo', 'create')->name('agregarPrestamo');
 			Route::post('agregarPres','store')->name('agregarPres');
+			Route::get('agregarPres/{id}','create2')->name('agregarPres2');//para el id del libro
 			Route::get('Prestamos/{varpres}/editarPrestamo','edit')->name('Prestamos.editarPrestamo');
 			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
 			Route::delete('Prestamos/{varpres}','destroy')->name('Prestamos.destroy');

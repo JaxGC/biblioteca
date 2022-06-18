@@ -25,6 +25,6 @@ class RoleSeeder extends Seeder
 
         //permisos para listados de administradores icons3 
         Permission::create(['name'=>'icons3'])->assignRole($role1);//->syncRoles($role1,$role2);--Para mas de dos roles
-
+        Permission::create(['name'=>'PrestamoLibro'])->syncRoles($role1,$role2,$role3);
     }
 }

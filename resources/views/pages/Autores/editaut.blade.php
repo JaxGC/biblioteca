@@ -57,11 +57,11 @@
             <form method="POST" action="{{ route('Autores.update',$varaut)}}"  role="form">
                 {{ csrf_field() }}
                 @method('put')
-            <div class="col-xl-4">
-                <label> Nombre </label>
+            <div class="col-xl-4"><strong>
+                <label> Nombre </label></strong>
                 <input value="{{$varaut->Nombre_autor}}" name="Nombre_autor" id="Nombre_autor" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
             </div>
-            
+            <br>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block">Actualizar</button></div>
                 <div class="form-group">

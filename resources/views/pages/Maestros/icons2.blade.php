@@ -16,7 +16,7 @@
                         <h1 class="mb-0">Profesores</h1>
                     </div>
                     <div class="col-4 text-right">
-                        <a class="nav-link" href="{{ route('agregarMaestro') }}">
+                        <a class="" href="{{ route('agregarMaestro') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Añadir Profesores</i>
                         </a>
                     </div>

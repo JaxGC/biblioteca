@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@extends('layouts.bootstrapstilos')
 <script>//para admitir solo letras en el input
     function soloLetras(e){
      key = e.keyCode || e.which;
@@ -60,27 +60,36 @@
             <div class="row">
             
             <div class="col-sm">
+                <strong>
                 <label> Matricula </label>
-                <input id="matricula" name="matricula" type="text" class="form-control form-control-muted" placeholder="ingrese la matricula" required>
+                </strong>
+                <input value="{{ old('matricula') }}" id="matricula" name="matricula" type="text" class="form-control form-control-muted" placeholder="ingrese la matricula" required>
             </div>
             <div class="col-sm">
+                <strong>
                 <label> Nombre Completo</label>
-                <input id="Nombre_completo" name="Nombre_completo" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre completo" onkeypress="return soloLetras(event);" required>
+                </strong>
+                <input value="{{ old('Nombre_completo') }}" id="Nombre_completo" name="Nombre_completo" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre completo" onkeypress="return soloLetras(event);" required>
             </div>
             <div class="col-sm">
+                <strong>
                 <label> Email </label>
-                <input id="Direccion" name="Direccion" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
+                </strong>
+                <input value="{{ old('Direccion') }}" id="Direccion" name="Direccion" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <label> Contraseña </label>
-                <input id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <strong>
+                <label> Contraseña </label></strong>
+                <input value="{{ old('Password') }}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
             </div>
             <div class="col-xl-4">
                 <div class="form-group">
+                    <strong>
                     <label for="exampleFormControlSelect1">Estatus de usuario</label>
-                        <select id="id_status_usuario" name="id_status_usuario" class="form-control" id="exampleFormControlSelect1">
+                    </strong>
+                        <select value="{{ old('id_status_usuario') }}" id="id_status_usuario" name="id_status_usuario" class="form-control" id="exampleFormControlSelect1">
                         @foreach ($status as $statu)
                             <option value="{{$statu->id}}">{{$statu->Nombre_status_usu}}</option>
                         @endforeach
@@ -89,9 +98,11 @@
             </div>
             <div class="col-sm">
                 <div class="form-group">
+                    <strong>
                     <label for="exampleFormControlSelect1">Licenciatura</label>
+                    </strong>
                     @if ($licen->count())
-                    <select id="id_licenciatura" name="id_licenciatura" class="form-control" id="exampleFormControlSelect1">
+                    <select value="{{ old('id_licenciatura') }}" id="id_licenciatura" name="id_licenciatura" class="form-control" id="exampleFormControlSelect1">
                       @foreach ($licen as $lic)
                           <option value="{{$lic->Nombre_licenciatura}}">{{$lic->Nombre_licenciatura}}</option>
                       @endforeach
@@ -106,7 +117,52 @@
                     @endif
                   </div>
             
+            </div> 
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+            <strong>
+                Estado
+                </strong>
+                <br>
+                <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
+                    <option value="">
+                        Selecionar Estado
+                    </option>
+                    @foreach ($estados as $estado)
+                        <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                    @endforeach
+                </select>
+            </div></div>
+            <div class="col-md-3">
+            <strong>
+                Municipio
+                </strong>
+            <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
+                <option value="">
+                    Selecionar Municipio
+                </option>
+        </select>
             </div>
+            <div class="col-md-6">
+               
+        <strong>
+           Localidad
+            </strong>
+        <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
+            <option value="">
+                Selecionar Localidad
+            </option>
+        </select>
+        </div>
+        <div class="col-md-12">
+            <strong>
+                Referencia
+            </strong>
+            <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control form-control-muted">{{ old('referencia') }}</textarea>
+        </div>
+        </div>
+        <script src="{{ asset('assets/js/crear.js') }}"></script>
         </div>
         <!-- Para ver la imagen seleccionada, de lo contrario no se -->
         <div class="grid grid-cols-1 mt-5 mx-7">
@@ -114,7 +170,9 @@
         </div>
 
         <div class="grid grid-cols-1 mt-0 mx-0">
+            <strong>
             <p class='text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Seleccione la imagen</p>
+            </strong>
         </div>
         <div>
             <input name="imagen" id="imagen" type='file' class="hidden" />
@@ -130,9 +188,6 @@
     </div>@include('layouts.footers.auth')  
     </div>
 </div>
-
- 
-    
 
 @endsection
 @include('pages.alumnos.modallc')
