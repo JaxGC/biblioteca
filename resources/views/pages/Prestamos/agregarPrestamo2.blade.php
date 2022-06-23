@@ -58,9 +58,8 @@
             <div class="card-body">
             
             <h1>Agregar prestamo</h1>
-            @if ($libr->ejemplares>=1)
-                
-            
+          
+              
             <form method="POST" action="{{ url('agregarPres') }}"  role="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
             <div class="row">
@@ -73,6 +72,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
+                                
                                 <input class="form-control" type="text" name="start_date" value="{{date('y-m-d')}}">
                             </div>
                         </div>
@@ -81,9 +81,11 @@
                         <label >Fecha de devolución</label><br>
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
+                               
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                 </div>
+                                
                                 <input class="form-control"  name ="finish_date" placeholder="End date" type="date" value="06/22/2018">
                             </div>
                         </div>
@@ -91,22 +93,20 @@
                 </div>
         </div>
         <div class="row">
-            <div class="col-sm">
-                <label for="exampleFormControlSelect1">Documento:</label>
-                 <div class="custom-control custom-radio mb-3">
-                        <input value="Credencial UMB" name="documento" class="custom-control-input" id="customRadio5" type="radio">
-                        <label class="custom-control-label" for="customRadio5">Credencial UMB</label>
-                 </div>
-                 <div class="custom-control custom-radio mb-3">
-                        <input name="documento"  value="INE" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                        <label class="custom-control-label" for="customRadio6">INE</label>
-                 </div>
-             </div> 
-             @if(auth()->user()->rol!='Alum')
+       <div class="col-sm">
+           <label for="exampleFormControlSelect1">Documento:</label>
+            <div class="custom-control custom-radio mb-3">
+                   <input value="Credencial UMB" name="documento" class="custom-control-input" id="customRadio5" type="radio">
+                   <label class="custom-control-label" for="customRadio5">Credencial UMB</label>
+            </div>
+            <div class="custom-control custom-radio mb-3">
+                   <input name="documento"  value="INE" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                   <label class="custom-control-label" for="customRadio6">INE</label>
+            </div>
+        </div>
        <div class="col-sm">
         <label for="exampleFormControlSelect1">Alumno:</label>
         <div class="custom-control custom-radio mb-3">
-           
         <select id="id_alumno" name="id_alumno" class="form-control" >
             <option value="0">Seleccionar dato</option>
                 @foreach ($alumnos as $alu)
@@ -116,7 +116,20 @@
         </div>
           
     </div>
-    @endif
+    <div class="col-sm">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Libro: </label>
+
+            <select id="id_libro" name="id_libro" class="form-control" >
+                <option value="0">Seleccionar dato</option>
+                    @foreach ($libro as $lib)
+                        <option value="{{$lib->id}}">{{$lib->Nombre_libro}}</option>    
+                    @endforeach
+              </select>
+           
+          </div>
+       
+    </div>
     <div class="col-sm">
         <div class="form-group">
           <label for="exampleFormControlSelect1">Estado de Libro: </label>
@@ -131,26 +144,10 @@
          
         </div>
       </div>
-    <div class="col-sm">
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Libro: </label>
-            <label for="text" id="varlib" name="varlib"><h2 class="btn-success">{{$libr->Nombre_libro}}</h2></label>
-         
- <input type="hidden" value="{{$libr->id}}" name="id_libro" id="id_libro">       </div>
-    </div>
-  
         <div class="col-sm">
             <div class="form-group">
-                @if(auth()->user()->rol!='Alum')
                 <label for="exampleFormControlSelect1">Administrador: </label>
                 <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
-                @else
-                <label for="exampleFormControlSelect1">Alumno: </label>
-                <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
-                <input type="hidden" name="id_alumno" id="id_alumno" value="{{auth()->user()->id}}">
-                @endif
-                
-                
               </div>
         </div>
         </div>
@@ -160,32 +157,14 @@
             <button type="submit" class="btn btn-success btn-block">Guardar</button></div>
             
             <div class="form-group">
-                @if(auth()->user()->rol!='Alum')
-                    <a href="{{ route("table") }}" class="btn btn-info btn-block" >Atrás</a>
-                @else
-                <a href="{{ route("map") }}" class="btn btn-info btn-block" >Atrás</a>
-                @endif
+                <a href="{{ route("table") }}" class="btn btn-info btn-block" >Atrás</a>
             </div>
            
     </div>
             </form>
-            @else
-            <script>
-                Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'NO ESTA DISPONIBLE!',
-                showConfirmButton: false,
-                footer: '<a href="{{ route("map") }}" class="btn btn-info btn-block" >Atrás</a>'
-                })
-            </script>
-            <div class="alert alert-danger" role="alert">
-                <strong>Danger!</strong> NO ESTA DISPONIBLE!
-            </div> 
-            <div class="">
-                <a href="{{ route("map") }}" class="btn btn-info btn-block" >Atrás</a>    
-            </div> 
-            @endif
+
+
+
             </div>
         </div>
     </div>@include('layouts.footers.auth')  
@@ -216,7 +195,9 @@
 
     $(function(){
         $("#id_alumno").select2();
-      
+    })
+    $(function(){
+        $("#id_libro").select2();
     })
 </script>
 

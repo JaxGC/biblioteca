@@ -17,10 +17,11 @@
                         <h1 class="mb-0">Listado de libros</h1>
                     </div>
 <div class="col-4 text-right">
-
-    <a class="" href="{{route('agregarLibro')}}">
-        <i class="btn btn-outline-success btn-sm btn-block">Añadir libro</i></a>
-    </a>
+    @can('icons3')
+        <a class="" href="{{route('agregarLibro')}}">
+            <i class="btn btn-outline-success btn-sm btn-block">Añadir libro</i></a>
+        </a>
+    @endcan
 </div>
                 </div>
             </div>
@@ -32,24 +33,24 @@
 <th>NOMBRE</th>
 <th>CATEGORIA</th>
 <th>EJEMPLARES</th>
+{{-- @can('PrestamoLibro') --}}
  <th class="text-center">ACCIONES</th>
+ {{-- @endcan --}}
  @can('icons3')<th></th>
 <th></th>@endcan
 </tr>
    </thead>
 <tbody>
    @foreach ($varlib as $lib)
-       
 <tr>
 
      <td>{{$lib->Nombre_libro}}</td>
      <td>{{$lib->id_categoria}}</td>
      <td>{{$lib->ejemplares}}</td>
-@can('PrestamoLibro')
-  <td><a href="{{route('agregarPres2',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Prestamo</i></a></td>
-
-
-  @endcan
+    {{--  @can('PrestamoLibro') --}}
+     <td><a href="{{route('agregarPrestamo',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Prestamo</i></a></td>
+   
+     {{-- @endcan --}}
   @can('icons3')
 <td><a href="{{route('Libro.editarLibro',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Editar</i></a></td>
 <td>
@@ -69,9 +70,13 @@
 
 <th>Categoria</th>
 <th>Ejemplares</th>
-<th class="text-center">Acciones</th>
-@can('icons3')<th></th>
-<th></th>@endcan
+{{-- @can('PrestamoLibro') --}}
+ <th class="text-center">Acciones</th>   
+{{-- @endcan --}}
+@can('icons3')
+<th></th>
+<th></th>
+@endcan
   </tr>
 </tfoot>
 </table>

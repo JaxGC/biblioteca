@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('documento');
             $table->string('clave_usuario');
             $table->foreignId('id_libro')->constrained('libros');
-            $table->integer('id_estadolibro');
+            $table->integer('estadolibro')->nullable();
+            $table->integer('observaciones')->nullable();
             $table->integer('id_administrador');
+            $table->integer('id_alumno');
             $table->integer('estado_prestamo')->nullable();
             $table->integer('devolucion')->nullable();
             $table->timestamps();

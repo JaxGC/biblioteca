@@ -9,17 +9,78 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
-            <h1>Listado de la Bitacora</h1>
-            <div class="col-xl-4">
-                
+            <h1>Bitacora de prestamos</h1>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-striped display" style="width:100%">
+                        <thead class="thead-dark">
+                            <tr>
+                                @if (auth()->user()->rol=="Admin")
+                                    <th>Alumno</th>
+                                @endif
+                                
+                            <th>Fecha inicio</th>
+                            <th>Fecha limite</th>
+                            <th >Documento</th>
+                            <th>Nombre del libro</th>
+                            <th>Estado del Prestamo</th>
+                            @if (auth()->user()->rol=="Alum")
+                            <th hidden></th>
+                            @endif
+                                
+                            </tr>
+                        </thead>    
+                        <tbody> 
+                            @foreach ($varPres as $pres)
+                            <tr>
+                                @if (auth()->user()->rol=="Admin")
+                                <th>{{$pres->Alumno}}</th>
+                                @endif   
+                            <td>{{$pres->fecha_inicio}}</td>
+                            <td>{{$pres->fecha_limite}}</td>
+                            <td>{{ $pres->documento}}</td>
+                            <td>{{$pres->Nombre_libro}}</td>
+                            <td>
+                                @if($pres->devolucion==2 && $pres->estado_prestamo==2)
+                                    <label class ="btn-success">Finalizo el prestamo</label>
+                                    @elseif($pres->devolucion==1 && $pres->estado_prestamo==1)
+                                        <label class ="btn-warning">Prestamo Activo</label>
+                                @endif
+                                @if ($pres->devolucion==0 && $pres->estado_prestamo==0)
+                                    <label class ="btn-info">En espera de confirmacion</label>
+                                @endif
+                            </td>
+                            @if (auth()->user()->rol=="Alum")
+                            <th hidden></th>
+                            @endif
+                            </tr>
+                             @endforeach
+                        </tbody> 
+                        <tfoot>
+                            <tr>
+                                @if (auth()->user()->rol=="Admin")
+                                <th>Alumno</th>
+                                @endif
+                                <th>Fecha inicio</th>
+                                <th>Fecha limite</th>
+                                <th >Documento</th>
+                                <th>Nombre del libro</th>
+                                <th>Estado del Prestamo</th>
+                                @if (auth()->user()->rol=="Alum")
+                            <th hidden></th>
+                            @endif
+                            </tr>
+                        </tfoot> 
+                    </table>
+                </div>
             </div>
             
 
         </div>
-    </div>
+    </div> @include('layouts.footers.auth')  
 </div>
 
- @include('layouts.footers.auth')  
+
     
 
 @endsection
@@ -27,4 +88,23 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+<script>
+    
+    $(document).ready(function() {
+    $('#example').DataTable({
+        order: [[5, 'desc']],
+        responsive: true,
+        lengthMenu: [
+                [5, 10, 20, -1],
+                [5, 10, 20, 'Todos'],
+            ],
+    "language": {
+    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+    
+    });
+    });
+    
+    
+        </script>
 @endpush

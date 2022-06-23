@@ -35,12 +35,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    @can('icons3')
+                    {{-- @can('PrestamoLibro') --}}
                     <a class="nav-link" href="{{ route('bitacora') }}">
                       <i class="ni ni-collection text-default"></i>
                       <span class="nav-link-text">Bitacora</span>
                     </a>
-                    @endcan
+                    {{-- @endcan --}}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
