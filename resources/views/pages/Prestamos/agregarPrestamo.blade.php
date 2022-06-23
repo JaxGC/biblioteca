@@ -131,6 +131,10 @@
          
         </div>
       </div>
+      <div class="col-sm">
+        <label>Observaciones</label>
+        <input name="observaciones" id="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" hidden>
+    </div>
     <div class="col-sm">
         <div class="form-group">
             <label for="exampleFormControlSelect1">Libro: </label>
@@ -187,8 +191,8 @@
             </div> 
             @endif
             </div>
-        </div>
-    </div>@include('layouts.footers.auth')  
+        </div>@include('layouts.footers.auth')  
+    </div>
     </div>
 </div>
 
@@ -217,7 +221,16 @@
     $(function(){
         $("#id_alumno").select2();
       
-    })
+    });
+    $(function () {
+            $('#estadolibro').change(function (e) {
+              if ($(this).val() === "Malo") {
+                $('#observaciones').prop("hidden", false);
+              } else {
+                $('#observaciones').prop("hidden", true);
+              }
+            })
+          });
 </script>
 
 @endpush

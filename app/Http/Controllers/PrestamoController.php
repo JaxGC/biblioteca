@@ -57,8 +57,10 @@ class PrestamoController extends Controller
         return back()->with('success','Registro creado satisfactoriamente');
     }
 
-    Public function devolucion($id, $Nombre_libro){//para poner el libro devuelto
+    Public function devolucion(Request $request, $id, $Nombre_libro){//para poner el libro devuelto
         
+        $data= request('observaciones');
+
         $libID = Libro::join('prestamos','libros.id','=','prestamos.id_libro')
         ->where('prestamos.id','=', $id)
         ->where('Nombre_libro', '=', $Nombre_libro)
@@ -71,7 +73,7 @@ class PrestamoController extends Controller
         $ejemplares=Libro::where('id',$elemento['id'])->update(['ejemplares'=>$var]);
         
     }
-        $dev=Prestamo::where('id',$id)->update(['devolucion'=>'2','estado_prestamo'=>'2']);
+        $dev=Prestamo::where('id',$id)->update(['devolucion'=>'2','estado_prestamo'=>'2','observaciones'=>$data]);
         return back()->with('success','El libro ',$Nombre_libro,' a sido devuelto.');
     }
 

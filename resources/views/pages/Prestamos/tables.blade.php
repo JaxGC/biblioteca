@@ -51,16 +51,17 @@
                            </td>
                        <td>
                         @if($pres->estado_prestamo==1)
-                            <label  class ="btn-success">Activo</label>
+                            <label  class ="badge-pill badge-success">Activo</label>
                         @elseif($pres->estado_prestamo==0)
-                            <a href="{{route('agregarPres2',$pres->id)}}" class =" btn btn-warning">Pausado</a>
+                            <a href="{{route('agregarPres2',$pres->id)}}" class ="btn btn-sm badge-pill badge-warning">Pausado</a>
                         @endif
                         </td>
                         <td>
                             @if($pres->devolucion==1 && $pres->estado_prestamo==1)
-                                <a href="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}" class =" btn btn-info">Devolver al stand</a>
+                                {{-- <a href="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}" class =" btn btn-info">Devolver al stand</a> --}}
+                                <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-Devolver" data-toggle="tooltip" data-placement="top" title="seleccione para devolver">Devolver</button>
                             @elseif($pres->devolucion==0 && $pres->estado_prestamo==0)
-                                <label  class ="btn-warning">En espera de confirmacion</label>
+                                <label  class ="badge-pill badge-warning">En espera de confirmacion</label>
                             @endif
                         </td>   
                        
@@ -89,7 +90,7 @@
     
 
 @endsection
-
+@include('pages.prestamos.modalDevo')
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
@@ -109,6 +110,15 @@
     
     });
     });
+    $(function () {
+            $('#estadolibro').change(function (e) {
+              if ($(this).val() === "Malo") {
+                $('#observaciones').prop("hidden", false);
+              } else {
+                $('#observaciones').prop("hidden", true);
+              }
+            })
+          });
     
     
         </script>

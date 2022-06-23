@@ -130,7 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('agregarPrestamo/{id}', 'create')->name('agregarPrestamo');
 			Route::post('agregarPres','store')->name('agregarPres');
 			Route::get('agregarPres/{id}','create2')->name('agregarPres2');//para activar el prestamo
-			Route::get('devolucionPres/{id}/{Nombre_libro}','devolucion')->name('devolucionPres');//para devolver el libro
+			Route::post('devolucionPres/{id}/{Nombre_libro}','devolucion')->name('devolucionPres');//para devolver el libro
 			Route::get('Prestamos/{varpres}/editarPrestamo','edit')->name('Prestamos.editarPrestamo');
 			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
 			Route::delete('Prestamos/{varpres}','destroy')->name('Prestamos.destroy');
