@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AsignacionRolController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CategoriaController;
@@ -135,8 +136,17 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
 			Route::delete('Prestamos/{varpres}','destroy')->name('Prestamos.destroy');
 		});	
+
+		Route::controller(BitacoraController::class)->group(function(){
+			Route::get('bitacora', 'index')->name('bitacora');
+		});
+
+		Route::controller(AsignacionRolController::class)->group(function(){
+			Route::get('rolesUsu','index')->name('rolesUsu');
+			//Route::put('rolesUsu/{alumnos}','update')->name('cambioRol');
+			Route::post('rolesUsu/{id}/{name}','update')->name('cambioRol');
+			//Route::get('rolesUsu/{alumnos}/edit','edit')->name('cambioRol.edit');
+		});
 });
 
-Route::controller(BitacoraController::class)->group(function(){
-	Route::get('bitacora', 'index')->name('bitacora');
-});
+

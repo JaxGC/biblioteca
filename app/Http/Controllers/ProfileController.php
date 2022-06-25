@@ -28,9 +28,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        if (auth()->user()->id == 1) {
+        /* if (auth()->user()->id == 1) {
             return back()->withErrors(['not_allow_profile' => __('No se pueden cambiar los datos del usuario predeterminado.')]);
-        }
+        } */
 
         if($imagen = $request->file('imagen')){
             $rutaGuardarImg = 'imagen/';
@@ -59,9 +59,9 @@ class ProfileController extends Controller
      */
     public function password(PasswordRequest $request)
     {
-        if (auth()->user()->id == 1) {
+        /* if (auth()->user()->id == 1) {
             return back()->withErrors(['not_allow_password' => __('No puedes cambiar la contraseña del usuario predeterminado.')]);
-        }
+        } */
 
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 

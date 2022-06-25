@@ -59,7 +59,7 @@
                         <td>
                             @if($pres->devolucion==1 && $pres->estado_prestamo==1)
                                 {{-- <a href="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}" class =" btn btn-info">Devolver al stand</a> --}}
-                                <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-Devolver" data-toggle="tooltip" data-placement="top" title="seleccione para devolver">Devolver</button>
+                                <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-Devolver" data-toggle="tooltip" data-placement="top" title="seleccione para recibir el libro">Recibir libro</button>
                             @elseif($pres->devolucion==0 && $pres->estado_prestamo==0)
                                 <label  class ="badge-pill badge-warning">En espera de confirmacion</label>
                             @endif

@@ -6,6 +6,18 @@
     <br>
     <br>
 </div>
+@if (session('nohay')=='ok')
+<script>
+    Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'NO ESTA DISPONIBLE!',
+    showConfirmButton: false,
+    footer: '<a href="{{ route("map") }}" class="btn btn-info btn-block" >Atrás</a>'
+    })
+</script>
+    
+@endif
 <div class="card-body">
     <div>
         <div class="card shadow">

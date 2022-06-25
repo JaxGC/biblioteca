@@ -7,8 +7,11 @@ use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\Administrador;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+
+use function PHPSTORM_META\map;
 
 class PrestamoController extends Controller
 {
@@ -28,22 +31,37 @@ class PrestamoController extends Controller
     public function create($id){
         if($id>0)
         {
-            $alumnos = User::all()->where('rol','=','Alum');
-            $libr=libro::find($id);
-
-                $admin=User::all()->where('rol','=','Admin');
-                return view('pages.Prestamos.agregarPrestamo', compact('alumnos','libr','admin'));
-            
+            Carbon::setTestNow();
+            if (Carbon::now()->isWeekend()) {
+                echo("Es fin de semana");
+            }
+            else 
+            {
+                $alumnos = User::all()->where('rol','=','Alum');
+                $libr=libro::find($id);
+                if ($libr->ejemplares<=0){
+                    return redirect()->route('map')->with('nohay','ok');    
+                }
+                else{
+                    $admin=User::all()->where('rol','=','Admin');
+                    return view('pages.Prestamos.agregarPrestamo', compact('alumnos','libr','admin'));
+                }
+            } 
         }
         else
         {
-            
+            Carbon::setTestNow();
+            if (Carbon::now()->isWeekend()) {
+                echo("Es fin de semana");
+            } else {
+                /* 
+                return redirect()->route('map')->with('nohay','ok'); */
             $alumnos = User::all()->where('rol','=','Alum');
             $libro=libro::all()->where('ejemplares','>',0);
             
             $admin=User::all()->where('rol','=','Admin');
             return view('pages.Prestamos.agregarPrestamo2', compact('alumnos','libro','admin',));
-
+            }
         }
         
     }
@@ -88,7 +106,8 @@ class PrestamoController extends Controller
         'documento'=>'required',
         'id_libro'=>'required',
       'estadolibro'=>'required',
-      'id_alumno'=>'required'
+      'id_alumno'=>'required',
+      'observaciones'=>''
     
        ]);
     
@@ -102,6 +121,7 @@ class PrestamoController extends Controller
             'id_alumno'=>$data['id_alumno'],
             'estado_prestamo'=>1,
             'devolucion'=>1,
+            'observaciones'=>$data['observaciones'],
             'id_administrador'=>auth()->user()->id
         ]);
         $ejemplar=Libro::find($data['id_libro']);
@@ -118,7 +138,8 @@ class PrestamoController extends Controller
         'documento'=>'required',
         'id_libro'=>'required',
       'estadolibro'=>'required',
-      'id_alumno'=>'required'
+      'id_alumno'=>'required',
+      'observaciones'=>''
     
        ]);
     
@@ -132,6 +153,7 @@ class PrestamoController extends Controller
             'id_alumno'=>$data['id_alumno'],
             'estado_prestamo'=>0,
             'devolucion'=>0,
+            'observaciones'=>$data['observaciones'],
             'id_administrador'=>'1'
         ]);
         $ejemplar=Libro::find($data['id_libro']);

@@ -85,6 +85,11 @@
                                     {{ __('Maestros') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('rolesUsu') }}">
+                                    {{ __('Cambiar rol de usarios') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>@endcan
                 </li>
