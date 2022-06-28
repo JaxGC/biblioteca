@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('siaccess')=='ok')
+<script>
+    Swal.fire({
+    icon: 'success',
+    title: 'Excelente!',
+    text: '¡Cambio de rol correcto!',
+    showConfirmButton: false,
+    footer: '<a href="{{ route("rolesUsu") }}" class="btn btn-info btn-block" >Atrás</a>'
+    })
+</script>
+@endif
 @extends('layouts.bootstrapstilos')
 <div class="card-body" ><br>
 </div>
@@ -25,6 +36,10 @@
                 </div>
             </div>
             @include('pages.roles.tablaAlum')
+            @include('pages.roles.tablaAdmin')
+            @include('pages.roles.tablaMaes')
+            @include('pages.roles.tablaInvi')
+            @include('pages.roles.tablaCoAdmin')
     </div>@include('layouts.footers.auth')  
 </div>
 @endsection
@@ -41,29 +56,27 @@
                 $('#tabla_usu').prop("hidden", true);
               }
               if ($(this).val() === "Admin") {
-                $('#id_administrador').prop("hidden", false);
+                $('#tabla_admin').prop("hidden", false);
               } else {
-                $('#id_administrador').prop("hidden", true);
+                $('#tabla_admin').prop("hidden", true);
               }
               if ($(this).val() === "Maes") {
-                $('#id_maestro').prop("hidden", false);
+                $('#tabla_maes').prop("hidden", false);
               } else {
-                $('#id_maestro').prop("hidden", true);
+                $('#tabla_maes').prop("hidden", true);
+              }
+              if ($(this).val() === "Invi") {
+                $('#tabla_invi').prop("hidden", false);
+              } else {
+                $('#tabla_invi').prop("hidden", true);
+              }
+              if ($(this).val() === "CoAdmin") {
+                $('#tabla_CoAdmin').prop("hidden", false);
+              } else {
+                $('#tabla_CoAdmin').prop("hidden", true);
               }
             })
           });  
-  $(document).ready(function() {
-  $('#tabla_usu').DataTable({
-      responsive: true,
-      lengthMenu: [
-              [5, 10, 20, -1],
-              [5, 10, 20, 'Todos'],
-          ],
-  "language": {
-  "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-  }
-  
-  });
-  });
+ 
 </script>
 @endpush

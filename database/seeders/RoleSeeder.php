@@ -22,9 +22,11 @@ class RoleSeeder extends Seeder
         $role2=Role::create(['name'=>'Alum']);
         $role3=Role::create(['name'=>'Maes']);
         $role4=Role::create(['name'=>'Invi']);
+        $role5=Role::create(['name'=>'CoAdmin']);
 
         //permisos para listados de administradores icons3 
         Permission::create(['name'=>'icons3'])->assignRole($role1);//->syncRoles($role1,$role2);--Para mas de dos roles
         Permission::create(['name'=>'PrestamoLibro'])->syncRoles($role1,$role2,$role3);
+        Permission::create(['name'=>'ActivarPrestamos'])->syncRoles($role1,$role5);
     }
 }

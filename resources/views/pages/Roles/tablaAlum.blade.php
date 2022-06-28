@@ -17,7 +17,7 @@
                 <td>
                    <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-default{{$alum->id}}" data-toggle="tooltip" data-placement="top" title="seleccione para cambiar el rol">Cambiar rol</button>
                 </td>
-                </tr>
+                </tr> 
                 @include('pages.roles.modalCambioRolAlum')
                  @endforeach
             </tbody> 

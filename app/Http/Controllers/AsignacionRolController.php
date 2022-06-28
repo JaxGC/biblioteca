@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class AsignacionRolController extends Controller
 {
@@ -13,25 +14,8 @@ class AsignacionRolController extends Controller
         $alumnos = User::all()->where('rol','=','Alum');
         $profesores = User::all()->where('rol','=','Maes');
         $administradores = User::all()->where('rol','=','Admin'); 
-        return view('pages.roles.indexRol', compact('alumnos','profesores','administradores'));
-    }
-
-   
-    public function create()
-    {
-        
-        
-    }
-
-    public function store(Request $request)
-    {
-        //
-        
-    }
-
-    public function show($id)
-    {
-        //
+        $roles = Role::all();
+        return view('pages.roles.indexRol', compact('alumnos','profesores','administradores','roles'));
     }
 
     public function edit(User $alumnos)
@@ -41,13 +25,41 @@ class AsignacionRolController extends Controller
         //return view('pages.roles.indexRol', compact('alumnos'));
     }
 
-    public function update(Request $request, $id, $alum)
+    public function update(Request $request, User $alum)
     {
         //Para asignar el rol al usuario
-        $alum->rol = $request->roles;
-        dd($alum);
-        $id->roles()->sync($request->roles);
-        return back()->with('info','Se asigno correctamente');
+        
+       if ($request->roles=='1') {
+        $alum->rol = 'Admin';
+        $alum->roles()->sync($request->roles);
+        $alum->save();
+       } 
+        if ($request->roles=='2') {
+            $alum->rol = 'Alum';
+            $alum->roles()->sync($request->roles);
+            $alum->save();
+        } 
+            if ($request->roles=='3') {
+                $alum->rol = 'Maes';
+                $alum->roles()->sync($request->roles);
+                $alum->save();
+            } 
+                if ($request->roles=='4') {
+                    $alum->rol = 'Invi';
+                    $alum->roles()->sync($request->roles);
+                    $alum->save();
+                } 
+                    if ($request->roles=='5'){
+                        $alum->rol = 'CoAdmin';
+                        $alum->roles()->sync($request->roles);
+                        $alum->save();
+                    }
+        if (auth()->user()->rol!='Admin') {
+            //return back()->with('success','Se asigno correctamente');
+           return redirect()->route('home')->with('siaccess','ok');  
+        }
+        //return alert('info','No puedes ver esta página, permisos insuficientes');
+         return redirect()->route('rolesUsu')->with('siaccess','ok'); 
     }
 
     public function destroy($id)
