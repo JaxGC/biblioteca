@@ -39,7 +39,7 @@ class AdministradorController extends Controller
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
        
-        $data= request()->validate([ 'Usuario'=>'required','password'=>'required',
+        $data= request()->validate([ 'Usuario'=>'required|unique:users','password'=>'required',
         'Nombre_administrador'=>'required','id_status_usuario'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
         'selectlocalidad'=>'required','referencia'=>'required'

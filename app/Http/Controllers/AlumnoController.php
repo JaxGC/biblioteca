@@ -26,10 +26,10 @@ class AlumnoController extends Controller
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
-        $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'required','Direccion'=>'required','Password'=>'required',
+        $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'required','Direccion'=>'required|unique:users','Password'=>'required',
         'id_licenciatura'=>'required','id_status_usuario'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
-        'selectlocalidad'=>'required','referencia'=>'required'
+        'selectlocalidad'=>'required','referencia'=>'required','clave'=>'unique:users'
             ], [
 
                 'matricula.required'=>'El campo matricula es obligatorio',

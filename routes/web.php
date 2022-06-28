@@ -144,7 +144,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::controller(AsignacionRolController::class)->group(function(){
 			Route::get('rolesUsu','index')->name('rolesUsu');
 			//Route::put('rolesUsu/{alumnos}','update')->name('cambioRol');
-			Route::post('rolesUsu/{id}/{name}','update')->name('cambioRol');
+			Route::post('rolesUsu/{alum}','update')->name('cambioRol');
 			//Route::get('rolesUsu/{alumnos}/edit','edit')->name('cambioRol.edit');
 		});
 });

@@ -1,4 +1,4 @@
-<div class="modal fade element12" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+<div class="modal fade element12" id="modal-default{{$alum->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
       <div class="modal-content element3">
           <div class="modal-header">
@@ -9,7 +9,7 @@
           </div>
           
           <div class="modal-body">
-            <form method="POST" action="{{route('cambioRol',[$alum->id,$alum->name])}}"  role="form">
+            <form method="POST" action="{{route('cambioRol',[$alum->id])}}"  role="form">
                 {{ csrf_field() }}
             
                 <div class="col-sm"><strong>
@@ -33,7 +33,7 @@
                 </div>
             </form>
 
-        </div>
+        
                 
         <div class="modal-footer">
         <div class="row">
@@ -47,7 +47,7 @@
             </form>
             
         </div>
-
+</div>
         </div>
         </div>
         </div>

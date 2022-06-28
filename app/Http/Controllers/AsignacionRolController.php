@@ -41,9 +41,11 @@ class AsignacionRolController extends Controller
         //return view('pages.roles.indexRol', compact('alumnos'));
     }
 
-    public function update(Request $request, $id, $name)
+    public function update(Request $request, $id, $alum)
     {
         //Para asignar el rol al usuario
+        $alum->rol = $request->roles;
+        dd($alum);
         $id->roles()->sync($request->roles);
         return back()->with('info','Se asigno correctamente');
     }

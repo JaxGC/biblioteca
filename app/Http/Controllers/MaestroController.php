@@ -24,13 +24,14 @@ class MaestroController extends Controller
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
-        $data= request()->validate([ 'Nombre_maestro'=>'required','clave_empleado'=>'required','Password'=>'required',
-        'id_status_usuario'=>'required','email'=>'required','carrera_empleado'=>'required',
+        $data= request()->validate([ 'Nombre_maestro'=>'required','clave_empleado'=>'required|unique:users','Password'=>'required',
+        'id_status_usuario'=>'required','email'=>'required|unique:users','carrera_empleado'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
         'selectlocalidad'=>'required','referencia'=>'required'
             ], [
 
                 'clave_empleado.required'=>'El campo clave es obligatorio',
+                'clave_empleado.unique'=>'El campo clave debe ser unico',
                 'Nombre_maestro.required'=>'El campo nombre es obligatorio',
                 'Password.required'=>'El campo password es obligatorio',
                 'id_status_usuario.required'=>'El campo status de usuario es obligatorio',

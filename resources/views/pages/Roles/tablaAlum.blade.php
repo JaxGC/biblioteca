@@ -15,9 +15,10 @@
                 <td>{{$alum->clave}}</td>
                 <td>{{$alum->name}}</td>
                 <td>
-                   <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-default" data-toggle="tooltip" data-placement="top" title="seleccione para cambiar el rol">Cambiar rol</button>
+                   <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-default{{$alum->id}}" data-toggle="tooltip" data-placement="top" title="seleccione para cambiar el rol">Cambiar rol</button>
                 </td>
                 </tr>
+                @include('pages.roles.modalCambioRolAlum')
                  @endforeach
             </tbody> 
             <tfoot>
@@ -45,5 +46,5 @@
     });
     });
 </script>
-@include('pages.roles.modalCambioRolAlum')
+
 

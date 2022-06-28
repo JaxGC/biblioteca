@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitado;
 use App\Models\Libro;
+use App\Models\Prestamo;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +43,27 @@ class HomeController extends Controller
         ->whereDate('created_at', Carbon::today())
         ->count();
         $contadorlibros = Libro::count();
-        return view('dashboard', compact('contadorMae', 'contadorlibros', 'contadorAlum','contadorInvi'));
+        $contadorPresPausados = Prestamo::where('estado_prestamo','=','0')->count();
+        $contadorPresActivos = Prestamo::where('estado_prestamo','=','1')->count();
+        $contadorPresFinalizados = Prestamo::where('estado_prestamo','=','2')->count();
+
+        //para usuarios
+        $contadorPresPausados0 = Prestamo::join('users','prestamos.id_alumno','=','users.id')
+        ->where('estado_prestamo','=','0')
+        ->where('users.id','=',auth()->user()->id)
+        ->count();
+        $contadorPresActivos1 = Prestamo::join('users','prestamos.id_alumno','=','users.id')
+        ->where('estado_prestamo','=','1')
+        ->where('users.id','=',auth()->user()->id)
+        ->count();
+        $contadorPresFinalizados2 = Prestamo::join('users','prestamos.id_alumno','=','users.id')
+        ->where('estado_prestamo','=','2')
+        ->where('users.id','=',auth()->user()->id)
+        ->count();
+
+        return view('dashboard', 
+        compact('contadorMae', 'contadorlibros', 'contadorAlum','contadorInvi','contadorPresPausados',
+        'contadorPresActivos','contadorPresFinalizados','contadorPresPausados0','contadorPresActivos1',
+        'contadorPresFinalizados2'));
     }
 }
