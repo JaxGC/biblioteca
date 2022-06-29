@@ -12,10 +12,12 @@ class AsignacionRolController extends Controller
     public function index()
     {
         $alumnos = User::all()->where('rol','=','Alum');
-        $profesores = User::all()->where('rol','=','Maes');
-        $administradores = User::all()->where('rol','=','Admin'); 
+        $maestros = User::all()->where('rol','=','Maes');
+        $administradores = User::all()->where('rol','=','Admin');
+        $invitados = User::all()->where('rol','=','Invi');
+        $Coadministradores = User::all()->where('rol','=','CoAdmin'); 
         $roles = Role::all();
-        return view('pages.roles.indexRol', compact('alumnos','profesores','administradores','roles'));
+        return view('pages.roles.indexRol', compact('alumnos','maestros','administradores','roles','Coadministradores','invitados'));
     }
 
     public function edit(User $alumnos)

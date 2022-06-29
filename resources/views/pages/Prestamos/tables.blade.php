@@ -37,7 +37,7 @@
                         <th>Acciones</th>
                         </tr>
                     </thead>    
-                    <tbody> 
+                    <tbody>
                         @foreach ($varPres as $pres)
                         <tr>
                             <td>{{$pres->Alumno}}</td>

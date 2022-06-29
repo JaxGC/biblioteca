@@ -13,7 +13,6 @@
                 
             <form method="POST" action="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}"  role="form">
                 {{ csrf_field() }}
-            
                 <div class="col-sm">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Estado de Libro: </label>
@@ -25,7 +24,6 @@
                           <option value="Regular">Regular</option>
                           <option value="Malo">Malo</option>
                         </select>
-                     
                     </div>
                 </div>
             <div class="col-sm">

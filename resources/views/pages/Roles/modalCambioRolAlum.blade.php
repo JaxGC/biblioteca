@@ -19,7 +19,7 @@
                 <div class="col-sm">
                     <strong><label for="exampleFormControlSelect1">Elija un rol:</label></strong>
                     <div class="custom-control custom-radio mb-3">
-                        <input value="2" name="roles" class="custom-control-input" id="customRadio5{{$alum->id}}" type="radio">
+                        <input value="2" name="roles" class="custom-control-input" id="customRadio5{{$alum->id}}" type="radio" checked>
                         <label class="custom-control-label" for="customRadio5{{$alum->id}}">Alumno</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">

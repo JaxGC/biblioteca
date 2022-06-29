@@ -26,16 +26,17 @@ class AlumnoController extends Controller
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
-        $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'required','Direccion'=>'required|unique:users','Password'=>'required',
+        $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'numeric|required','email'=>'required|unique:users','Password'=>'required',
         'id_licenciatura'=>'required','id_status_usuario'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
-        'selectlocalidad'=>'required','referencia'=>'required','clave'=>'unique:users'
+        'selectlocalidad'=>'required','referencia'=>'required'
             ], [
 
                 'matricula.required'=>'El campo matricula es obligatorio',
+                'matricula.numeric'=>'El campo matricula solo debe introducir numeros',
                 'Nombre_completo.required'=>'El campo nombre es obligatorio',
-                'Direccion.required'=>'El campo usuario es obligatorio',
-                'Password.required'=>'El campo password es obligatorio',
+                'email.required'=>'El campo usuario es obligatorio',
+                'Password.required'=>'El campo password es obligatorio', 
                 'id_licenciatura.required'=>'El campo licenciatura es obligatorio',
                 'id_status_usuario.required'=>'El campo status de usuario es obligatorio'
             ]);
@@ -48,7 +49,7 @@ class AlumnoController extends Controller
             }
 
             User::create([
-                'email'=>$data['Direccion'],
+                'email'=>$data['email'],
                 'password'=>Hash::make($data['Password']),
                 'name'=>$data['Nombre_completo'],
                 'id_status_usuario'=>$data['id_status_usuario'],

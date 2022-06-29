@@ -24,8 +24,15 @@ class PrestamoController extends Controller
         ->select('prestamos.*','libros.Nombre_libro','users.name as Alumno')
         ->orderby('prestamos.estado_prestamo','asc')
         ->get();
+        if ($varPres=="") {
+            return back()->withErrors('danger','No hay prestamos activos ni en espera');
+        } 
+        else 
+        {
+           return view('pages.Prestamos.tables', compact('varPres')); 
+        }
         
-        return view('pages.Prestamos.tables', compact('varPres'));
+        
     
     }
     public function create($id){

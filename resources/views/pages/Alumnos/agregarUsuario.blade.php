@@ -75,7 +75,7 @@
                 <strong>
                 <label> Email </label>
                 </strong>
-                <input value="{{ old('Direccion') }}" id="Direccion" name="Direccion" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
+                <input value="{{ old('email') }}" id="email" name="email" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
             </div>
         </div>
         <div class="row">

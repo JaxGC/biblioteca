@@ -24,7 +24,7 @@ class MaestroController extends Controller
     }
     public function store(Request $request){
         //Para rHacer el registro a la base de datos
-        $data= request()->validate([ 'Nombre_maestro'=>'required','clave_empleado'=>'required|unique:users','Password'=>'required',
+        $data= request()->validate([ 'Nombre_maestro'=>'required','clave_empleado'=>'required','Password'=>'required',
         'id_status_usuario'=>'required','email'=>'required|unique:users','carrera_empleado'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
         'selectlocalidad'=>'required','referencia'=>'required'

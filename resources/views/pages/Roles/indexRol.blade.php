@@ -31,6 +31,8 @@
                             <option value="Alum">Alumno</option>
                             <option value="Maes">Maestro</option>
                             <option value="Admin">Administrador</option>
+                            <option value="Invi">Invitado</option>
+                            <option value="CoAdmin">CoAdministrador</option>
                         </select> 
                     </div>
                 </div>
@@ -66,14 +68,14 @@
                 $('#tabla_maes').prop("hidden", true);
               }
               if ($(this).val() === "Invi") {
-                $('#tabla_invi').prop("hidden", false);
+                $('#tabla_Invi').prop("hidden", false);
               } else {
-                $('#tabla_invi').prop("hidden", true);
+                $('#tabla_Invi').prop("hidden", true);
               }
               if ($(this).val() === "CoAdmin") {
-                $('#tabla_CoAdmin').prop("hidden", false);
+                $('#tabla_Coadmin').prop("hidden", false);
               } else {
-                $('#tabla_CoAdmin').prop("hidden", true);
+                $('#tabla_Coadmin').prop("hidden", true);
               }
             })
           });  

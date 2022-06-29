@@ -18,9 +18,8 @@ return new class extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_limite')->nullable();
             $table->string('documento');
-            $table->string('clave_usuario');
             $table->foreignId('id_libro')->constrained('libros');
-            $table->integer('estadolibro')->nullable();
+            $table->string('estadolibro')->nullable();
             $table->integer('observaciones')->nullable();
             $table->integer('id_administrador');
             $table->integer('id_alumno');

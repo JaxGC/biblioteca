@@ -99,31 +99,34 @@
                     </a> 
                 </li>
                 @can('icons3')
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('editoriales') }}">
-                        <i class="ni ni-building text-default"></i>
-                        <span class="nav-link-text">Editoriales</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('autores') }}">
-                        <i class="ni ni-paper-diploma text-default"></i>
-                        <span class="nav-link-text">Autores</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('categoria') }}">
-                        <i class="ni ni-archive-2 text-default"></i>
-                        <span class="nav-link-text">Categorias</span>
-                      </a>
-                  </li>
-                 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
-                      <i class="ni ni-folder-17 text-default"></i>
-                      <span class="nav-link-text">Prestamos</span>
-                    </a>
-                </li>@endcan
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('editoriales') }}">
+                                <i class="ni ni-building text-default"></i>
+                                <span class="nav-link-text">Editoriales</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('autores') }}">
+                                <i class="ni ni-paper-diploma text-default"></i>
+                                <span class="nav-link-text">Autores</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categoria') }}">
+                                <i class="ni ni-archive-2 text-default"></i>
+                                <span class="nav-link-text">Categorias</span>
+                            </a>
+                        </li>
+                @endcan
+                        @can('ActivarPrestamos')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('table') }}">
+                            <i class="ni ni-folder-17 text-default"></i>
+                            <span class="nav-link-text">Prestamos</span>
+                            </a>
+                        </li>  
+                        @endcan
+                
                 <li class="nav-item">
                     @can('icons3')
                     <a class="nav-link" href="{{ route('licenciaturas') }}">
