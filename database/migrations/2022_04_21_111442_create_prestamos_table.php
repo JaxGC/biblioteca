@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('documento');
             $table->foreignId('id_libro')->constrained('libros');
             $table->string('estadolibro')->nullable();
-            $table->integer('observaciones')->nullable();
+            $table->string('observaciones')->nullable();
             $table->integer('id_administrador');
             $table->integer('id_alumno');
             $table->integer('estado_prestamo')->nullable();

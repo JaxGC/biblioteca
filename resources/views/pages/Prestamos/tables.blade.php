@@ -45,7 +45,7 @@
                         <td>{{$pres->fecha_limite}}</td>
                         <td>
                            {{ $pres->documento}}
-                        </td>
+                        </td> 
                        
                         <td>{{$pres->Nombre_libro}}
                            </td>
@@ -59,12 +59,12 @@
                         <td>
                             @if($pres->devolucion==1 && $pres->estado_prestamo==1)
                                 {{-- <a href="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}" class =" btn btn-info">Devolver al stand</a> --}}
-                                <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-Devolver" data-toggle="tooltip" data-placement="top" title="seleccione para recibir el libro">Recibir libro</button>
+                                <button type="button" class="btn btn-sm badge-pill badge-info" data-toggle="modal" data-target="#modal-Devolver{{$pres->id}}" data-toggle="tooltip" data-placement="top" title="seleccione para recibir el libro">Recibir libro</button>
                             @elseif($pres->devolucion==0 && $pres->estado_prestamo==0)
                                 <label  class ="badge-pill badge-warning">En espera de confirmacion</label>
                             @endif
                         </td>   
-                       
+                        @include('pages.prestamos.modalDevo')
                         </tr>
                          @endforeach
                     </tbody> 
@@ -90,7 +90,7 @@
     
 
 @endsection
-@include('pages.prestamos.modalDevo')
+
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>

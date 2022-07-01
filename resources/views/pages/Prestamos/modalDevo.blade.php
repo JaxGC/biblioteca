@@ -1,4 +1,4 @@
-<div class="modal fade element12" id="modal-Devolver" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+<div class="modal fade element12" id="modal-Devolver{{$pres->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
       <div class="modal-content element3">
           
@@ -11,7 +11,7 @@
           
           <div class="modal-body">
                 
-            <form method="POST" action="{{route('devolucionPres',[$pres->id,$pres->Nombre_libro])}}"  role="form">
+            <form method="POST" action="{{route('devolucionPres',$pres->id,'/',$pres->Nombre_libro)}}"  role="form">
                 {{ csrf_field() }}
                 <div class="col-sm">
                     <div class="form-group">
@@ -43,7 +43,6 @@
                 </div>
             </div>
               </form>
-              
           </div>
         
       </div>

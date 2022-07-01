@@ -116,9 +116,8 @@
                                     </strong>
                                     <br>
                                     <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
-                                        <option value="">
-                                            Selecionar Estado
-                                        </option>
+                                        
+                                        <option value="{{$varEdit->idestado}}">{{$varEdit->estado}}</option>
                                         @foreach ($estados as $estado)
                                             <option value="{{$estado->id}}">{{$estado->nombre}}</option>
                                         @endforeach
@@ -129,9 +128,7 @@
                                     Municipio
                                     </strong>
                                 <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
-                                    <option value="">
-                                        Selecionar Municipio
-                                    </option>
+                                    <option value="{{$varEdit->idmunicipio}}">{{$varEdit->municipio}}</option>
                             </select>
                                 </div>
                                 <div class="col-md-6">
@@ -140,16 +137,14 @@
                                Localidad
                                 </strong>
                             <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
-                                <option value="">
-                                    Selecionar Localidad
-                                </option>
+                                <option value="{{$varEdit->idlocalidad}}">{{$varEdit->localidad}}</option>
                             </select>
                             </div>
                             <div class="col-md-12">
                                 <strong>
                                     Referencia
                                 </strong>
-                                <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia') }}</textarea>
+                                <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia',$varEdit->referencia) }}</textarea>
                             </div>
                             </div>
                             <script src="{{ asset('assets/js/crear.js') }}"></script>

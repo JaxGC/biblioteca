@@ -23,14 +23,13 @@ class AdministradorController extends Controller
     }
      public function pdf(){
         $varAdmin=User::all()->where('rol','=','Admin');
-
         //$pdf = PDF::loadView('pages.Administradores.pdfAdmin',['varAdmin'=>$varAdmin]);
         //return $pdf->stream();//Para ver el pdf en el navegador
         //return $pdf->download('___Lista de administradores.pdf');//Para descargar el pdf
         $pdf = FacadePdf::loadView('pages.Administradores.pdfAdmin', compact('varAdmin'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream();
             //return view('pages.Administradores.pdfAdmin', compact('varAdmin'));
-    }
+    } 
     public function create(){
         $status=Status_usuario::all();
         $estados=Estado::orderBy('nombre','asc')->get();

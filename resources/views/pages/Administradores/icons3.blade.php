@@ -24,7 +24,7 @@
                             <i class="btn btn-outline-success btn-sm btn-block">Generar pdf</i>
                         </a>
                     </div> 
-                    
+                     
                 </div>
             </div>
             
