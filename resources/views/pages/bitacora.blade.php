@@ -50,7 +50,7 @@
                             @if (auth()->user()->rol=="Alum")
                             <th hidden></th>
                             @endif
-                                
+                            <th>Reporte</th> 
                             </tr>
                         </thead>    
                         <tbody> 
@@ -97,6 +97,7 @@
                                 @if (auth()->user()->rol=="Alum")
                             <th hidden></th>
                             @endif
+                            <th>Reporte</th>
                             </tr>
                         </tfoot> 
                     </table>

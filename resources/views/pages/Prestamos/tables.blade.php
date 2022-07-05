@@ -35,6 +35,7 @@
                         <th>Nombre del libro</th>
                         <th>Estado del Prestamo</th>
                         <th>Acciones</th>
+                        <th>Reporte</th>
                         </tr>
                     </thead>    
                     <tbody>
@@ -82,6 +83,7 @@
                             <th>Nombre del libro</th>
                             <th>Estado del Prestamo</th>
                             <th>Acciones</th>
+                            <th>Reporte</th>
                         </tr>
                     </tfoot> 
                 </table>

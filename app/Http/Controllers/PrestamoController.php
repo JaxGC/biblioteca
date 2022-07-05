@@ -112,6 +112,7 @@ class PrestamoController extends Controller
         ->join('editoriales','libros.id_editorial','=','editoriales.id')
         ->join('categorias','libros.id_categoria','=','categorias.id')
         ->where('prestamos.id','=', $id)
+        //->where('prestamos.devolucion','!=','2')
         ->select('prestamos.*','prestamos.observaciones as obser','libros.*','users.*',
         'autores.Nombre_autor','editoriales.Nombre_editorial',
         'categorias.Nombre_categoria',
@@ -122,7 +123,7 @@ class PrestamoController extends Controller
         $pdf = FacadePdf::loadView('pages.Prestamos.pdfIndi', compact('PrestamoIndi'))->setOptions(['defaultFont' => 'Calibri']);
         return $pdf->stream();
     }
-    
+
     public function store(Request $request, Libro $varlibro ){
      
         $rol=User::find(auth()->user()->id);
