@@ -54,19 +54,25 @@
                 </tr>
                 <tr>
                     <td>DIRECCIÓN:</td>
-                    <td colspan="4"></td>
+                    <td colspan="4"> {{$pres->localidad}}, {{$pres->municipio}}, {{ $pres->estado }}.</td>
+                </tr>
+                <tr>
+                    <td>REFERENCIA:</td>
+                    <td colspan="4">{{$pres->referencia}}</td>
                 </tr>
                 <tr>
                     <td>DOCUMENTO:</td>
                     <td colspan="2">{{$pres->documento}}</td>
-                    <td>NÚMERO:</td>
-                    <td></td>
+                    <td rowspan="2">MATRICULA:</td>
+                    <td rowspan="2">{{$pres->clave}}</td>
+                    {{-- <td>NÚMERO:</td>
+                    <td></td> --}}
                 </tr>
                 <tr>
                     <td>CARRERA:</td>
-                    <td colspan="2">{{-- {{$pres->Nombre_licenciatura}} --}}</td>
-                    <td>MATRICULA:</td>
-                    <td>{{$pres->clave}}</td>
+                    <td colspan="2">{{$pres->id_licenciatura}}</td>
+                    {{-- <td rowspan="2">MATRICULA:</td>
+                    <td rowspan="2">{{$pres->clave}}</td> --}}
                 </tr>
                 <tr>
                     <td>E-MAIL:</td>
@@ -89,7 +95,7 @@
                 </tr>
                 <tr>
                     <td>OBSERVACIONES:</td>
-                    <td colspan="4">{{$pres->observaciones}}</td>
+                    <td colspan="4">{{$pres->obser}}</td>
                 </tr>
                 @endforeach
         </table>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('id_status_usuario')->nullable();
             $table->string('rol')->nullable();
             $table->string('clave')->nullable();
-            $table->integer('id_licenciatura')->nullable();
+            $table->string('id_licenciatura')->nullable();
             $table->string('imagen_usuario')->nullable();
             $table->integer('selectestado')->nullable();
             $table->integer('selectmunicipio')->nullable();  

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestamo;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class BitacoraController extends Controller
@@ -30,13 +31,17 @@ class BitacoraController extends Controller
         }
         return view('pages.bitacora', compact('varPres'));
     }
-    public function create(){
-        
-    }
-    public function show($cursos){
-
-    }
-    public function delete(){
-        
+    public function rangopdf(Request $request){
+        $fi = $request->fecha_ini.' 00:00:00';
+        $ff = $request->fecha_fin.' 23:59:59';
+        $rangoPdf=Prestamo::orderBy('fecha_inicio', 'desc')
+        ->join('libros','prestamos.id_libro','=','libros.id')
+        ->join('users','prestamos.id_alumno','=','users.id')
+        ->whereBetween('fecha_inicio', [$fi, $ff])
+        ->where('prestamos.devolucion','=','2')
+        ->select('prestamos.*','libros.*','users.*')
+        ->get();
+        $pdf = Pdf::loadView('pages.Prestamos.pdfFechas', compact('rangoPdf'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
     }
 }

@@ -9,8 +9,31 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
-            <h1>Bitacora de prestamos</h1>
             <div class="card-body">
+            <h1>Bitacora de prestamos</h1></div>
+            <div class="card-body">
+                <strong>Reporte de listado por rango de fechas</strong>
+                <div class="card-body">
+                <form action="{{route('PDFPrestamoFechas')}}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row">                            
+                                <div class="col-sm-3">
+                                    <input class="form-control" type="date" value="{{old('fecha_ini')}}" name="fecha_ini" id="fecha_ini">      
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control" type="date" value="{{old('fecha_fin')}}" name="fecha_fin" id="fecha_fin"> 
+                                </div>  
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-primary">Imprimir</button>
+                                </div>                      
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <br>
                 <div class="table-responsive">
                     <table id="example" class="table table-bordered table-striped display" style="width:100%">
                         <thead class="thead-dark">
@@ -34,7 +57,7 @@
                             @foreach ($varPres as $pres)
                             <tr>
                                 @if (auth()->user()->rol=="Admin")
-                                <th>{{$pres->Alumno}}</th>
+                                    <th>{{$pres->Alumno}}</th>
                                 @endif   
                             <td>{{$pres->fecha_inicio}}</td>
                             <td>{{$pres->fecha_limite}}</td>
@@ -49,6 +72,11 @@
                                 @if ($pres->devolucion==0 && $pres->estado_prestamo==0)
                                     <label class ="btn-info">En espera de confirmacion</label>
                                 @endif
+                            </td>
+                            <td>
+                                <a class="" href="{{ route('PDFPrestamoindividual',$pres->id) }}">
+                                    <i class="btn btn-outline-success btn-sm btn-block">Generar reporte</i>
+                                </a>
                             </td>
                             @if (auth()->user()->rol=="Alum")
                             <th hidden></th>

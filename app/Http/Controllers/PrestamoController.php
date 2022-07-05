@@ -105,19 +105,24 @@ class PrestamoController extends Controller
     public function pdf($id){
         $PrestamoIndi=Prestamo::join('libros','prestamos.id_libro','=','libros.id')
         ->join('users','prestamos.id_alumno','=','users.id')
-        //->join('licenciaturas','users.id_licenciatura','=','licenciaturas.id')
+        ->join('estados as e','users.selectestado','e.id')
+        ->join('municipios as m','users.selectmunicipio','m.id')
+        ->join('localidades as l','users.selectlocalidad','l.id')
         ->join('autores','libros.id_autor','=','autores.id')
         ->join('editoriales','libros.id_editorial','=','editoriales.id')
         ->join('categorias','libros.id_categoria','=','categorias.id')
         ->where('prestamos.id','=', $id)
-        ->select('prestamos.*','libros.*','users.*',
+        ->select('prestamos.*','prestamos.observaciones as obser','libros.*','users.*',
         'autores.Nombre_autor','editoriales.Nombre_editorial',
-        'categorias.Nombre_categoria'/* ,'licenciaturas.Nombre_licenciatura' */)
+        'categorias.Nombre_categoria',
+        'e.nombre as estado','e.id as idestado',
+        'm.nombre as municipio','m.id as idmunicipio',
+        'l.nombre as localidad','l.id as idlocalidad')
         ->get();
         $pdf = FacadePdf::loadView('pages.Prestamos.pdfIndi', compact('PrestamoIndi'))->setOptions(['defaultFont' => 'Calibri']);
         return $pdf->stream();
-    } 
-
+    }
+    
     public function store(Request $request, Libro $varlibro ){
      
         $rol=User::find(auth()->user()->id);
