@@ -136,7 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Prestamos/{varpres}','update')->name('Prestamos.update');
 			Route::delete('Prestamos/{varpres}','destroy')->name('Prestamos.destroy');
 
-			//Route::get('pdfAdministrador','pdf')->name('PDFAdministradorPrestamosFecha');
+			Route::get('PDFPrestamoindividual/{id}','pdf')->name('PDFPrestamoindividual');
 		});	
 
 		Route::controller(BitacoraController::class)->group(function(){

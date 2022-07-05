@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 use function PHPSTORM_META\map;
 
@@ -101,6 +102,21 @@ class PrestamoController extends Controller
         $dev=Prestamo::where('id',$id)->update(['devolucion'=>'2','estado_prestamo'=>'2','observaciones'=>$data]);
         return back()->with('success','El libro  a sido devuelto.');
     }
+    public function pdf($id){
+        $PrestamoIndi=Prestamo::join('libros','prestamos.id_libro','=','libros.id')
+        ->join('users','prestamos.id_alumno','=','users.id')
+        //->join('licenciaturas','users.id_licenciatura','=','licenciaturas.id')
+        ->join('autores','libros.id_autor','=','autores.id')
+        ->join('editoriales','libros.id_editorial','=','editoriales.id')
+        ->join('categorias','libros.id_categoria','=','categorias.id')
+        ->where('prestamos.id','=', $id)
+        ->select('prestamos.*','libros.*','users.*',
+        'autores.Nombre_autor','editoriales.Nombre_editorial',
+        'categorias.Nombre_categoria'/* ,'licenciaturas.Nombre_licenciatura' */)
+        ->get();
+        $pdf = FacadePdf::loadView('pages.Prestamos.pdfIndi', compact('PrestamoIndi'))->setOptions(['defaultFont' => 'Calibri']);
+        return $pdf->stream();
+    } 
 
     public function store(Request $request, Libro $varlibro ){
      
