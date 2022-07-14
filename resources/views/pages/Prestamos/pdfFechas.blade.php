@@ -22,7 +22,7 @@
         </table>
     </div>
     <center>UNIVERSIDAD MEXIQUENSE DEL BICENTENARIO</center>
-    <center>PLANTEL VILLAVICTORIA</center><br>
+    <center>PLANTEL VILLA VICTORIA</center><br>
     <div class="table-responsive">
         <table  border="2" cellpadding="7" cellspacing="0" style="width:100%">
             @foreach ($rangoPdf as $var)    

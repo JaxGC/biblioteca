@@ -9,12 +9,26 @@
 
 </head>
 <body>
-    <div class="table-responsive">
-        <table id="example" class="table table-bordered table-striped display" style="width:100%">
+<div>
+    <table cellpadding="7" cellspacing="0">
+        <tr>
+            <td><img src="../resources/views/pages/Prestamos/logo.png" width="120" height="100"></td>
+            <td colspan="3"><strong><center>LISTADO DE LIBROS</center></strong></td>
+            <td><img src="../resources/views/pages/Prestamos/blue.png" width="100" height="55"></td>
+        </tr>
+        <tr>
+            <td colspan="5">_______________________________________________________________________________________</td>
+        </tr>
+    </table>
+</div>
+<center>UNIVERSIDAD MEXIQUENSE DEL BICENTENARIO</center>
+<center>PLANTEL VILLA VICTORIA</center><br>
+<div class="table-responsive">
+        <table border="2" cellpadding="7" cellspacing="0" id="example" class="table table-bordered table-striped display" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                 <th>Codigo</th>
-                <th>Nombre Completo de Administrador</th>
+                <th>Nombre Completo de Libro</th>
                 </tr>
             </thead>
             <tbody>
