@@ -99,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('Libro/{varlib}/editarLibro','edit')->name('Libro.editarLibro');
 			Route::put('Libro/{varlib}','update')->name('Libro.update');
 			Route::delete('Libro/{varlib}','destroy')->name('Libro.destroy');
+
+			Route::get('pdfLibro','pdf')->name('PDFLibros');
 		
 		});
 		Route::controller(EditorialController::class)->group(function () {

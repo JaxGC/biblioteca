@@ -7,6 +7,7 @@ use App\Models\Editorial;
 use App\Models\Categoria;
 use App\Models\Autor;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class LibroController extends Controller
 {
@@ -16,6 +17,13 @@ class LibroController extends Controller
         
         return view('pages.Libros.maps', compact('varlib'));
     }
+    public function pdf(){
+        $varlib=Libro::all();
+        //return $pdf->download('___Lista de administradores.pdf');//Para descargar el pdf
+        $pdf = FacadePdf::loadView('pages.Libros.pdfLibro', compact('varlib'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
+            //return view('pages.Administradores.pdfAdmin', compact('varAdmin'));
+    } 
     public function create(){
         $categori=Categoria::all();
         $editoria=Editorial::all();
@@ -35,7 +43,8 @@ class LibroController extends Controller
         'estado'=>'required',
         'observaciones'=>'required',
         'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024',
-        'numero_stand'=>'required'
+        'numero_stand'=>'required',
+        'codigo'=>'required'
 
             ], [
 
@@ -48,8 +57,8 @@ class LibroController extends Controller
                 'ejemplares.required'=>'El campo es obligatorio',
                 'libros_prestados.required'=>'El campo  es obligatorio',
                 'estado.required'=>'El campo  es obligatorio',
-                'observaciones.required'=>'El campo  es obligatorio'
-
+                'observaciones.required'=>'El campo observaciones es obligatorio',
+                'codigo.required'=>'El campo codigo es obligatorio'
 
             ]);
             if($imagen = $request->file('imagen')) {
@@ -69,6 +78,7 @@ class LibroController extends Controller
             'libros_prestados'=>$data['libros_prestados'],
             'estado'=>$data['estado'],
             'observaciones'=>$data['observaciones'],
+            'codigo'=>$data['codigo'],
             'imagen'=>$data['imagen'],
             'numero_stand'=>$data['numero_stand']
         ]);

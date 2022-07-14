@@ -220,6 +220,13 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
             <div class="row">
                 <div class="col-sm">
                     <strong>
+                    <label > Código</label>
+                    </strong>
+                    <input type="numeric" name="codigo" id="codigo" class="form-control form-control-muted" placeholder="ingrese el codigo de libro">
+
+                </div>
+                <div class="col-sm">
+                    <strong>
                     <label > Numero Stand</label>
                     </strong>
                     <input type="numeric" name="numero_stand" id="numero_stand" class="form-control form-control-muted" placeholder="ingrese el numero de stand">
