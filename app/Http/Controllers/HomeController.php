@@ -28,6 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        ///AQUI SE VERIFICAN LOS USUARIOS DEL LOGIN
+
         Invitado::create([
             'Name_invitados'=>auth()->user()->name,
             'password'=>auth()->user()->rol
@@ -61,9 +63,16 @@ class HomeController extends Controller
         ->where('users.id','=',auth()->user()->id)
         ->count();
 
-        return view('dashboard', 
-        compact('contadorMae', 'contadorlibros', 'contadorAlum','contadorInvi','contadorPresPausados',
-        'contadorPresActivos','contadorPresFinalizados','contadorPresPausados0','contadorPresActivos1',
-        'contadorPresFinalizados2'));
+        if (auth()->user()->id_status_usuario==1) {
+            return view('dashboard', 
+            compact('contadorMae', 'contadorlibros', 'contadorAlum','contadorInvi','contadorPresPausados',
+            'contadorPresActivos','contadorPresFinalizados','contadorPresPausados0','contadorPresActivos1',
+            'contadorPresFinalizados2'));
+        } else {
+            //dd('estas bloqueado');
+            return view('Bloqueados');
+        }
+        
+        
     }
 }

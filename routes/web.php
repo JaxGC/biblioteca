@@ -26,6 +26,7 @@ use Psy\Command\EditCommand;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('finalizar');
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('/');
 
