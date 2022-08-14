@@ -11,7 +11,7 @@ class AutorController extends Controller
     //
     public function index(){
         //listado
-        $varaut = Autor::paginate(5);
+        $varaut = Autor::all();
         return view('pages.Autores.autores', compact('varaut'));
     }
     public function create(){
@@ -39,12 +39,12 @@ class AutorController extends Controller
         //
         $varaut->Nombre_autor = $request->Nombre_autor;
         $varaut->save();
-        $varaut = Autor::paginate(5);//paginar la tabla
+        $varaut = Autor::all();//paginar la tabla
         return view('pages.Autores.autores', compact('varaut'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(Autor $varaut){
         $varaut->delete();
-        $varaut = Autor::paginate(5);//paginar la tabla
+        $varaut = Autor::all();//paginar la tabla
         return view('pages.Autores.autores', compact('varaut'))->with('success','Registro Eliminado ');
     }
 }

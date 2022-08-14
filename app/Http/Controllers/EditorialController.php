@@ -10,7 +10,7 @@ class EditorialController extends Controller
     //
     public function index(){
         //listado
-        $varedi = Editorial::paginate(5);
+        $varedi = Editorial::all();
         return view('pages.Editoriales.editoriales', compact('varedi'));
     }
     public function create(){

@@ -10,21 +10,28 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
+            <div class="row align-items-center">
+            <div class="col-8">
             <h1>Categorias</h1>
-            <div class="col-xl-4">
+            </div>
+            <div class="col-4 text-right">
                 <a class="nav-link" href="{{ route('agregarCategoria') }}">
-                    <i class="btn btn-outline-success btn-lg btn-block">Añadir Categoria</i>
+                    <i class="btn btn-outline-success btn-sm btn-block">Añadir Categoria</i>
                 </a>
             </div>
+            </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table id="example" class="table table-bordered table-striped display" style="width:100%">
                     <thead class="thead-dark">
+                        <tr>
                         <th>CATEGORIA</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
+                    </tr>
                     </thead>
-                    @foreach ($varcat as $cat)
-                    <tbody>
+                    
+                    <tbody>@foreach ($varcat as $cat)
+                        <tr>
                         <td>{{$cat->Nombre_categoria}}</td>
                         <td><a href="{{route('Categorias.editcate', $cat->id)}}"><i  class="btn btn-outline-warning ni ni-ruler-pencil"> Editar</i></a></td>
                         <td>
@@ -34,10 +41,17 @@
                                 <button type="submit" class="btn btn-outline-danger ni ni-basket">Eliminar</button>
                             </form>
                         </td>
+                    </tr>
+                        @endforeach
                     </tbody> 
-                    @endforeach
+                    <tfoot>
+                        <tr>
+                            <th>CATEGORIA</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                        </tr>
+                    </tfoot>
                 </table>
-                {{$varcat->links()}}
             </div>
             
 
@@ -53,4 +67,22 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+<script>
+    
+    $(document).ready(function() {
+    $('#example').DataTable({
+        responsive: true,
+        lengthMenu: [
+                [5, 10, 20, -1],
+                [5, 10, 20, 'Todos'],
+            ],
+    "language": {
+    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+    
+    });
+    });
+    
+    
+        </script>
 @endpush

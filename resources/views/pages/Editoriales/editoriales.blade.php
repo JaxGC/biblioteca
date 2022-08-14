@@ -32,8 +32,8 @@
                         <th>Eliminar</th>
                         </tr>
                     </thead>
-                    @foreach ($varedi as $edi)
-                    <tbody>
+                    
+                    <tbody>@foreach ($varedi as $edi)
                         <tr>
                         <td>{{$edi->id}}</td>
                         <td>{{$edi->Nombre_editorial}}</td>
@@ -45,11 +45,10 @@
                                 <button type="submit" class="btn btn-outline-danger ni ni-basket">Eliminar</button>
                             </form>
                         </td>
-                        </tr>
+                        </tr>@endforeach
                     </tbody> 
-                    @endforeach
+                    
                 </table>
-                {{$varedi->links()}}
             </div>
             
 

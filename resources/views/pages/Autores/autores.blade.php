@@ -25,14 +25,18 @@
             </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table id="example" class="table table-bordered table-striped display" style="width:100%">
                     <thead class="thead-dark">
+                        <tr>
                         <th>AUTOR</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
+                    </tr>
                     </thead>
-                    @foreach ($varaut as $aut)
+                    
                     <tbody>
+                        @foreach ($varaut as $aut)
+                        <tr>
                         <td>{{$aut->Nombre_autor}}</td>
                         <td><a href="{{route('Autores.editaut', $aut->id)}}"><i  class="btn btn-outline-warning ni ni-ruler-pencil"> Editar</i></a></td>
                         <td>
@@ -42,10 +46,19 @@
                                 <button type="submit" class="btn btn-outline-danger ni ni-basket">Eliminar</button>
                             </form>
                         </td>
-                    </tbody> 
+                    </tr>
                     @endforeach
+                    </tbody> 
+                    
+                    <tfoot>
+                        <tr>
+                            <th>AUTOR</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                          
+                        </tr>
+                    </tfoot>
                 </table>
-                {{$varaut->links()}}
             </div>
             
 
@@ -61,4 +74,23 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+//agregar para las datatables
+<script>
+    
+$(document).ready(function() {
+$('#example').DataTable({
+    responsive: true,
+    lengthMenu: [
+            [5, 10, 20, -1],
+            [5, 10, 20, 'Todos'],
+        ],
+"language": {
+"url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+}
+
+});
+});
+
+
+    </script>
 @endpush

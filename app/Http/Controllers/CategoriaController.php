@@ -11,7 +11,7 @@ class CategoriaController extends Controller
     //
     public function index(){
         //listado
-        $varcat = Categoria::paginate(5);
+        $varcat = Categoria::all();
         return view('pages.Categorias.categoria', compact('varcat'));
     }
     public function create(){
