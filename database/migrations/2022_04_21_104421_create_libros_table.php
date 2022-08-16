@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('id_autor',255)->nullable();
             $table->string('id_editorial',255)->nullable();
             $table->string('year_edicion')->nullable();
-            $table->year('fecha_publicacion')->nullable();
+            $table->timestamp('fecha_publicacion');
             $table->string('id_categoria',255)->nullable();
             $table->bigInteger('ejemplares');
             $table->bigInteger('libros_prestados');
