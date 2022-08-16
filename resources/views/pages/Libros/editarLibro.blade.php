@@ -69,7 +69,7 @@
                     <label for="exampleFormControlSelect1">Autor</label></strong>
                     <select id="id_autor" name="id_autor" class="form-control">
                         @foreach ($auto as $autor)
-                            <option value="{{$autor->id}}">{{$autor->Nombre_autor}}</option>
+                            <option value="{{$autor->Nombre_autor}}">{{$autor->Nombre_autor}}</option>
                         @endforeach
                     </select>
                   </div>
@@ -80,7 +80,7 @@
                     <label for="exampleFormControlSelect1">Editorial</label></strong>
                     <select id="id_editorial" name="id_editorial" class="form-control">
                         @foreach ($editoria as $editorial)
-                            <option value="{{$editorial->id}}">{{$editorial->Nombre_editorial}}</option>
+                            <option value="{{$editorial->Nombre_editorial}}">{{$editorial->Nombre_editorial}}</option>
                         @endforeach
                     </select>
                   </div>
@@ -92,7 +92,7 @@
                     <label for="exampleFormControlSelect1">Categoria</label></strong>
                     <select id="id_categoria" name="id_categoria" class="form-control">
                         @foreach ($categori as $categoria)
-                            <option value="{{$categoria->id}}">{{$categoria->Nombre_categoria}}</option>
+                            <option value="{{$categoria->Nombre_categoria}}">{{$categoria->Nombre_categoria}}</option>
                         @endforeach
                     </select>
                   </div>
@@ -105,7 +105,7 @@
                 <strong>
                 <label > Año de edicion</label>
                 </strong>
-                <input value="{{$varlib->year_edicion}}" type="numeric" name="year_edicion" id="year_edicion" class="form-control form-control-muted" placeholder="ingrese el año de adicion">
+                <input value="{{$varlib->year_edicion}}" type="numeric" name="year_edicion" id="year_edicion" class="form-control form-control-muted" placeholder="ingrese el numero de edicion">
 
             </div>
         </div>

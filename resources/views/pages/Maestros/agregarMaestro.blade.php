@@ -60,25 +60,25 @@
                 <div class="row">
             <div class="col-sm"><strong>
                 <label> Clave </label></strong>
-                <input id="clave_empleado" name="clave_empleado" type="number" class="form-control form-control-muted" placeholder="ingrese la Clave de empleado" required>
+                <input value="{{ old('clave_empleado') }}" id="clave_empleado" name="clave_empleado" type="number" class="form-control form-control-muted" placeholder="ingrese la Clave de empleado" required>
             </div>
             <div class="col-sm"> <strong>
                 <label> Nombre Completo</label></strong>
-                <input id="Nombre_maestro" name="Nombre_maestro" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre completo" onkeypress="return soloLetras(event);" required>
+                <input value="{{ old('Nombre_maestro') }}" id="Nombre_maestro" name="Nombre_maestro" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre completo" onkeypress="return soloLetras(event);" required>
             </div>
             <div class="col-sm"><strong>
                 <label> Email </label></strong>
-                <input id="email" name="email" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
+                <input value="{{ old('email') }}" id="email" name="email" type="email" class="form-control form-control-muted" placeholder="Correo Ejemplo: nombre@usuario.com" required>
             </div>
                 </div>
                 <div class="row">
             <div class="col-sm"><strong>
                 <label> Contraseña </label></strong>
-                <input id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <input value="{{ old('Password') }}" id="Password" name="Password" class="form-control form-control-muted" type="password" id="password" placeholder="Escriba la Contraseña" required>
             </div>
             <div class="col-sm"><strong>
                 <label> Carrera </label></strong>
-                <input id="carrera_empleado" name="carrera_empleado" type="text" class="form-control form-control-muted" placeholder="ingrese la carrera que ejerce" required>
+                <input value="{{ old('carrera_empleado') }}" id="carrera_empleado" name="carrera_empleado" type="text" class="form-control form-control-muted" placeholder="ingrese la carrera que ejerce" required>
             </div>
             <div class="col-sm">
                 <div class="form-group"><strong>
@@ -98,7 +98,7 @@
                 </strong>
                 <br>
                 <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
-                    <option value="">
+                    <option value="{{ old('selectestado') }}">
                         Selecionar Estado
                     </option>
                     @foreach ($estados as $estado)
@@ -111,7 +111,7 @@
                 Municipio
                 </strong>
             <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
-                <option value="">
+                <option value="{{ old('selectmunicipio') }}">
                     Selecionar Municipio
                 </option>
         </select>
@@ -122,7 +122,7 @@
            Localidad
             </strong>
         <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
-            <option value="">
+            <option value="{{ old('selectlocalidad') }}">
                 Selecionar Localidad
             </option>
         </select>

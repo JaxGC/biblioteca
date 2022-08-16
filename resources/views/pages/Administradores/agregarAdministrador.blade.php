@@ -61,7 +61,7 @@
                 <div class="row">
             <div class="col-sm"><strong>
                 <label> Ingrese correo electronico de usuario</label> <!--onkeypress="return soloLetras(event);" para solo letras-->
-                </strong><input id="Usuario" name="Usuario" type="text" class="form-control form-control-muted" placeholder="ingrese correo" required>
+                </strong><input value="{{ old('Usuario') }}"id="Usuario" name="Usuario" type="text" class="form-control form-control-muted" placeholder="ingrese correo" required>
             </div>
             <div class="col-sm"><strong>
                 <label> Nombre </label></strong>
@@ -69,7 +69,7 @@
             </div>
             <div class="col-sm"><strong>
                 <label> Contraseña </label></strong>
-                <input id="password" name="password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <input id="password" name="password" class="form-control form-control-muted" type="password" value="{{old('password')}}" id="password" required>
             </div>
                 </div>
             <div class="row">
@@ -91,7 +91,7 @@
                 </strong>
                 <br>
                 <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
-                    <option value="">
+                    <option value="{{ old('selectestado') }}">
                         Selecionar Estado
                     </option>
                     @foreach ($estados as $estado)
@@ -104,7 +104,7 @@
                 Municipio
                 </strong>
             <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
-                <option value="">
+                <option value="{{ old('selectmunicipio') }}">
                     Selecionar Municipio
                 </option>
         </select>
@@ -115,7 +115,7 @@
            Localidad
             </strong>
         <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
-            <option value="">
+            <option value="{{ old('selectlocalidad') }}">
                 Selecionar Localidad
             </option>
         </select>

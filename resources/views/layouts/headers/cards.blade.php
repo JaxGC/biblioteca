@@ -3,7 +3,9 @@
         <div class="header-body">
             <!-- Card stats -->
             @if (auth()->user()->rol!='Admin')
-                @include('layouts.headers.inicioCards2')
+                @can('PrestamoLibroM') 
+                    @include('layouts.headers.inicioCards2')    
+                @endcan
             @else
             <div class="row">
                 <div class="col-xl-3 col-lg-6">

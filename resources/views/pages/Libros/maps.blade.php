@@ -48,9 +48,9 @@
 <th>NOMBRE</th>
 <th>CATEGORIA</th>
 <th>EJEMPLARES</th>
-{{-- @can('PrestamoLibro') --}}
+ @can('PrestamoLibroM') 
  <th class="text-center">ACCIONES</th>
- {{-- @endcan --}}
+  @endcan
  @can('icons3')<th></th>
 <th></th>@endcan
 </tr>
@@ -62,10 +62,10 @@
      <td>{{$lib->Nombre_libro}}</td>
      <td>{{$lib->id_categoria}}</td>
      <td>{{$lib->ejemplares}}</td>
-    {{--  @can('PrestamoLibro') --}}
+    @can('PrestamoLibroM') 
      <td><a href="{{route('agregarPrestamo',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Prestamo</i></a></td>
    
-     {{-- @endcan --}}
+     @endcan
   @can('icons3')
 <td><a href="{{route('Libro.editarLibro',$lib->id)}}" ><i class="btn btn-outline-warning ni ni-ruler-pencil">Editar</i></a></td>
 <td>
@@ -85,9 +85,9 @@
 
 <th>Categoria</th>
 <th>Ejemplares</th>
-{{-- @can('PrestamoLibro') --}}
+ @can('PrestamoLibroM')
  <th class="text-center">Acciones</th>   
-{{-- @endcan --}}
+@endcan
 @can('icons3')
 <th></th>
 <th></th>

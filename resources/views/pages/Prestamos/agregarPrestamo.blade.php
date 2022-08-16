@@ -133,7 +133,7 @@
       </div>
       <div class="col-sm">
         <label>Observaciones</label>
-        <input name="observaciones" id="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" hidden>
+        <input value="{{ old('ovservaciones') }}" name="observaciones" id="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" hidden>
     </div>
     <div class="col-sm">
         <div class="form-group">

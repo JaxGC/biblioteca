@@ -37,13 +37,13 @@
                 </tr>
                 <tr>
                     <td>AUTOR:</td>
-                    <td colspan="2">{{$pres->Nombre_autor}}</td>
+                    <td colspan="2">{{$pres->id_autor}}</td>
                     <td rowspan="2">CLASIFICACIÓN</td>
-                    <td rowspan="2">{{$pres->Nombre_categoria}}</td>
+                    <td rowspan="2">{{$pres->id_categoria}}</td>
                 </tr>
                 <tr>
                     <td>EDITOTIAL:</td>
-                    <td colspan="2">{{$pres->Nombre_editorial}}</td>
+                    <td colspan="2">{{$pres->id_editorial}}</td>
                 </tr>
                 <tr>
                     <td colspan="5" align="center" style="background-color: dimgray">DATOS DEL USUARIO</td>

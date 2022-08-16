@@ -86,9 +86,9 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
 
             <div class="col-sm">
                 <strong>
-                <label> Nombre_libro </label>
+                <label> Nombre de Libro </label>
                 </strong>
-                <input id="Nombre_libro" name="Nombre_libro" type="text" class="form-control form-control-muted" placeholder="ingrese Nombre libro" required>
+                <input value="{{ old('Nombre_libro') }}" id="Nombre_libro" name="Nombre_libro" type="text" class="form-control form-control-muted" placeholder="ingrese Nombre libro" required>
             </div>
            
             
@@ -99,8 +99,9 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     </strong>
                     @if ($auto->count())
                     <select id="id_autor" name="id_autor" class="form-control" id="exampleFormControlSelect1">
-                      @foreach ($auto as $autor)
-                          <option value="{{$autor->id}}">{{$autor->Nombre_autor}}</option>
+                        <option value="{{ old('Nombre_autor') }}"></option>
+                        @foreach ($auto as $autor)
+                          <option value="{{$autor->Nombre_autor}}">{{$autor->Nombre_autor}}</option>
                       @endforeach
                     </select>
                     @else
@@ -122,8 +123,9 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     </strong>
                     @if ($editoria->count())
                     <select id="id_editorial" name="id_editorial" class="form-control" id="exampleFormControlSelect1">
-                      @foreach ($editoria as $editorial)
-                          <option value="{{$editorial->id}}">{{$editorial->Nombre_editorial}}</option>
+                      <option value="{{ old('Nombre_editorial') }}"></option>
+                        @foreach ($editoria as $editorial)
+                          <option value="{{$editorial->Nombre_editorial}}">{{$editorial->Nombre_editorial}}</option>
                       @endforeach
                     </select>
                     @else
@@ -146,8 +148,9 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     </strong>
                     @if ($categori->count())
                     <select id="id_categoria" name="id_categoria" class="form-control" id="exampleFormControlSelect1">
-                      @foreach ($categori as $categoria)
-                          <option value="{{$categoria->id}}">{{$categoria->Nombre_categoria}}</option>
+                        <option value="{{ old('Nombre_categoria') }}"></option>
+                        @foreach ($categori as $categoria)
+                          <option value="{{$categoria->Nombre_categoria}}">{{$categoria->Nombre_categoria}}</option>
                       @endforeach
                     </select>
                     @else
@@ -167,13 +170,13 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 <strong>
                 <label>Ejemplar </label>
                 </strong>
-                <input id="ejemplares" name="ejemplares" type="text" class="form-control form-control-muted" placeholder="ingrese los ejemplares" required>
+                <input value="{{ old('ejemplares') }}" id="ejemplares" name="ejemplares" type="text" class="form-control form-control-muted" placeholder="ingrese los ejemplares" required>
             </div>
             <div class="col-sm">
                 <strong>
                 <label> Libros Prestados </label>
                 </strong>
-                <input id="libros_prestados" name="libros_prestados" type="text" class="form-control form-control-muted" placeholder="ingrese libros prestados" required>
+                <input value="{{ old('libros_prestados') }}" id="libros_prestados" name="libros_prestados" type="text" class="form-control form-control-muted" placeholder="ingrese libros prestados" required>
             </div>
             </div>
             <div class="row">
@@ -190,8 +193,8 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                             <label class="custom-control-label" for="customRadio6">Malo</label>
                      </div>
                      <div class="custom-control custom-radio mb-3">
-                        <input name="estado" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                        <label class="custom-control-label" for="customRadio6">Regular</label>
+                        <input name="estado" class="custom-control-input" id="customRadio7" checked="" type="radio">
+                        <label class="custom-control-label" for="customRadio7">Regular</label>
                  </div>
                  </div>
             
@@ -200,7 +203,7 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     <strong>
                     <label > Año de edicion</label>
                     </strong>
-                    <input type="numeric" name="year_edicion" id="year_edicion" class="form-control form-control-muted" placeholder="ingrese el año de adicion">
+                    <input value="{{ old('year_edicion') }}" type="numeric" name="year_edicion" id="year_edicion" class="form-control form-control-muted" placeholder="ingrese el numero de edicion">
 
                 </div>
                 <div class="col-sm">
@@ -218,18 +221,18 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm">
+                {{-- <div class="col-sm">
                     <strong>
                     <label > Código</label>
                     </strong>
                     <input type="numeric" name="codigo" id="codigo" class="form-control form-control-muted" placeholder="ingrese el codigo de libro">
 
-                </div>
+                </div> --}}
                 <div class="col-sm">
                     <strong>
                     <label > Numero Stand</label>
                     </strong>
-                    <input type="numeric" name="numero_stand" id="numero_stand" class="form-control form-control-muted" placeholder="ingrese el numero de stand">
+                    <input value="{{ old('numero_stand') }}" type="numeric" name="numero_stand" id="numero_stand" class="form-control form-control-muted" placeholder="ingrese el numero de stand">
 
                 </div>
                 
@@ -237,7 +240,7 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 <strong>
                 <label> Observaciones </label>  
                 </strong>
-                <input id="observaciones" name="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" required>
+                <input value="{{ old('observaciones') }}" id="observaciones" name="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" required>
             </div>
             </div>
            <!-- Para ver la imagen seleccionada, de lo contrario no se -->

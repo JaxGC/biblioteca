@@ -20,9 +20,9 @@
                         <a class="" href="{{ route('agregarAdministrador1') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Añadir Administrador</i>
                         </a>
-                        <a class="" href="{{ route('PDFAdministrador') }}">
+                        {{-- <a class="" href="{{ route('PDFAdministrador') }}">
                             <i class="btn btn-outline-success btn-sm btn-block">Generar pdf</i>
-                        </a>
+                        </a> --}}
                     </div> 
                      
                 </div>

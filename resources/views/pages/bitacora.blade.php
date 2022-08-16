@@ -12,10 +12,12 @@
             <div class="card-body">
             <h1>Bitacora de prestamos</h1></div>
             <div class="card-body">
+                @if (auth()->user()->rol=="Admin")
                 <strong>Reporte de listado por rango de fechas</strong>
                 <div class="card-body">
                 <form action="{{route('PDFPrestamoFechas')}}" method="POST">
                     @csrf
+                    
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="row">                            
@@ -31,8 +33,9 @@
                             </div>
                         </div>
                     </div>
+                     
                 </form>
-                </div>
+                </div>@endif
                 <br>
                 <div class="table-responsive">
                     <table id="example" class="table table-bordered table-striped display" style="width:100%">

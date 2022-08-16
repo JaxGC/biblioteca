@@ -87,7 +87,7 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 <strong>
                 <label> Nombre </label>
                 </strong>
-                <input name="Nombre_categoria" id="Nombre_categoria" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
+                <input value="{{ old('Nombre_categoria') }}" name="Nombre_categoria" id="Nombre_categoria" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
             </div>
             
             <div class="form-group">

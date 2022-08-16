@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_status_usuario' =>'1'
         ])->assignRole('Invi'); 
     }
 }

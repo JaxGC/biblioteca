@@ -59,7 +59,7 @@
                 {{ csrf_field() }}
             <div class="col-xl-4">
                 <label> Nombre </label>
-                <input name="Nombre_licenciatura" id="Nombre_licenciatura" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
+                <input value="{{ old('Nombre_licenciatura') }}" name="Nombre_licenciatura" id="Nombre_licenciatura" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
             </div><br>
             
             <div class="form-group">

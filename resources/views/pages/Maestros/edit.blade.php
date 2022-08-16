@@ -75,7 +75,7 @@
                 <div class="row">
             <div class="col-sm"><strong>
                 <label> Contraseña </label></strong>
-                <input value="{{$varMa->password}}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <input value="{{$varMa->password}}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="secret" id="password" required>
             </div>
             <div class="col-sm"><strong>
                 <label> Carrera </label></strong>

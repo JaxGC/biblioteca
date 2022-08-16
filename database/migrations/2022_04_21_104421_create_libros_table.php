@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('libros', function (Blueprint $table) {
             $table->id();
             $table->string('Nombre_libro');
-            $table->foreignId('id_autor')->constrained('autores');
-            $table->foreignId('id_editorial')->constrained('editoriales');
-            $table->year('year_edicion');
-            $table->timestamp('fecha_publicacion');
-            $table->foreignId('id_categoria')->constrained('categorias');
+            $table->string('id_autor',255)->nullable();
+            $table->string('id_editorial',255)->nullable();
+            $table->string('year_edicion')->nullable();
+            $table->year('fecha_publicacion')->nullable();
+            $table->string('id_categoria',255)->nullable();
             $table->bigInteger('ejemplares');
             $table->bigInteger('libros_prestados');
             $table->string('estado');

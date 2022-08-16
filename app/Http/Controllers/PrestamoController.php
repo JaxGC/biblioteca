@@ -41,7 +41,7 @@ class PrestamoController extends Controller
         {
             Carbon::setTestNow();
             if (Carbon::now()->isWeekend()) {
-                echo("Es fin de semana");
+                echo("Es fin de semana no se pueden realizar préstamos");
             }
             else 
             {
@@ -60,7 +60,7 @@ class PrestamoController extends Controller
         {
             Carbon::setTestNow();
             if (Carbon::now()->isWeekend()) {
-                echo("Es fin de semana");
+                echo("Es fin de semana no se pueden realizar préstamos");
             } else {
                 /* 
                 return redirect()->route('map')->with('nohay','ok'); */
@@ -107,15 +107,15 @@ class PrestamoController extends Controller
         ->join('users','prestamos.id_alumno','=','users.id')
         ->join('estados as e','users.selectestado','e.id')
         ->join('municipios as m','users.selectmunicipio','m.id')
-        ->join('localidades as l','users.selectlocalidad','l.id')
+        ->join('localidades as l','users.selectlocalidad','l.id')/* 
         ->join('autores','libros.id_autor','=','autores.id')
         ->join('editoriales','libros.id_editorial','=','editoriales.id')
-        ->join('categorias','libros.id_categoria','=','categorias.id')
+        ->join('categorias','libros.id_categoria','=','categorias.id') */
         ->where('prestamos.id','=', $id)
         //->where('prestamos.devolucion','!=','2')
         ->select('prestamos.*','prestamos.observaciones as obser','libros.*','users.*',
-        'autores.Nombre_autor','editoriales.Nombre_editorial',
-        'categorias.Nombre_categoria',
+        /* 'autores.Nombre_autor','editoriales.Nombre_editorial',
+        'categorias.Nombre_categoria', */
         'e.nombre as estado','e.id as idestado',
         'm.nombre as municipio','m.id as idmunicipio',
         'l.nombre as localidad','l.id as idlocalidad')
