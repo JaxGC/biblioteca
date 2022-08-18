@@ -45,6 +45,7 @@
                 <table id="example" class="table table-bordered table-striped display" style="width:100%">
                     <thead class="thead-dark">
 <tr>
+    <th>DETALLES</th>
 <th>NOMBRE</th>
 <th>CATEGORIA</th>
 <th>EJEMPLARES</th>
@@ -58,6 +59,9 @@
 <tbody>
    @foreach ($varlib as $lib)
 <tr>
+     <th>
+        <button type="button" class="btn btn-default element btn-sm" data-toggle="modal" data-target="#modal-default{{$lib->id}}">Ver libro</button>
+     </th>
 
      <td>{{$lib->Nombre_libro}}</td>
      <td>{{$lib->id_categoria}}</td>
@@ -76,11 +80,12 @@
 </form></td>   
 @endcan
 </tr>
+@include('pages.libros.modalLib')
    @endforeach
 </tbody>
  <tfoot>
 <tr>
-
+    <th>Detalles</th>
 <th>Nombre libro</th>
 
 <th>Categoria</th>

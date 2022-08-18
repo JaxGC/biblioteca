@@ -241,11 +241,11 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>@include('layouts.footers.auth')
             </div>
         </div>
         
-        @include('layouts.footers.auth')
+        
     </div>
 @endsection
 

@@ -17,8 +17,8 @@
                                     <span class="h3 font-weight-bold mb-0"></span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-bar"></i>
+                                    <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                                        <i class="ni ni-button-play"></i>
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +38,8 @@
                                     <span class="h3 font-weight-bold mb-0"></span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-pie"></i>
+                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                        <i class="ni ni-button-pause"></i>
                                     </div>
                                 </div>
                             </div>
@@ -59,8 +59,8 @@
                                     <span class="h3 font-weight-bold mb-0"></span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                        <i class="fas fa-users"></i>
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                        <i class="ni ni-button-power"></i>
                                     </div>
                                 </div>
                             </div>
@@ -71,27 +71,27 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xl-3 col-lg-6">
+                <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Invitados</h5>
-                                    <span class="h3 font-weight-bold mb-0">Consultas de hoy</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Libros</h5>
+                                    <span class="h3 font-weight-bold mb-0"></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                        <i class="fas fa-percent"></i>
+                                        <i class="ni ni-books"></i>
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-nowrap">Dia</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorInvi}}</span>
+                                <span class="text-nowrap">Regitrados</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorlibros}}</span>
                             </p>
                         </div>
                     </div>
-                </div> --}}
+                </div> 
             </div>
             @endif
         </div>
