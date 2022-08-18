@@ -22,7 +22,13 @@
       }
   }
     </script>
-
+<style>
+    @media only screen and (max-width: 700px) {
+        video {
+            max-width: 100%;
+        }
+    }
+</style>
 <div class="card-body shadow" style="background-color: #80ba26">
     <br>
     <br>
@@ -184,6 +190,17 @@
                     <a href="{{ route("icons") }}" class="btn btn-info btn-block" >Atrás</a>
                 </div>
             </form>
+            {{-- Para tomar foto desde la camara --}}
+            <h4>Selecciona camara</h4>
+            <div>
+                <select name="listaDeDispositivos" id="listaDeDispositivos"></select>
+                <button id="boton">Tomar foto</button>
+                <p id="estado"></p>
+            </div>
+            <br>
+            <video muted="muted" id="video"></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+        {{-- aqui termina codigo de tomar foto desde la camara --}}
         </div>
     </div>@include('layouts.footers.auth')  
     </div>
@@ -192,6 +209,9 @@
 @endsection
 @include('pages.alumnos.modallc')
 @push('js')
+{{-- script de tomar foto de camara --}}
+<script src="{{ asset('argon') }}/vendor/chart.js/dist/script.js"></script>
+{{-- aqui termina tomar foto de camara --}}
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 <!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
