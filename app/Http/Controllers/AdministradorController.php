@@ -73,6 +73,18 @@ class AdministradorController extends Controller
         ])->assignRole('Admin');
         return back()->with('success','Registro creado satisfactoriamente');
     }
+
+   /*  public function encriptardatos1(Request $request){
+       return view('pages.Administradores.encriptar');
+    }
+public function encriptardatos(Request $request){
+    $datos=request();
+    $datos1 = Hash::make($datos['password']);
+    //echo $datos1; 
+    dd($datos1);
+} */
+
+
     public function edit(User $varAdmin){
         //dd($id);
         $status=Status_usuario::all();

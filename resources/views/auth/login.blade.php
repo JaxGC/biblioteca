@@ -12,9 +12,9 @@
                         <div class="text-center text-muted mb-4">
                             <small>
                                    <h1> Iniciar sesión </h1>
-                                    <br>
+                                    {{-- <br>
                                     Usuario <strong>admin@argon.com</strong> Contraseña: <strong>secret</strong>
-                            </small>
+                             --}}</small>
                         </div>
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf

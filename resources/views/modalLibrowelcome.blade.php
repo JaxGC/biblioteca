@@ -21,15 +21,15 @@
                           <dt>TITULO:</dt>
                           <dd class="titulo_libro">{{$li->Nombre_libro}}</dd>
                           <dt>AUTOR:</dt>
-                          <dd class="autor_libro">{{$li->Nombre_autor}}</dd>
+                          <dd class="autor_libro">{{$li->id_autor}}</dd>
                           <dt>EDITORIAL:</dt>
-                          <dd class="editorial_libro">{{$li->Nombre_editorial}}</dd>
+                          <dd class="editorial_libro">{{$li->id_editorial}}</dd>
                           <dt>AÑO DE EDICION:</dt>
                           <dd class="codigo_libro">{{$li->year_edicion}}</dd>
                           <dt>NUMERO DE STAND:</dt>
                           <dd class="codigo_libro">{{$li->numero_stand}}</dd>
                           <dt>CATEGORIA:</dt>
-                          <dd class="codigo_libro">{{$li->Nombre_categoria}}</dd>
+                          <dd class="codigo_libro">{{$li->id_categoria}}</dd>
                       </dl>
                   </div>
               </div>

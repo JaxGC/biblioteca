@@ -16,10 +16,10 @@ class WelcomeController extends Controller
     public function index()
     {
         //
-        $Lib = Libro::join('autores','libros.id_autor', '=','autores.id')
+        $Lib = Libro::/* join('autores','libros.id_autor', '=','autores.id')
 	        ->join('editoriales','libros.id_editorial', '=','editoriales.id')
             ->join('categorias','libros.id_categoria','=','categorias.id')
-	        ->select('libros.*', 'autores.Nombre_autor', 'editoriales.Nombre_editorial','categorias.Nombre_categoria')
+	        -> */select('libros.*'/* , 'autores.Nombre_autor', 'editoriales.Nombre_editorial','categorias.Nombre_categoria' */)
 	        ->get();
             return view('welcome', compact('Lib'));
     }

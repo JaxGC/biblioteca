@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('libros', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre_libro');
+            $table->text('Nombre_libro');
             $table->string('id_autor',255)->nullable();
             $table->string('id_editorial',255)->nullable();
             $table->string('year_edicion')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('estado');
             $table->text('observaciones');
             $table->string('imagen');
-            $table->integer('numero_stand')->nullable();
+            $table->string('numero_stand')->nullable();
             $table->timestamps();
         });
     }

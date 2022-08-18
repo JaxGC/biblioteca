@@ -89,6 +89,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Admin/{varAdmin}','update')->name('Admin.update');
 			Route::delete('Admin/{varAdmin}','destroy')->name('Admin.destroy');
 			//Route::get('pdfAdministrador','pdf')->name('PDFAdministrador');
+			/* Route::get('encriptar1','encriptardatos1')->name('encriptar1');
+			Route::post('encriptar','encriptardatos')->name('encriptar'); */
 			Route::get('obtenerMun/{estado_id}',[EstadosController::class,'byMunicipio']);
 			Route::get('obtenerLoc/{municipio_id}',[EstadosController::class,'byLocalidad']);
 		});
