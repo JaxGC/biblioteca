@@ -102,9 +102,9 @@
                         <label class="custom-control-label" for="customRadio6">INE</label>
                  </div>
              </div> 
-             @if(auth()->user()->rol!='Alum')
+             @if(auth()->user()->rol!='Alum' && auth()->user()->rol!='Maes')
        <div class="col-sm">
-        <label for="exampleFormControlSelect1">Alumno:</label>
+        <label for="exampleFormControlSelect1">Alumno o Maestro:</label>
         <div class="custom-control custom-radio mb-3">
            
         <select id="id_alumno" name="id_alumno" class="form-control" >
@@ -145,7 +145,7 @@
   
         <div class="col-sm">
             <div class="form-group">
-                @if(auth()->user()->rol!='Alum')
+                @if(auth()->user()->rol!='Alum' && auth()->user()->rol!='Maes')
                 <label for="exampleFormControlSelect1">Administrador: </label>
                 <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
                 @else
@@ -153,7 +153,6 @@
                 <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
                 <input type="hidden" name="id_alumno" id="id_alumno" value="{{auth()->user()->id}}">
                 @endif
-                
                 
               </div>
         </div>

@@ -45,7 +45,11 @@ class PrestamoController extends Controller
             }
             else 
             {
-                $alumnos = User::all()->where('rol','=','Alum');
+                /* $alumnos = User::all()->where('rol','=','Alum'); */
+                $alumnos = User::where(function($query){
+                    $query->where('rol','=','Alum')
+                    ->orWhere('rol','=','Maes');
+                })->get();
                 $libr=libro::find($id);
                 if ($libr->ejemplares<=0){
                     return redirect()->route('map')->with('nohay','ok');    
@@ -64,7 +68,11 @@ class PrestamoController extends Controller
             } else {
                 /* 
                 return redirect()->route('map')->with('nohay','ok'); */
-            $alumnos = User::all()->where('rol','=','Alum');
+            $alumnos = User::where(function($query){
+                $query->where('rol','=','Alum')
+                ->orWhere('rol','=','Maes');
+            })->get();
+            //dd($alumnos);
             $libro=libro::all()->where('ejemplares','>',0);
             
             $admin=User::all()->where('rol','=','Admin');

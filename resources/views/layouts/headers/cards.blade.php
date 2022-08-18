@@ -3,7 +3,7 @@
         <div class="header-body">
             <!-- Card stats -->
             @if (auth()->user()->rol!='Admin')
-                @can('PrestamoLibroM') 
+                @can('PrestamoLibro') 
                     @include('layouts.headers.inicioCards2')    
                 @endcan
             @else

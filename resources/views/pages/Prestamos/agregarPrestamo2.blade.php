@@ -105,7 +105,7 @@
             </div>
         </div>
        <div class="col-sm">
-        <label for="exampleFormControlSelect1">Alumno:</label>
+        <label for="exampleFormControlSelect1">Alumno o Maestro:</label>
         <div class="custom-control custom-radio mb-3">
         <select id="id_alumno" name="id_alumno" class="form-control" >
             <option value="0">Seleccionar dato</option>

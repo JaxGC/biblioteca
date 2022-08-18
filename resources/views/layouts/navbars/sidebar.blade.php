@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    @can('PrestamoLibroM') 
+                    @can('PrestamoLibro') 
                     <a class="nav-link" href="{{ route('bitacora') }}">
                       <i class="ni ni-collection text-default"></i>
                       <span class="nav-link-text">Bitacora</span>
