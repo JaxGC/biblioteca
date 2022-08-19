@@ -15,7 +15,7 @@
                 @if (auth()->user()->rol=="Admin")
                 <strong>Reporte de listado por rango de fechas</strong>
                 <div class="card-body">
-                <form action="{{route('PDFPrestamoFechas')}}" method="POST">
+                <form action="{{route('PDFPrestamoFechas')}}" method="POST" target='_blank'>
                     @csrf
                     
                     <div class="row">
@@ -77,7 +77,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="" href="{{ route('PDFPrestamoindividual',$pres->id) }}">
+                                <a target='_blank' class="" href="{{ route('PDFPrestamoindividual',$pres->id) }}">
                                     <i class="btn btn-outline-success btn-sm btn-block">Generar reporte</i>
                                 </a>
                             </td>

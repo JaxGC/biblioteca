@@ -33,7 +33,7 @@
         <a class="" href="{{route('agregarLibro')}}">
             <i class="btn btn-outline-success btn-sm btn-block">Añadir libro</i></a>
         </a><br>
-        <a class="" href="{{ route('PDFLibros') }}">
+        <a target='_blank' class="" href="{{ route('PDFLibros') }}">
             <i class="btn btn-outline-success btn-sm btn-block">Generar lista pdf</i>
         </a>
     @endcan

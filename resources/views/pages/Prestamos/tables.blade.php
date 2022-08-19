@@ -67,7 +67,7 @@
                         </td>   
                         @include('pages.prestamos.modalDevo')
                         <td>
-                            <a class="" href="{{ route('PDFPrestamoindividual',$pres->id) }}">
+                            <a target='_blank' class="" href="{{ route('PDFPrestamoindividual',$pres->id) }}">
                                 <i class="btn btn-outline-success btn-sm btn-block">Generar reporte</i>
                             </a>
                         </td>
