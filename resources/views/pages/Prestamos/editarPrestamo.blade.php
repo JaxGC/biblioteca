@@ -54,28 +54,40 @@
 			@endif
         <div class="card ">
             <div class="card-body">
-            <h1>Editar Prestamo</h1>
+            <h1>Aplazar fecha de termino de préstamo</h1>
             <form method="POST" action="{{ route('Prestamos.update', $varpres) }}"  role="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="row">
             <div class="col-sm">
-                <label> fecha_inicio</label>
-                <input value="{{$varpres->fecha_inicio}}" id="fecha_inicio" name="fecha_inico" type="text" class="form-control form-control-muted" placeholder="ingrese matricula" required>
+                <label> Fecha inicial</label>
+                <input value="<?php echo date('Y-m-d', strtotime($varpres['fecha_inicio'])) ?>" id="fecha_inicio" name="fecha_inico" type="date" class="form-control form-control-muted" placeholder="fecha" required disabled>
             </div>
             <div class="col-sm">
-                <label> fecha_limite</label>
-                <input value="{{$varpres->fecha_limite}}" id="fecha_limite" name="fecha_limite" type="text" class="form-control form-control-muted" placeholder="ingrese matricula" required>
+                <label> Fecha limite</label>
+                <input value="<?php echo date('Y-m-d', strtotime($varpres['fecha_limite'])) ?>" id="fecha_limite" name="fecha_limite" type="date" class="form-control form-control-muted" placeholder="fecha de termino" required>
             </div>
-            <div class="col-sm">
-                <label> clave_usuario</label>
-                <input value="{{$varpres->clave_usuario}}" id="clave_usuario" name="clave_usuario" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" onkeypress="return soloLetras(event);" required>
-         
-            <div class="col-sm">
+                </div>
+            <div class="row">
+                <div class="col-sm">
+                <label> Usuario del préstamo</label>
+                @foreach ($alumnos as $item)
+                    <input value="{{$item->name}}" id="clave_usuario" name="clave_usuario" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" onkeypress="return soloLetras(event);" required disabled>
+                @endforeach
+                </div>
+                <div class="col-sm">
+                    <label> Libro del préstamo</label>
+                    @foreach ($libr as $item)
+                        <input value="{{$item->Nombre_libro}}" id="clave_usuario" name="clave_usuario" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" onkeypress="return soloLetras(event);" required disabled>
+                    @endforeach
+                    </div>
+            </div>
+           {{--  <div class="col-sm">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">clave_usuario</label>
                     <select id="clave_usuario" name="clave_usuario" class="form-control">
-                        @foreach ($alum as $alumno)
+                        <option value="{{$varpres->clave}}"></option>
+                        @foreach ($alumnos as $alumno)
                             <option value="{{$alumno->matricula}}">{{$alumno->Nombre_completo}}</option>
                         @endforeach
                     </select>
@@ -101,13 +113,14 @@
                      
                     <input name="imagen" id="imagen" type='file' class="hidden" />
                    
-                    </label>
-                
+                    </label> --}}
+                    <br>
+                    <div class="row">  
             <div class="col-sm">
                 <button type="submit" class="btn btn-success btn-block">Guardar</button>
             </div>
                 <div class="col-sm">
-                    <a href="{{ route("icons") }}" class="btn btn-info btn-block" >Atrás</a>
+                    <a href="{{ route("table") }}" class="btn btn-info btn-block" >Atrás</a>
                 </div>
             </div>
             </form>

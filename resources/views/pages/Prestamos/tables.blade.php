@@ -43,16 +43,20 @@
                         <tr>
                             <td>{{$pres->Alumno}}</td>
                         <td>{{$pres->fecha_inicio}}</td>
-                        <td>{{$pres->fecha_limite}}</td>
+                        <td id="Fecha">{{$pres->fecha_limite}}</td>
                         <td>
                            {{ $pres->documento}}
                         </td> 
                        
                         <td>{{$pres->Nombre_libro}}
                            </td>
+                           
                        <td>
                         @if($pres->estado_prestamo==1)
-                            <label  class ="badge-pill badge-success">Activo</label>
+                            <label  class ="badge-pill badge-success">Activo</label><br>
+                            @if ($pres->estado_prestamo==1)
+                               <a href="{{route('Prestamos.editarPrestamo', $pres->id)}}"><i  class ="btn btn-sm badge-pill bg-yellow">Cambiar fecha de entrega</i></a>
+                           @endif
                         @elseif($pres->estado_prestamo==0)
                             <a href="{{route('agregarPres2',$pres->id)}}" class ="btn btn-sm badge-pill badge-warning">Pausado</a>
                         @endif
@@ -71,6 +75,7 @@
                                 <i class="btn btn-outline-success btn-sm btn-block">Generar reporte</i>
                             </a>
                         </td>
+                        
                         </tr>
                          @endforeach
                     </tbody> 
@@ -99,6 +104,25 @@
 @endsection
 
 @push('js')
+{{-- <script language="javascript">
+	
+Hoy = new Date();//Fecha actual del sistema
+var AnyoHoy = Hoy.getFullYear();
+var MesHoy = Hoy.getMonth();
+var DiaHoy = Hoy.getDate();
+var fechita=AnyoHoy+"-"+MesHoy+"-"+DiaHoy;
+
+//alert ("las fecha son: "+fechita);
+    var x = document.getElementById("example").getElementsByTagName("td");
+	for(var i=0; i<x.length; i++) {
+        if (x.item(i).textContent < fechita){
+            //alert ("La fecha introducida es anterior a Hoy");
+            x.item(i).style.backgroundColor = "#66ff33";
+        }
+}
+/* let x = document.getElementById("example");
+console.log(x.rows[2].cells[2]); */
+</script> --}}
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 <script>
@@ -130,3 +154,9 @@
     
         </script>
 @endpush
+{{-- //var x = document.getElementById("texto").textContent;
+    /* if(x.item(i).textContent == "nuevoMaestro")
+        {
+            //document.getElementById("celda").style.backgroundColor = "#66ff33";
+            x.item(i).style.backgroundColor = "#66ff33";
+        } */ --}}

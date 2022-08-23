@@ -207,23 +207,42 @@ class PrestamoController extends Controller
    
        
     }
-    public function edit(Prestamo $varPres){
-        $alumnos=Alumno::all();
-        $libr=libro::all();
-        $admin=administrador::all();;
-         return view('pages.Prestamos.editarPrestamo', compact('varPres', 'us','libr','admin'));
+    public function edit(Prestamo $varpres){
+         $alumnos=User::join('prestamos','users.id','=','prestamos.id_alumno')
+         ->where('prestamos.id','=', $varpres->id)
+         ->select('users.name')
+         ->get();
+        
+        $libr = Libro::join('prestamos','libros.id','=','prestamos.id_libro')
+        ->where('prestamos.id','=', $varpres->id)
+        ->select('libros.*')
+        ->get();
+       // return $alumnos;
+         return view('pages.Prestamos.editarPrestamo', compact('varpres','alumnos','libr'));
     }
-    public function update(Request $request, Prestamo $varPres){
-        $varPres->fecha_inicio = $request->fecha_inicio;
-        $varPres->fecha_limite = $request->fecha_limite;
+    public function update(Request $request, Prestamo $varpres){
+        //$varpres->fecha_inicio = $request->fecha_inicio;
+        $varpres->fecha_limite = $request->fecha_limite;
       
-        $varPres->save();
-        $varPres = Prestamo::paginate(5);//paginar la tabla
-        return view('pages.Prestamos.table', compact('varPres'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
+        $varpres->save();
+        $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
+        ->join('users','prestamos.id_alumno','=','users.id')
+        ->where('prestamos.devolucion','!=','2')
+        ->select('prestamos.*','libros.Nombre_libro','users.name as Alumno')
+        ->orderby('prestamos.estado_prestamo','asc')
+        ->get();
+        if ($varPres=="") {
+            return back()->withErrors('danger','No hay prestamos activos ni en espera');
+        } 
+        else 
+        {
+           return view('pages.Prestamos.tables', compact('varPres')); 
+        }
+        return view('pages.Prestamos.tables', compact('varPres'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(Prestamo $varPres){
         $varPres->delete();
         $varPres = Prestamo::paginate(5);//paginar la tabla
-        return view('pages.Prestamos.table', compact('varPres'))->with('success','Registro Eliminado ');
+        return view('pages.Prestamos.tables', compact('varPres'))->with('success','Registro Eliminado ');
     }
 }
