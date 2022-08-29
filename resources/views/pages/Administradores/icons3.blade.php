@@ -53,7 +53,10 @@
                             <img src="/imagen/{{$var->imagen_usuario}}" width="10%">
                         </td>
                         <td class="text-right">
-                            <div class="dropdown">
+                            @if ($var->id=='1')
+                                <label>Este usuario no puede editarse o eliminarse</label>
+                            @else
+                                <div class="dropdown">
                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
@@ -69,6 +72,8 @@
                                 <button type="submit" class="btn btn-outline-danger ni ni-basket">Eliminar</button>
                             </form>
                 </div>
+                            @endif
+                            
                         </td>
                     </tr>
                     @endforeach

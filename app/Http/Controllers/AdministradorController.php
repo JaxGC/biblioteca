@@ -40,8 +40,8 @@ class AdministradorController extends Controller
        
         $data= request()->validate([ 'Usuario'=>'required','password'=>'required',
         'Nombre_administrador'=>'required','id_status_usuario'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
-        'selectlocalidad'=>'required','referencia'=>'required'
+        'imagen' => 'image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
+        'selectlocalidad'=>'required'
             ], [
 
                 'Usuario.required'=>'El campo usuario es obligatorio',
@@ -57,7 +57,26 @@ class AdministradorController extends Controller
                 $data['imagen_usuario'] = "$imagenProducto";             
             }
             //dd($data);
-        User::create([
+            if($request->referencia==""){
+                $data['referencia'] = 'sin referencia';
+            }
+            if ($request->imagen=="") {
+                User::create([
+                    'email'=>$data['Usuario'],
+                    'password'=>Hash::make($data['password']),
+                    'name'=>$data['Nombre_administrador'],
+                    'id_status_usuario'=>$data['id_status_usuario'],
+                    'rol' => 'Admin',
+                    'clave' => '',
+                    'id_licenciatura' => '0',
+                    'imagen_usuario' =>'sin imagen',
+                    'selectestado' =>$data['selectestado'],
+                    'selectmunicipio' =>$data['selectmunicipio'],
+                    'selectlocalidad' =>$data['selectlocalidad'],
+                    'referencia' =>$data['referencia']
+                ])->assignRole('Admin');
+            }else{
+                User::create([
             'email'=>$data['Usuario'],
             'password'=>Hash::make($data['password']),
             'name'=>$data['Nombre_administrador'],
@@ -71,6 +90,8 @@ class AdministradorController extends Controller
             'selectlocalidad' =>$data['selectlocalidad'],
             'referencia' =>$data['referencia']
         ])->assignRole('Admin');
+            }
+        
         return back()->with('success','Registro creado satisfactoriamente');
     }
 
@@ -88,8 +109,13 @@ public function encriptardatos(Request $request){
     public function edit(User $varAdmin){
         //dd($id);
         $status=Status_usuario::all();
+        $varEdit=User::join('estados as e','users.selectestado','e.id')
+        ->join('municipios as m','users.selectmunicipio','m.id')
+        ->join('localidades as l','users.selectlocalidad','l.id')
+        ->select('users.*','e.nombre as estado','e.id as idestado','m.nombre as municipio','m.id as idmunicipio','l.nombre as localidad','l.id as idlocalidad')
+        ->find($varAdmin->id);
         $estados=Estado::orderBy('nombre','asc')->get();
-         return view('pages.Administradores.edit', compact('varAdmin','status','estados'));
+         return view('pages.Administradores.edit', compact('varAdmin','status','estados','varEdit'));
     }
     public function update(Request $request, User $varAdmin){
         //return $request->all();
@@ -106,7 +132,9 @@ public function encriptardatos(Request $request){
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
             if ($imagenOld!="") {
-                unlink('imagen/'.$imagenOld);
+                if($imagenOld!="sin imagen"){
+                  unlink('imagen/'.$imagenOld);  
+                }
             }
 
             $rutaGuardarImg = 'imagen/';
@@ -124,7 +152,9 @@ public function encriptardatos(Request $request){
         
         $imagenOld = $varAdmin->imagen_usuario;
         if ($imagenOld!="") {
-            unlink('imagen/'.$imagenOld);
+            if($imagenOld!="sin imagen"){
+              unlink('imagen/'.$imagenOld);  
+            }
         }
         $varAdmin->delete();
         $varAdmin=User::all()->where('rol','=','Admin');//paginar la tabla

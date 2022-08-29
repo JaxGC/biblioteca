@@ -129,8 +129,8 @@
                         <label class="custom-control-label" for="customRadio6">Malo</label>
                  </div>
                  <div class="custom-control custom-radio mb-3">
-                    <input name="estado" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                    <label class="custom-control-label" for="customRadio6">Regular</label>
+                    <input name="estado" class="custom-control-input" id="customRadio7" checked="" type="radio">
+                    <label class="custom-control-label" for="customRadio7">Regular</label>
              </div>
              </div>
              <div class="col-sm">

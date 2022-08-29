@@ -42,9 +42,8 @@ class LibroController extends Controller
         'libros_prestados'=>'required',
         'estado'=>'required',
         'observaciones'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024',
-        'numero_stand'=>'required',
-        'codigo'=>'required'
+        'imagen' => 'image|mimes:jpeg,png,svg|max:1024',
+        'numero_stand'=>'required'
 
             ], [
 
@@ -57,8 +56,7 @@ class LibroController extends Controller
                 'ejemplares.required'=>'El campo es obligatorio',
                 'libros_prestados.required'=>'El campo  es obligatorio',
                 'estado.required'=>'El campo  es obligatorio',
-                'observaciones.required'=>'El campo observaciones es obligatorio',
-                'codigo.required'=>'El campo codigo es obligatorio'
+                'observaciones.required'=>'El campo observaciones es obligatorio'
 
             ]);
             if($imagen = $request->file('imagen')) {
@@ -67,21 +65,37 @@ class LibroController extends Controller
                 $imagen->move($rutaGuardarImg, $imagenProducto);
                 $data['imagen'] = "$imagenProducto";             
             }
-        Libro::create([
-            'Nombre_libro'=>$data['Nombre_libro'],
-            'id_autor'=>$data['id_autor'],
-            'id_editorial'=>$data['id_editorial'],
-            'year_edicion'=>$data['year_edicion'],
-            'fecha_publicacion'=>$data['fecha_publicacion'],
-            'id_categoria'=>$data['id_categoria'],
-            'ejemplares'=>$data['ejemplares'],
-            'libros_prestados'=>$data['libros_prestados'],
-            'estado'=>$data['estado'],
-            'observaciones'=>$data['observaciones'],
-            'codigo'=>$data['codigo'],
-            'imagen'=>$data['imagen'],
-            'numero_stand'=>$data['numero_stand']
-        ]);
+            if ($request->imagen=="") {
+                Libro::create([
+                    'Nombre_libro'=>$data['Nombre_libro'],
+                    'id_autor'=>$data['id_autor'],
+                    'id_editorial'=>$data['id_editorial'],
+                    'year_edicion'=>$data['year_edicion'],
+                    'fecha_publicacion'=>$data['fecha_publicacion'],
+                    'id_categoria'=>$data['id_categoria'],
+                    'ejemplares'=>$data['ejemplares'],
+                    'libros_prestados'=>$data['libros_prestados'],
+                    'estado'=>$data['estado'],
+                    'observaciones'=>$data['observaciones'],
+                    'imagen'=>'sin imagen',
+                    'numero_stand'=>$data['numero_stand']
+                ]);
+            } else {
+                Libro::create([
+                    'Nombre_libro'=>$data['Nombre_libro'],
+                    'id_autor'=>$data['id_autor'],
+                    'id_editorial'=>$data['id_editorial'],
+                    'year_edicion'=>$data['year_edicion'],
+                    'fecha_publicacion'=>$data['fecha_publicacion'],
+                    'id_categoria'=>$data['id_categoria'],
+                    'ejemplares'=>$data['ejemplares'],
+                    'libros_prestados'=>$data['libros_prestados'],
+                    'estado'=>$data['estado'],
+                    'observaciones'=>$data['observaciones'],
+                    'imagen'=>$data['imagen'],
+                    'numero_stand'=>$data['numero_stand']
+                ]);
+            }
             return back()->with('success','Registro creado satisfactoriamente');
         
     }
@@ -108,7 +122,9 @@ class LibroController extends Controller
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
             if ($imagenOld!="") {
-                unlink('imagen_libro/'.$imagenOld);
+                if($imagenOld!="sin imagen"){
+                  unlink('imagen_libro/'.$imagenOld);  
+                }
             }
 
             $rutaGuardarImg = 'imagen_libro/';
@@ -126,7 +142,9 @@ class LibroController extends Controller
     public function destroy(Libro $varlib){
         $imagenOld = $varlib->imagen;
         if ($imagenOld!="") {
-            unlink('imagen_libro/'.$imagenOld);
+            if($imagenOld!="sin imagen"){
+              unlink('imagen_libro/'.$imagenOld);  
+            }
         }
         $varlib->delete();
         $varlib = Libro::paginate(5);//paginar la tabla

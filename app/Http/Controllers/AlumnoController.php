@@ -28,8 +28,8 @@ class AlumnoController extends Controller
         //Para rHacer el registro a la base de datos
         $data= request()->validate([ 'Nombre_completo'=>'required','matricula'=>'numeric|required','email'=>'required|unique:users','Password'=>'required',
         'id_licenciatura'=>'required','id_status_usuario'=>'required',
-        'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
-        'selectlocalidad'=>'required','referencia'=>'required'
+        'imagen' => 'image|mimes:jpeg,png,svg|max:1024','selectestado'=>'required','selectmunicipio'=>'required',
+        'selectlocalidad'=>'required'
             ], [
 
                 'matricula.required'=>'El campo matricula es obligatorio',
@@ -47,8 +47,26 @@ class AlumnoController extends Controller
                 $imagen->move($rutaGuardarImg, $imagenProducto);
                 $data['imagen_usuario'] = "$imagenProducto";             
             }
-
-            User::create([
+            if($request->referencia==""){
+                $data['referencia'] = 'sin referencia';
+            }
+            if ($request->imagen=="") {
+                User::create([
+                    'email'=>$data['email'],
+                    'password'=>Hash::make($data['Password']),
+                    'name'=>$data['Nombre_completo'],
+                    'id_status_usuario'=>$data['id_status_usuario'],
+                    'rol' => 'Alum',
+                    'clave' => $data['matricula'], 
+                    'id_licenciatura' => $data['id_licenciatura'],
+                    'imagen_usuario' =>'sin imagen',
+                    'selectestado' =>$data['selectestado'],
+                    'selectmunicipio' =>$data['selectmunicipio'],
+                    'selectlocalidad' =>$data['selectlocalidad'],
+                    'referencia' =>$data['referencia']
+            ])->assignRole('Alum');
+            }else{
+                User::create([
                 'email'=>$data['email'],
                 'password'=>Hash::make($data['Password']),
                 'name'=>$data['Nombre_completo'],
@@ -62,13 +80,20 @@ class AlumnoController extends Controller
                 'selectlocalidad' =>$data['selectlocalidad'],
                 'referencia' =>$data['referencia']
         ])->assignRole('Alum');
+            }
+            
         return back()->with('success','Registro creado satisfactoriamente');
     }
     public function edit(User $varAlu){
         $status=Status_usuario::all();
         $licen=Licenciatura::all();
+        $varEdit=User::join('estados as e','users.selectestado','e.id')
+        ->join('municipios as m','users.selectmunicipio','m.id')
+        ->join('localidades as l','users.selectlocalidad','l.id')
+        ->select('users.*','e.nombre as estado','e.id as idestado','m.nombre as municipio','m.id as idmunicipio','l.nombre as localidad','l.id as idlocalidad')
+        ->find($varAlu->id);
         $estados=Estado::orderBy('nombre','asc')->get();
-         return view('pages.Alumnos.edit', compact('varAlu', 'status', 'licen','estados'));
+         return view('pages.Alumnos.edit', compact('varAlu', 'status', 'licen','estados','varEdit'));
     }
     public function update(Request $request, User $varAlu){
         $varAlu->clave = $request->matricula;
@@ -86,7 +111,9 @@ class AlumnoController extends Controller
         if($imagen = $request->file('imagen')){
             //Para eliminar imagen anterior de la ruta
             if ($imagenOld!="") {
-                unlink('imagen/'.$imagenOld);
+                if($imagenOld!="sin imagen"){
+                  unlink('imagen/'.$imagenOld);  
+                }
             }
             $rutaGuardarImg = 'imagen/';
             $imagenProducto = date('YmdHis') . "." . $imagen->getClientOriginalExtension(); 
@@ -103,7 +130,9 @@ class AlumnoController extends Controller
     public function destroy(User $varAlu){
         $imagenOld = $varAlu->imagen_usuario;
         if ($imagenOld!="") {
-            unlink('imagen/'.$imagenOld);
+            if($imagenOld!="sin imagen"){
+              unlink('imagen/'.$imagenOld);  
+            }
         }
         $varAlu->delete();
         $varAlu=User::all()->where('rol','=','Alum');//paginar la tabla

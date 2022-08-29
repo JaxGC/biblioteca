@@ -65,11 +65,11 @@
             </div>
             <div class="col-sm"><strong>
                 <label> Nombre </label></strong>
-                <input id="Nombre_administrador" name="Nombre_administrador" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" required>
+                <input value="{{ old('Nombre_administrador') }}" id="Nombre_administrador" name="Nombre_administrador" type="text" class="form-control form-control-muted" placeholder="ingrese su nombre completo" required>
             </div>
             <div class="col-sm"><strong>
                 <label> Contraseña </label></strong>
-                <input id="password" name="password" class="form-control form-control-muted" type="password" value="{{old('password')}}" id="password" required>
+                <input value="{{ old('password') }}" id="password" name="password" class="form-control form-control-muted" type="password" value="{{old('password')}}" id="password" required>
             </div>
                 </div>
             <div class="row">
@@ -124,7 +124,7 @@
             <strong>
                 Referencia
             </strong>
-            <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia') }}</textarea>
+            <textarea value="sin referencia" name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia') }}</textarea>
         </div>
         </div>
         <script src="{{ asset('assets/js/crear.js') }}"></script>

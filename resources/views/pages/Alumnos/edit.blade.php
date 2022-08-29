@@ -75,7 +75,7 @@
                 <div class="row">
             <div class="col-sm"><strong>
                 <label> Contraseña </label></strong>
-                <input value="{{$varAlu->password}}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <input value="{{$varAlu->clave}}" id="Password" name="Password" class="form-control form-control-muted" type="password" id="password" required>
             </div>
             <div class="col-sm">
                 <div class="form-group"><strong>
@@ -106,12 +106,19 @@
             </strong>
             <br>
             <select name="selectestado" id="selectestado" class="form-control" aria-label="Default select example">
-                <option value="">
-                    Selecionar Estado
-                </option>
+               
+                @if ($varEdit)
+                <option value="{{$varEdit->idestado}}">{{$varEdit->estado}}</option>
                 @foreach ($estados as $estado)
                     <option value="{{$estado->id}}">{{$estado->nombre}}</option>
                 @endforeach
+                @else
+                <option value="0">Selecciona Estado</option>
+                @foreach ($estados as $estado)
+                <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+            @endforeach  
+                @endif
+                
             </select>
         </div></div>
         <div class="col-md-3">
@@ -119,9 +126,14 @@
             Municipio
             </strong>
         <select  name="selectmunicipio" id="selectmunicipio" class="form-control" aria-label="Default select example">
-            <option value="">
-                Selecionar Municipio
-            </option>
+            
+            @if ($varEdit)
+            <option value="{{$varEdit->idmunicipio}}">{{$varEdit->municipio}}</option>
+                
+            @else
+            <option value="0">Selecciona Municipio</option>
+            @endif
+           
     </select>
         </div>
         <div class="col-md-6">
@@ -130,16 +142,26 @@
        Localidad
         </strong>
     <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
-        <option value="">
-            Selecionar Localidad
-        </option>
+        
+        @if ($varEdit)
+       <option value="{{$varEdit->idlocalidad}}">{{$varEdit->localidad}}</option>
+       @else
+       <option value="0">Selecciona Localidad</option>
+       @endif 
     </select>
     </div>
     <div class="col-md-12">
         <strong>
             Referencia
         </strong>
-        <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">{{ old('referencia') }}</textarea>
+        <textarea name="referencia" id="referencia" cols="20" rows="3" class="form-control">
+            @if ($varEdit)
+            {{ old('referencia',$varEdit->referencia) }}
+            @else
+                
+            @endif
+           
+        </textarea>
     </div>
     </div>
     <script src="{{ asset('assets/js/crear.js') }}"></script>

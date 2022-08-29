@@ -88,7 +88,7 @@
             <div class="col-sm">
                 <strong>
                 <label> Contraseña </label></strong>
-                <input value="{{ old('Password') }}" id="Password" name="Password" class="form-control form-control-muted" type="password" value="password" id="password" required>
+                <input value="{{ old('Password') }}" id="Password" name="Password" class="form-control form-control-muted" type="password" id="password" required>
             </div>
             <div class="col-xl-4">
                 <div class="form-group">
@@ -191,7 +191,7 @@
                 </div>
             </form>
             {{-- Para tomar foto desde la camara --}}
-            <h4>Selecciona camara</h4>
+           {{--  <h4>Selecciona camara</h4>
             <div>
                 <select name="listaDeDispositivos" id="listaDeDispositivos"></select>
                 <button id="boton">Tomar foto</button>
@@ -199,7 +199,7 @@
             </div>
             <br>
             <video muted="muted" id="video"></video>
-            <canvas id="canvas" style="display: none;"></canvas>
+            <canvas id="canvas" style="display: none;"></canvas> --}}
         {{-- aqui termina codigo de tomar foto desde la camara --}}
         </div>
     </div>@include('layouts.footers.auth')  
