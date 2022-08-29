@@ -222,8 +222,11 @@ class PrestamoController extends Controller
     }
     public function update(Request $request, Prestamo $varpres){
         //$varpres->fecha_inicio = $request->fecha_inicio;
+        /* $data= request()->validate( ['fecha_inicio'=>'required',
+        'fecha_limite'=>'required|date|after:fecha_inicio'
+       ]); */
         $varpres->fecha_limite = $request->fecha_limite;
-      
+        //$varpres->fecha_limite = $data['fecha_limite'];
         $varpres->save();
         $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
         ->join('users','prestamos.id_alumno','=','users.id')
