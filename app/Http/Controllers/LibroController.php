@@ -136,7 +136,7 @@ class LibroController extends Controller
          }
 
         $varlib->save();
-        $varlib = Libro::paginate(5);//paginar la tabla
+        $varlib = Libro::all();//paginar la tabla
         return view('pages.Libros.maps', compact('varlib'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(Libro $varlib){
@@ -147,7 +147,7 @@ class LibroController extends Controller
             }
         }
         $varlib->delete();
-        $varlib = Libro::paginate(5);//paginar la tabla
+        $varlib = Libro::all();//paginar la tabla
         return view('pages.Libros.maps', compact('varlib'))->with('success','Registro Eliminado ');
     }
 }
