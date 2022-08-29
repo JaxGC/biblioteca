@@ -49,6 +49,8 @@ class AlumnoController extends Controller
             }
             if($request->referencia==""){
                 $data['referencia'] = 'sin referencia';
+            }else{
+                $data['referencia'] = $request->referencia;
             }
             if ($request->imagen=="") {
                 User::create([
