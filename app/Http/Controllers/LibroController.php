@@ -6,6 +6,7 @@ use App\Models\Libro;
 use App\Models\Editorial;
 use App\Models\Categoria;
 use App\Models\Autor;
+use App\Models\Prestamo;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
@@ -146,8 +147,13 @@ class LibroController extends Controller
               unlink('imagen_libro/'.$imagenOld);  
             }
         }
+        if(Prestamo::where('id_libro', '=', $varlib->id)->first() != null){
+            return redirect()->back()->withErrors(['mensaje' => 'El libro no puede ser eliminado debido a que esta en prestamo.']);
+        }
+        else{
         $varlib->delete();
         $varlib = Libro::all();//paginar la tabla
-        return view('pages.Libros.maps', compact('varlib'))->with('success','Registro Eliminado ');
+        return view('pages.Libros.maps', compact('varlib'))->with('eliminado','ok');
+        }
     }
 }

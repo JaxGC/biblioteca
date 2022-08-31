@@ -5,7 +5,23 @@
     <br>
     <br>
     <br>
-</div>
+</div><br>
+@if($errors->any())
+     <p class="error-message badge-pill bg-yellow text-white btn-block" >
+        <strong>{{$errors->first('mensaje')}}</strong>
+    </p> 
+@endif
+@if (session('eliminado')=='ok')
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se ah eliminado correctamente',
+        showConfirmButton: false,
+        timer: 1500
+        })
+</script>
+@endif
 @if (session('nohay')=='ok')
 <script>
     Swal.fire({
@@ -76,9 +92,9 @@
 <form action="{{route('Libro.destroy',$lib)}}" method="POST">
 @csrf
 @method('delete') 
-<button type="submit" class="btn btn-outline-danger ni ni-basket" onclick="return EliminarRegistro('Eliminar Profesor')">Eliminar</button>
+<button type="submit" class="btn btn-outline-danger ni ni-basket" {{-- onclick="return EliminarRegistro('Eliminar Profesor')" --}}>Eliminar</button>
 </form>
-<script>
+{{-- <script>
     function EliminarRegistro(value){
         Swal.fire({
         position: 'top-end',
@@ -88,7 +104,7 @@
         timer: 1500
         })
     }
-</script>
+</script> --}}
 </td>   
 @endcan
 </tr>
