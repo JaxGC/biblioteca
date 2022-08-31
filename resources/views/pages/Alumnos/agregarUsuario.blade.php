@@ -60,7 +60,7 @@
 			@endif
         <div class="card ">
             <div class="card-body">
-            <h1>Agregar usuarios</h1>
+            <h1>Agregar Alumnos</h1>
             <form method="POST" action="{{ url('agregarUSU') }}"  role="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
             <div class="row">
@@ -155,7 +155,7 @@
         <strong>
            Localidad
             </strong>
-        <select  name="selectlocalidad" id="selectlocalidad" class="form-select"aria-label="Default select example">
+        <select  name="selectlocalidad" id="selectlocalidad" class="form-select" aria-label="Default select example">
             <option value="">
                 Selecionar Localidad
             </option>

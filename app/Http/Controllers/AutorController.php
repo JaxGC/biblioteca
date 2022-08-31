@@ -42,7 +42,8 @@ class AutorController extends Controller
         $varaut = Autor::all();//paginar la tabla
         return view('pages.Autores.autores', compact('varaut'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
-    public function destroy(Autor $varaut){
+    public function destroy(Autor $varaut){//eliminar el autor
+        //return $varaut;
         $varaut->delete();
         $varaut = Autor::all();//paginar la tabla
         return view('pages.Autores.autores', compact('varaut'))->with('success','Registro Eliminado ');

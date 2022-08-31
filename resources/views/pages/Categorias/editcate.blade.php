@@ -52,19 +52,21 @@
   				</button>
 			</div>
 			@endif
-        <div class="card shadow">
+            <div class="card ">
+                <div class="card-body">
             <h1>Editar Categoria</h1>
             <form method="POST" action="{{ route('Categorias.update',$varcat)}}"  role="form">
                 {{ csrf_field() }}
                 @method('put')
             <div class="col-xl-4">
-                <label> Nombre </label>
+                <strong><label> Nombre </label></strong>
                 <input value="{{$varcat->Nombre_categoria}}" name="Nombre_categoria" id="Nombre_categoria" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
-            </div>
+            </div><br>
             
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">Actualizar</button></div>
-                <div class="form-group">
+            <div class="col-xl-4">
+                <button type="submit" class="btn btn-success btn-block">Actualizar</button>
+            </div><br>
+            <div class="col-xl-4">
                     <a href="{{ route("categoria") }}" class="btn btn-info btn-block" >Atrás</a>
             </div>
             </form>

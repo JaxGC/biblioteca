@@ -16,10 +16,50 @@ use function PHPSTORM_META\map;
 
 class PrestamoController extends Controller
 {
-    //
+    public function tipo_estado($estado_prestamo){
+         if($estado_prestamo==1)
+        {
+            $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
+            ->join('users','prestamos.id_alumno','=','users.id')
+            ->where('prestamos.estado_prestamo','=','1')
+            ->select('prestamos.*','libros.Nombre_libro','users.name as Alumno')
+            ->orderby('prestamos.estado_prestamo','asc')
+            ->get();
+            if ($varPres=="") {
+                return back()->withErrors('danger','No hay prestamos activos ');
+            } 
+            else 
+            {
+               return view('pages.Prestamos.tables', compact('varPres')); 
+            }
+            
+        }
+        else
+        {
+            if($estado_prestamo==0)
+            {
+                $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
+                ->join('users','prestamos.id_alumno','=','users.id')
+                ->where('prestamos.estado_prestamo','=','0')
+                ->select('prestamos.*','libros.Nombre_libro','users.name as Alumno')
+                ->orderby('prestamos.estado_prestamo','asc')
+                ->get();
+                if ($varPres=="") {
+                    return back()->withErrors('danger','No hay prestamos activos ');
+                } 
+                else 
+                {
+                   return view('pages.Prestamos.tables', compact('varPres')); 
+                }
+                
+            }
+        }
+    
+    }
     public function index(Request $request){
+       
         
-        $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
+     $varPres = Prestamo::join('libros','prestamos.id_libro','=','libros.id')
         ->join('users','prestamos.id_alumno','=','users.id')
         ->where('prestamos.devolucion','!=','2')
         ->select('prestamos.*','libros.Nombre_libro','users.name as Alumno')
@@ -34,7 +74,7 @@ class PrestamoController extends Controller
         }
         
         
-    
+     
     }
     public function create($id){
         if($id>0)
@@ -103,8 +143,9 @@ class PrestamoController extends Controller
         
         foreach ($libID as $elemento) {
            $var= $elemento->ejemplares+1;
-        
+           $varia= $elemento->libros_prestados-1;
         $ejemplares=Libro::where('id',$elemento['id'])->update(['ejemplares'=>$var]);
+        $libros_prestadoss=Libro::where('id',$elemento['id'])->update(['libros_prestados'=>$varia]);
         
     }
         $dev=Prestamo::where('id',$id)->update(['devolucion'=>'2','estado_prestamo'=>'2','observaciones'=>$data]);
@@ -162,9 +203,12 @@ class PrestamoController extends Controller
             'id_administrador'=>auth()->user()->id
         ]);
         $ejemplar=Libro::find($data['id_libro']);
+        $prestados=Libro::find($data['id_libro']);
         
         $var=$ejemplar->ejemplares-1;
+        $va=$prestados->libros_prestados+1;
         $ejemplares=Libro::where('id',$data['id_libro'])->update(['ejemplares'=>$var]);
+        $libros_prestados=Libro::where('id',$data['id_libro'])->update(['libros_prestados'=>$va]);
        
         return back()->with('success','Registro creado satisfactoriamente');
     }
@@ -194,9 +238,12 @@ class PrestamoController extends Controller
             'id_administrador'=>'1'
         ]);
         $ejemplar=Libro::find($data['id_libro']);
-        
+        $prestados=Libro::find($data['id_libro']);
+
         $var=$ejemplar->ejemplares-1;
+        $va=$prestados->libros_prestados+1;
         $ejemplares=Libro::where('id',$data['id_libro'])->update(['ejemplares'=>$var]);
+        $libros_prestados=Libro::where('id',$data['id_libro'])->update(['libros_prestados'=>$va]);
        
         $varlib = Libro::all();//paginar la tabla
         return view('pages.Libros.maps', compact('varlib'))
@@ -245,7 +292,7 @@ class PrestamoController extends Controller
     }
     public function destroy(Prestamo $varPres){
         $varPres->delete();
-        $varPres = Prestamo::paginate(5);//paginar la tabla
+        $varPres = Prestamo::all();//paginar la tabla
         return view('pages.Prestamos.tables', compact('varPres'))->with('success','Registro Eliminado ');
     }
 }

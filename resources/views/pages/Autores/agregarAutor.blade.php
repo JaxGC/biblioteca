@@ -77,7 +77,8 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
   				</button>
 			</div>
 			@endif
-        <div class="card shadow">
+            <div class="card ">
+                <div class="card-body">
             <strong>
             <h1>Agregar Autor</h1>
             </strong>
@@ -88,14 +89,16 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 <label> Nombre </label>
                 </strong>
                 <input value="{{ old('Nombre_autor') }}" name="Nombre_autor" id="Nombre_autor" type="text" class="form-control form-control-muted" placeholder="ingrese el nombre " onkeypress="return soloLetras(event);" required>
-            </div>
-            
+            </div><br>
+            <div class="col-xl-4">
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block">Guardar</button></div>
                 <div class="form-group">
                     <a href="{{ route("autores") }}" class="btn btn-info btn-block" >Atrás</a>
             </div>
+            </div>
             </form>
+        </div>
         </div>
     </div>
 </div>

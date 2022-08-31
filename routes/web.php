@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
 
+
 	{ //Rutas de Licenciaturas
 		Route::controller(LicenciaturaController::class)->middleware('can:icons3')->group(function () {
 			Route::get('licenciaturas', 'index')->name('licenciaturas');
@@ -89,8 +90,6 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('Admin/{varAdmin}','update')->name('Admin.update');
 			Route::delete('Admin/{varAdmin}','destroy')->name('Admin.destroy');
 			//Route::get('pdfAdministrador','pdf')->name('PDFAdministrador');
-			/* Route::get('encriptar1','encriptardatos1')->name('encriptar1');
-			Route::post('encriptar','encriptardatos')->name('encriptar'); */
 			Route::get('obtenerMun/{estado_id}',[EstadosController::class,'byMunicipio']);
 			Route::get('obtenerLoc/{municipio_id}',[EstadosController::class,'byLocalidad']);
 		});
@@ -120,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('agregarAutor','store')->name('agregarAutor');
 			Route::get('autores/{varaut}/editaut','edit')->name('Autores.editaut');
 			Route::put('autores/{varaut}','update')->name('Autores.update');
-			Route::delete('autores/{varedi}','destroy')->name('Autores.destroy');
+			Route::delete('autores/{varaut}','destroy')->name('Autores.destroy');
 		});
 		Route::controller(CategoriaController::class)->group(function () {
 			Route::get('categoria', 'index')->name('categoria');
@@ -132,6 +131,7 @@ Route::group(['middleware' => 'auth'], function () {
 		});
 
 		Route::controller(PrestamoController::class)->group(function(){
+			Route::get('table-list2/{prestamo_estado}', 'tipo_estado')->name('table2');
 			Route::get('table-list', 'index')->name('table');
 			Route::get('agregarPrestamo/{id}', 'create')->name('agregarPrestamo');
 			Route::post('agregarPres','store')->name('agregarPres');
@@ -147,6 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::controller(BitacoraController::class)->group(function(){
 			Route::get('bitacora', 'index')->name('bitacora');
+			Route::get('bitacora2/{estado}', 'tipo_estado1')->name('bitacora2');
 			Route::post('PDFPrestamoFechas','rangopdf')->name('PDFPrestamoFechas');
 		});
 

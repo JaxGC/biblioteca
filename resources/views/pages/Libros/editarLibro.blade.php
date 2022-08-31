@@ -97,6 +97,17 @@
                     </select>
                   </div>
             </div>
+            @push('js')
+                        <script>
+                            $(document).ready(function(e) {
+                                $('#id_categoria').select2();
+
+                                $('#id_editorial').select2();
+
+                                $('#id_autor').select2();
+                            });
+                        </script>
+                    @endpush
             <div class="col-sm"><strong>
                 <label> Ejemplares</label></strong>
                 <input value="{{$varlib->ejemplares}}" id="ejemplares" name="ejemplares" type="text" class="form-control form-control-muted" placeholder="ingrese ejemplares" required>
@@ -114,7 +125,7 @@
                 <strong>
                 <label> Libros Prestados </label>
                 </strong>
-                <input id="libros_prestados" name="libros_prestados" type="text" class="form-control form-control-muted" placeholder="ingrese libros prestados" required>
+                <input value="{{$varlib->libros_prestados}}" id="libros_prestados" name="libros_prestados" type="text" class="form-control form-control-muted" placeholder="ingrese libros prestados" required>
             </div>
             <div class="col-sm">
                 <strong>

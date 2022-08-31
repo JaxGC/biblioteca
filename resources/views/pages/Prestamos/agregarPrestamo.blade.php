@@ -149,7 +149,11 @@
                 <label for="exampleFormControlSelect1">Administrador: </label>
                 <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
                 @else
-                <label for="exampleFormControlSelect1">Alumno: </label>
+                @if (auth()->user()->rol=='Alum')
+                    <label for="exampleFormControlSelect1">Alumno: </label>
+                @else
+                    <label for="exampleFormControlSelect1">Maestro: </label>
+                @endif
                 <label for="text"><h2 class="btn-success">{{auth()->user()->name}}</h2></label>
                 <input type="hidden" name="id_alumno" id="id_alumno" value="{{auth()->user()->id}}">
                 @endif

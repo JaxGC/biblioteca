@@ -10,12 +10,15 @@
 <div class="card-body">
     <div>
         <div class="card shadow">
-            <div class="row align-items-center">
+
+            <div class="card-body">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
             <div class="col-8">
             <h1>Categorias</h1>
             </div>
             <div class="col-4 text-right">
-                <a class="nav-link" href="{{ route('agregarCategoria') }}">
+                <a class="" href="{{ route('agregarCategoria') }}">
                     <i class="btn btn-outline-success btn-sm btn-block">Añadir Categoria</i>
                 </a>
             </div>

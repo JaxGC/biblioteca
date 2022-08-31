@@ -28,7 +28,7 @@
                                     <input class="form-control" type="date" value="{{old('fecha_fin')}}" name="fecha_fin" id="fecha_fin"> 
                                 </div>  
                                 <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-primary">Imprimir</button>
+                                    <button type="submit" class="btn btn-primary">Imprimir reporte</button>
                                 </div>                      
                             </div>
                         </div>

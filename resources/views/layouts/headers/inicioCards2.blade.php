@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-nowrap"><a href="{{ route('bitacora') }}" class="font-weight-bold ml-1 btn btn-sm badge-pill badge-info" {{-- target="_blank" --}}>Ver registros</a></span>
+                                <span class="text-nowrap"><a href="{{ route('bitacora2',1) }}" class="font-weight-bold ml-1 btn btn-sm badge-pill badge-info" {{-- target="_blank" --}}>Ver registros</a></span>
                                 <h2><span class="text-success mr-2"><i class="fa fa-arrow-up">{{$contadorPresActivos1}}</i></span></h2>
                             </p>
                         </div>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <a href="{{ route('bitacora') }}" class="font-weight-bold ml-1 btn btn-sm badge-pill badge-info" >Ver registros</a>
+                                <a href="{{ route('bitacora2',0) }}" class="font-weight-bold ml-1 btn btn-sm badge-pill badge-info" >Ver registros</a>
                                 <h2><span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{$contadorPresPausados0}}</span></h2>
                             </p>
                         </div>

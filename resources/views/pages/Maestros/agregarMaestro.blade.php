@@ -54,7 +54,7 @@
 			@endif
         <div class="card shadow">
             <div class="card-body">
-            <h1>Agregar Maestros</h1>
+            <h1>Agregar Profesores</h1>
             <form method="POST" action="{{ url('agregarMa') }}"  role="form" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">

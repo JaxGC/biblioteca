@@ -82,7 +82,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('icons2') }}">
-                                    {{ __('Maestros') }}
+                                    {{ __('Profesores') }}
                                 </a>
                             </li>
                             <li class="nav-item">

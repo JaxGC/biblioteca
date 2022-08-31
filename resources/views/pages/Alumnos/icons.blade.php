@@ -14,11 +14,11 @@
             <div class="card-header border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h1 class="mb-0">Usuarios</h1>
+                        <h1 class="mb-0">Alumnos</h1>
                     </div>
                     <div class="col-4 text-right">
                         <a class="" href="{{ route('agregarUsuario') }}">
-                            <i class="btn btn-outline-success btn-sm btn-block">Añadir usuario</i>
+                            <i class="btn btn-outline-success btn-sm btn-block">Añadir alumno</i>
                         </a>
                     </div>
                 </div>

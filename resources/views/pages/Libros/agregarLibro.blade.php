@@ -1,32 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
-rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <!-- ✅ Load CSS file for Select2 -->
-    <link
-    href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-    rel="stylesheet"
-    />
+@extends('layouts.bootstrapstilos')
 
-    <!-- ✅ load jQuery ✅ -->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-    ></script>
-
-
-    <!-- ✅ load JS for Select2 ✅ -->
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
-    integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-></script>
 <script>//para admitir solo letras en el input
     function soloLetras(e){
      key = e.keyCode || e.which;
@@ -98,8 +74,8 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     <label for="exampleFormControlSelect1">Autor</label>
                     </strong>
                     @if ($auto->count())
-                    <select id="id_autor" name="id_autor" class="form-control" id="exampleFormControlSelect1">
-                        <option value="{{ old('Nombre_autor') }}"></option>
+                    <select id="id_autor" name="id_autor" class="form-control" aria-label="Default select example">
+                        <option value="{{ old('Nombre_autor') }}">Seleccione un autor:</option>
                         @foreach ($auto as $autor)
                           <option value="{{$autor->Nombre_autor}}">{{$autor->Nombre_autor}}</option>
                       @endforeach
@@ -122,8 +98,8 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     <label for="exampleFormControlSelect1">Editorial</label>
                     </strong>
                     @if ($editoria->count())
-                    <select id="id_editorial" name="id_editorial" class="form-control" id="exampleFormControlSelect1">
-                      <option value="{{ old('Nombre_editorial') }}"></option>
+                    <select id="id_editorial" name="id_editorial" class="form-control" aria-label="Default select example">
+                      <option value="{{ old('Nombre_editorial') }}">Seleccione un editorial:</option>
                         @foreach ($editoria as $editorial)
                           <option value="{{$editorial->Nombre_editorial}}">{{$editorial->Nombre_editorial}}</option>
                       @endforeach
@@ -147,12 +123,23 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                     <label for="exampleFormControlSelect1">Categoria</label>
                     </strong>
                     @if ($categori->count())
-                    <select id="id_categoria" name="id_categoria" class="form-control" id="exampleFormControlSelect1">
-                        <option value="{{ old('Nombre_categoria') }}"></option>
+                    <select id="id_categoria" name="id_categoria" class="form-control" aria-label="Default select example">
+                        <option value="{{ old('Nombre_categoria') }}">Seleccione una categoria:</option>
                         @foreach ($categori as $categoria)
                           <option value="{{$categoria->Nombre_categoria}}">{{$categoria->Nombre_categoria}}</option>
                       @endforeach
                     </select>
+                    @push('js')
+                        <script>
+                            $(document).ready(function(e) {
+                                $('#id_categoria').select2();
+
+                                $('#id_editorial').select2();
+
+                                $('#id_autor').select2();
+                            });
+                        </script>
+                    @endpush
                     @else
                         <script>
                             Swal.fire('Datos de categorias estan vacios')
@@ -164,7 +151,6 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                   </div>
             
             </div>
-             
           
             <div class="col-sm">
                 <strong>
@@ -240,7 +226,7 @@ rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tj
                 <strong>
                 <label> Observaciones </label>  
                 </strong>
-                <input value="{{ old('observaciones') }}" id="observaciones" name="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" required>
+                <input value="{{ old('observaciones') }}" id="observaciones" name="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones">
             </div>
             </div>
            <!-- Para ver la imagen seleccionada, de lo contrario no se -->

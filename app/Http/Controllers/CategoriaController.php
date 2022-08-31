@@ -39,12 +39,12 @@ class CategoriaController extends Controller
         //
         $varcat->Nombre_categoria = $request->Nombre_categoria;
         $varcat->save();
-        $varcat = Categoria::paginate(5);//paginar la tabla
+        $varcat = Categoria::all();//paginar la tabla
         return view('pages.Categorias.categoria', compact('varcat'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(Categoria $varcat){
         $varcat->delete();
-        $varcat = Categoria::paginate(5);//paginar la tabla
+        $varcat = Categoria::all();//paginar la tabla
         return view('pages.Categorias.categoria', compact('varcat'))->with('success','Registro Eliminado ');
     }
 }
