@@ -69,8 +69,19 @@
                             <form action="{{route('Admin.destroy', $var)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-danger ni ni-basket">Eliminar</button>
+                                <button type="submit" class="btn btn-outline-danger ni ni-basket" onclick="return EliminarRegistro('Eliminar Profesor')">Eliminar</button>
                             </form>
+                            <script>
+                                function EliminarRegistro(value){
+                                    Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Se ah eliminado correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                    })
+                                }
+                            </script>
                 </div>
                             @endif
                             

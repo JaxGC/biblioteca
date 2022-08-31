@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use App\Models\Maestro;
+use App\Models\Prestamo;
 use App\Models\Status_usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -131,6 +132,8 @@ class MaestroController extends Controller
               unlink('imagen/'.$imagenOld);  
             }
         }
+        $cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varMa->id)->delete();
+    
         $varMa->delete();
         $varMa = User::all()->where('rol','=','Maes');//paginar la tabla
         return view('pages.Maestros.icons2', compact('varMa'))->with('success','Registro Eliminado ');

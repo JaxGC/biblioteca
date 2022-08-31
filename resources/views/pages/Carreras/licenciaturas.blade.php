@@ -54,9 +54,20 @@
                                        <form action="{{route('Carrera.destroy', $lic)}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-outline-danger btn-xls ni ni-basket">Eliminar</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-xls ni ni-basket" onclick="return EliminarRegistro('Eliminar Profesor')">Eliminar</button>
                                     
                                 </form>
+                                <script>
+                                    function EliminarRegistro(value){
+                                        Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Se ah eliminado correctamente',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                        })
+                                    }
+                                </script>
                             </div>
                                 </div>
                             </div>

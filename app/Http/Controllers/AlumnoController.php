@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use App\Models\Licenciatura;
+use App\Models\Prestamo;
 use App\Models\Status_usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -136,6 +137,9 @@ class AlumnoController extends Controller
               unlink('imagen/'.$imagenOld);  
             }
         }
+        //return $varAlu->id;
+        $cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varAlu->id)->delete();
+    
         $varAlu->delete();
         $varAlu=User::all()->where('rol','=','Alum');//paginar la tabla
         return view('pages.Alumnos.icons', compact('varAlu'))->with('success','Registro Eliminado ');
