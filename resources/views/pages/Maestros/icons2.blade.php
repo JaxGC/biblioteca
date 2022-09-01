@@ -6,6 +6,18 @@
     <br>
     <br>
 </div>
+@if (session('eliminar')=='ok')
+<script>
+    
+        Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'No se puede eliminar porque tiene un prestamo activo',
+        showConfirmButton: true
+        })
+
+</script>
+@endif
 <div class="card-body">
     <div>
         <div class="card shadow">
@@ -28,8 +40,8 @@
                         <tr>
                         <th>Clave de maestro</th>
                         <th>Nombre de maestro</th>
-                        <th class="border px-4 py-2">IMAGEN</th>
-                        <th>Contraseña</th>
+                        <th class="border px-4 py-2 text-center">IMAGEN</th>
+                        {{-- <th>Contraseña</th> --}}
                         <th>Carrera</th>
                         <th>Acciones</th>
                         </tr>
@@ -40,10 +52,10 @@
                         <tr>
                         <td>{{$Ma->clave}}</td>
                         <td>{{$Ma->name}}</td>
-                        <td  class="border px-14 py-1">
+                        <td  class="border px-14 py-1 text-center">
                             <img src="/imagen/{{$Ma->imagen_usuario}}" width="80%">
                         </td>
-                        <td>{{$Ma->password}}</td> 
+                        {{-- <td>{{$Ma->password}}</td>  --}}
                         <td>{{$Ma->id_licenciatura}}</td>
                         <td class="text-right">
                             <div class="dropdown">
@@ -61,7 +73,7 @@
                                 @method('delete')
                                 <button type="submit" class="btn btn-outline-danger ni ni-basket" onclick="return EliminarRegistro('Eliminar Profesor')">Eliminar</button>
                             </form>
-                            <script>
+                            {{-- <script>
                                 function EliminarRegistro(value){
                                     Swal.fire({
                                     position: 'top-end',
@@ -71,7 +83,7 @@
                                     timer: 1500
                                     })
                                 }
-                            </script>
+                            </script> --}}
                                 </div> 
                         </td>
                         </tr>
@@ -82,8 +94,8 @@
                         <tr>
                             <th>Clave de maestro</th>
                             <th>Nombre de maestro</th>
-                            <th class="border px-4 py-2">IMAGEN</th>
-                            <th>Contraseña</th>
+                            <th class="border px-4 py-2 text-center">IMAGEN</th>
+                            {{-- <th>Contraseña</th> --}}
                             <th>Carrera</th>
                             <th>Acciones</th>
                           

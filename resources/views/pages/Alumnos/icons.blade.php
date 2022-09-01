@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+@if($errors->any())
+     <p class="error-message badge-pill bg-yellow text-white btn-block" >
+        <strong>{{$errors->first('mensaje')}}</strong>
+    </p> 
+@endif
+@if (session('eliminar')=='ok')
+<script>
+    
+        Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'No se puede eliminar porque tiene un prestamo activo',
+        showConfirmButton: true
+        })
+
+</script>
+@endif
 <div class="card-body " style="background-color: #80ba26">
     <br>
     <br>
@@ -31,8 +48,8 @@
                         <th>Matricula</th>
                         <th>Nombre de alumno</th>
                         <th>Direccion</th>
-                        <th class="border px-4 py-2">IMAGEN</th>
-                        <th>Contraseña</th>
+                        <th class="border px-4 py-2 text-center">IMAGEN</th>
+                        {{-- <th>Contraseña</th> --}}
                         <th>Acciones</th>
                         </tr>
                     </thead>
@@ -43,10 +60,10 @@
                         <td>{{$alu->clave}}</td>
                         <td>{{$alu->name}}</td>
                         <td>{{$alu->email}}</td>
-                        <td  class="border px-14 py-1">
+                        <td  class="border px-14 py-1 text-center">
                             <img src="/imagen/{{$alu->imagen_usuario}}" width="50%">
                         </td>
-                        <td>{{$alu->password}}</td>
+                        {{-- <td>{{$alu->password}}</td> --}}
                         <td class="text-right">
                             <div class="dropdown">
                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,7 +80,8 @@
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-danger ni ni-basket" onclick="return EliminarRegistro('Eliminar Profesor')">Eliminar</button>
                                     </form>
-                                    <script>
+                                   
+                                    {{-- <script>
                                         function EliminarRegistro(value){
                                             Swal.fire({
                                             position: 'top-end',
@@ -73,7 +91,7 @@
                                             timer: 1500
                                             })
                                         }
-                                    </script>
+                                    </script> --}}
                                 </div>
                             </div>
                         </td>
@@ -85,8 +103,8 @@
                             <th>Matricula</th>
                             <th>Nombre de alumno</th>
                             <th>Direccion</th>
-                            <th class="border px-4 py-2">IMAGEN</th>
-                            <th>Contraseña</th>
+                            <th class="border px-4 py-2 text-center">IMAGEN</th>
+                            {{-- <th>Contraseña</th> --}}
                             <th>Acciones</th>
                         </tr>
                     </tfoot> 

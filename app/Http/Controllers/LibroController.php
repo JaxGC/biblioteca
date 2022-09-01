@@ -44,7 +44,8 @@ class LibroController extends Controller
         'estado'=>'required',
         'observaciones'=>'required',
         'imagen' => 'image|mimes:jpeg,png,svg|max:1024',
-        'numero_stand'=>'required'
+        'numero_stand'=>'required',
+        'codigo'=>'required'
 
             ], [
 
@@ -66,6 +67,7 @@ class LibroController extends Controller
                 $imagen->move($rutaGuardarImg, $imagenProducto);
                 $data['imagen'] = "$imagenProducto";             
             }
+            //return $request->codigo;
             if ($request->imagen=="") {
                 Libro::create([
                     'Nombre_libro'=>$data['Nombre_libro'],
@@ -79,7 +81,8 @@ class LibroController extends Controller
                     'estado'=>$data['estado'],
                     'observaciones'=>$data['observaciones'],
                     'imagen'=>'sin imagen',
-                    'numero_stand'=>$data['numero_stand']
+                    'numero_stand'=>$data['numero_stand'],
+                    'codigo'=>$data['codigo']
                 ]);
             } else {
                 Libro::create([
@@ -94,7 +97,8 @@ class LibroController extends Controller
                     'estado'=>$data['estado'],
                     'observaciones'=>$data['observaciones'],
                     'imagen'=>$data['imagen'],
-                    'numero_stand'=>$data['numero_stand']
+                    'numero_stand'=>$data['numero_stand'],
+                    'codigo'=>$data['codigo']
                 ]);
             }
             return back()->with('success','Registro creado satisfactoriamente');
@@ -117,6 +121,7 @@ class LibroController extends Controller
         $varlib->estado = $request->estado;
         $varlib->observaciones=$request->observaciones;
         $varlib->numero_stand = $request->numero_stand;
+        $varlib->codigo = $request->codigo;
 
         $imagenOld = $varlib->imagen;
         //dd($imagenOld);

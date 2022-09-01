@@ -126,17 +126,22 @@ class MaestroController extends Controller
         return view('pages.Maestros.icons2', compact('varMa'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(User $varMa){
+        
+        if(Prestamo::where('id_alumno', '=', $varMa->id)->first() != null){
+            return redirect()->back()->with('eliminar','ok');
+        }
+        else{
+        //$cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varMa->id)->delete();
         $imagenOld = $varMa->imagen_usuario;
         if ($imagenOld!="") {
             if($imagenOld!="sin imagen"){
               unlink('imagen/'.$imagenOld);  
             }
         }
-        $cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varMa->id)->delete();
-    
         $varMa->delete();
         $varMa = User::all()->where('rol','=','Maes');//paginar la tabla
         return view('pages.Maestros.icons2', compact('varMa'))->with('success','Registro Eliminado ');
     }
+}
     
 }

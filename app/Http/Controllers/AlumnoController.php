@@ -131,17 +131,22 @@ class AlumnoController extends Controller
         return view('pages.Alumnos.icons', compact('varAlu'))->with('success','Registro Actualizado satisfactoriamente');//mensaje de actualizacion
     }
     public function destroy(User $varAlu){
+       
+        //return $varAlu->id;
+        if(Prestamo::where('id_alumno', '=', $varAlu->id)->first() != null){
+            return redirect()->back()->with('eliminar','ok');
+        }
+        else{
+        //$cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varAlu->id)->delete();
         $imagenOld = $varAlu->imagen_usuario;
         if ($imagenOld!="") {
             if($imagenOld!="sin imagen"){
               unlink('imagen/'.$imagenOld);  
             }
         }
-        //return $varAlu->id;
-        $cascadaPrestamoDestroy=Prestamo::where('id_alumno','=',$varAlu->id)->delete();
-    
         $varAlu->delete();
         $varAlu=User::all()->where('rol','=','Alum');//paginar la tabla
         return view('pages.Alumnos.icons', compact('varAlu'))->with('success','Registro Eliminado ');
+        }
     }
 }

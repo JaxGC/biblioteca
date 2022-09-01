@@ -34,7 +34,7 @@
             <tbody>
                 @foreach ($varlib as $var)
                 <tr>
-                    <td>{{$var->id}}</td>
+                    <td>{{$var->codigo}}</td>
                     <td>{{$var->Nombre_libro}}</td>
                 </tr>
                 @endforeach

@@ -119,6 +119,13 @@
                 <input value="{{$varlib->year_edicion}}" type="numeric" name="year_edicion" id="year_edicion" class="form-control form-control-muted" placeholder="ingrese el numero de edicion">
 
             </div>
+            <div class="col-sm">
+                <strong>
+                <label > Numero Stand</label>
+                </strong>
+                <input value="{{$varlib->numero_stand}}" type="numeric" name="numero_stand" id="numero_stand" class="form-control form-control-muted" placeholder="ingrese el numero de stand">
+
+            </div>
         </div>
         <div class="row">
             <div class="col-sm">
@@ -149,6 +156,13 @@
                 <label> Observaciones </label>  
                 </strong>
                 <input value="{{$varlib->observaciones}}" id="observaciones" name="observaciones" type="text" class="form-control form-control-muted" placeholder="ingrese observaciones" required>
+            </div>
+            <div class="col-sm">
+                <strong>
+                <label > Código</label>
+                </strong>
+                <input value="{{$varlib->codigo}}" type="numeric" name="codigo" id="codigo" class="form-control form-control-muted" placeholder="ingrese el codigo de libro">
+
             </div>
             <div class="row">
                 <div class="grid grid-cols-1 mt-5 mx-7">

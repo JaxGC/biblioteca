@@ -17,7 +17,7 @@
                   <div class="col-sm-8">
                       <dl>
                           <dt>CODIGO:</dt>
-                          <dd class="codigo_libro">{{$lib->id}}</dd>
+                          <dd class="codigo_libro">{{$lib->codigo}}</dd>
                           <dt>TITULO:</dt>
                           <dd class="titulo_libro">{{$lib->Nombre_libro}}</dd>
                           <dt>AUTOR:</dt>

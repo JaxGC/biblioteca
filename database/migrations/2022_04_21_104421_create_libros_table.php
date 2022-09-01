@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('estado');
             $table->text('observaciones');
             $table->string('imagen');
-            $table->string('numero_stand')->nullable();
+            $table->string('numero_stand',255)->nullable();
+            $table->string('codigo',255)->nullable();
             $table->timestamps();
         });
     }
