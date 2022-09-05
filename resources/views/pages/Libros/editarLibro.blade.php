@@ -68,9 +68,17 @@
                     <strong>
                     <label for="exampleFormControlSelect1">Autor</label></strong>
                     <select id="id_autor" name="id_autor" class="form-control">
+                        @if ($varlib)
+                            <option value="{{$varlib->id_autor}}">{{$varlib->id_autor}}</option>
+                            @foreach ($auto as $autor)
+                                <option value="{{$autor->Nombre_autor}}">{{$autor->Nombre_autor}}</option>
+                            @endforeach
+                            @else
+                            <option value="0">Selecciona Autor</option>
                         @foreach ($auto as $autor)
                             <option value="{{$autor->Nombre_autor}}">{{$autor->Nombre_autor}}</option>
                         @endforeach
+                        @endif
                     </select>
                   </div>
             </div>
@@ -79,9 +87,17 @@
                     <strong>
                     <label for="exampleFormControlSelect1">Editorial</label></strong>
                     <select id="id_editorial" name="id_editorial" class="form-control">
+                        @if ($varlib)
+                            <option value="{{$varlib->id_editorial}}">{{$varlib->id_editorial}}</option>
+                            @foreach ($editoria as $editorial)
+                                <option value="{{$editorial->Nombre_editorial}}">{{$editorial->Nombre_editorial}}</option>
+                            @endforeach
+                            @else
+                            <option value="0">Selecciona Editorial</option>
                         @foreach ($editoria as $editorial)
                             <option value="{{$editorial->Nombre_editorial}}">{{$editorial->Nombre_editorial}}</option>
                         @endforeach
+                        @endif
                     </select>
                   </div>
             </div>
@@ -91,9 +107,17 @@
                 <div class="form-group"><strong>
                     <label for="exampleFormControlSelect1">Categoria</label></strong>
                     <select id="id_categoria" name="id_categoria" class="form-control">
+                        @if ($varlib)
+                            <option value="{{$varlib->id_categoria}}">{{$varlib->id_categoria}}</option>
+                            @foreach ($categori as $categoria)
+                                <option value="{{$categoria->Nombre_categoria}}">{{$categoria->Nombre_categoria}}</option>
+                            @endforeach
+                            @else
+                            <option value="0">Selecciona Categoria</option>
                         @foreach ($categori as $categoria)
                             <option value="{{$categoria->Nombre_categoria}}">{{$categoria->Nombre_categoria}}</option>
                         @endforeach
+                        @endif
                     </select>
                   </div>
             </div>
